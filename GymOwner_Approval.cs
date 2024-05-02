@@ -48,5 +48,10 @@ namespace Database_Project_GymTrainer
             GymOwner_Dashboard gymOwner_Dashboard = new GymOwner_Dashboard();
             gymOwner_Dashboard.Show();
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

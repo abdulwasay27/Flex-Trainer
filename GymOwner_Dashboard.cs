@@ -35,5 +35,10 @@ namespace Database_Project_GymTrainer
             GymOwner_Approval gymOwner_Approval = new GymOwner_Approval();
             gymOwner_Approval.Show();
         }
+
+        private void kryptonButton7_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
