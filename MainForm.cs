@@ -24,6 +24,7 @@ namespace Database_Project_GymTrainer
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Console.WriteLine("Hello");
             Admin_Login adminLogin = new Admin_Login();
             adminLogin.Show();
         }
