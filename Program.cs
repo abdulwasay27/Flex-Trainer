@@ -17,8 +17,7 @@ namespace Database_Project_GymTrainer
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
-
-            //Application.Run(new Member_WorkoutPlan_Create());
+            Console.WriteLine("Hello");
         }
     }
 }
