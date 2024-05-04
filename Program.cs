@@ -17,7 +17,6 @@ namespace Database_Project_GymTrainer
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
-
         }
     }
 }
