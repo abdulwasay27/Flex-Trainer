@@ -45,7 +45,7 @@ namespace Database_Project_GymTrainer
         {
             string email = admin_login_email.Text;
             string password = admin_login_password.Text;
-            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-RP5FDGT\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;Encrypt=False");
+            SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
             conn.Open();
             SqlCommand cmd;
             string query = "select count(*) from admin where adminEmail=@email";
@@ -70,7 +70,7 @@ namespace Database_Project_GymTrainer
                     if (returned_Password == password)
                     {
                         this.Close();
-                        Admin_Dashboard admin_Dashboard = new Admin_Dashboard();
+                        Admin_Dashboard admin_Dashboard = new Admin_Dashboard(email);
                         admin_Dashboard.Show();
 
                     }

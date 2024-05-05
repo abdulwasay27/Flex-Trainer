@@ -12,9 +12,12 @@ namespace Database_Project_GymTrainer
 {
     public partial class GymOwner_Dashboard : Form
     {
-        public GymOwner_Dashboard()
+        string current_email;
+
+        public GymOwner_Dashboard(string current_email="")
         {
             InitializeComponent();
+            this.current_email = current_email;
         }
 
         private void GymOwner_Dashboard_Load(object sender, EventArgs e)
@@ -32,7 +35,7 @@ namespace Database_Project_GymTrainer
         private void kryptonButton6_Click(object sender, EventArgs e)
         {
             Close();
-            GymOwner_Approval gymOwner_Approval = new GymOwner_Approval();
+            GymOwner_Approval gymOwner_Approval = new GymOwner_Approval(current_email);
             gymOwner_Approval.Show();
         }
 
