@@ -72,26 +72,36 @@ namespace Database_Project_GymTrainer
                 cmd.Parameters.Add("@duration", SqlDbType.Int).Value = Int32.Parse(duration);
                 cmd.Parameters.Add("@selectedDate", SqlDbType.DateTime).Value = date;
                 cmd.Parameters.Add("@type", SqlDbType.VarChar).Value = type;
-
+                DateTime currentDate = DateTime.Now;
                 int count = (int)cmd.ExecuteScalar();
                 if (count > 0)
                 {
                     MessageBox.Show("Email already exists!");
                 }
+
                 else
                 {
-                    query = "";
-                    query = "Insert into Member(memberEmail, memberName, password, gymName, objectives, membershipDuration, signup_date) values(@email, @name, @password, @gym, @objective, @duration, @selectedDate)";
-                    cmd.CommandText = query;
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                    conn.Close();
 
-                    MessageBox.Show("Sign Up Successfull!");
+                    if (DateTime.Compare(currentDate, date) < 0)
+                    {
+                        MessageBox.Show("Enter valid date.");
+                    }
+                    else
+                    {
+                        query = "";
+                        query = "Insert into Member(memberEmail, memberName, password, gymName, objectives, membershipDuration, signup_date) values(@email, @name, @password, @gym, @objective, @duration, @selectedDate)";
+                        cmd.CommandText = query;
+                        cmd.ExecuteNonQuery();
+                        cmd.Dispose();
+                        conn.Close();
 
-                    this.Close();
-                    Member_Dashboard member = new Member_Dashboard();
-                    member.Show();
+                        MessageBox.Show("Sign Up Successfull!");
+
+                        this.Close();
+                        Member_Dashboard member = new Member_Dashboard();
+                        member.Show();
+
+                    }
                 }
 
             }
