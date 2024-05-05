@@ -33,8 +33,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label2 = new System.Windows.Forms.Label();
-            this.kryptonTextBox1 = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.kryptonTextBox3 = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.member_login_email = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.member_login_password = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton4 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -89,30 +89,30 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "MEMBER LOGIN";
             // 
-            // kryptonTextBox1
+            // member_login_email
             // 
-            this.kryptonTextBox1.Location = new System.Drawing.Point(340, 187);
-            this.kryptonTextBox1.Name = "kryptonTextBox1";
-            this.kryptonTextBox1.Size = new System.Drawing.Size(225, 27);
-            this.kryptonTextBox1.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.member_login_email.Location = new System.Drawing.Point(340, 187);
+            this.member_login_email.Name = "member_login_email";
+            this.member_login_email.Size = new System.Drawing.Size(225, 27);
+            this.member_login_email.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonTextBox1.StateCommon.Border.Rounding = 5;
-            this.kryptonTextBox1.TabIndex = 11;
-            this.kryptonTextBox1.TextChanged += new System.EventHandler(this.kryptonTextBox1_TextChanged);
+            this.member_login_email.StateCommon.Border.Rounding = 5;
+            this.member_login_email.TabIndex = 11;
+            this.member_login_email.TextChanged += new System.EventHandler(this.kryptonTextBox1_TextChanged);
             // 
-            // kryptonTextBox3
+            // member_login_password
             // 
-            this.kryptonTextBox3.Location = new System.Drawing.Point(340, 220);
-            this.kryptonTextBox3.Name = "kryptonTextBox3";
-            this.kryptonTextBox3.PasswordChar = '*';
-            this.kryptonTextBox3.Size = new System.Drawing.Size(225, 27);
-            this.kryptonTextBox3.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.member_login_password.Location = new System.Drawing.Point(340, 220);
+            this.member_login_password.Name = "member_login_password";
+            this.member_login_password.PasswordChar = '*';
+            this.member_login_password.Size = new System.Drawing.Size(225, 27);
+            this.member_login_password.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonTextBox3.StateCommon.Border.Rounding = 5;
-            this.kryptonTextBox3.TabIndex = 13;
-            this.kryptonTextBox3.TextChanged += new System.EventHandler(this.kryptonTextBox3_TextChanged);
+            this.member_login_password.StateCommon.Border.Rounding = 5;
+            this.member_login_password.TabIndex = 13;
+            this.member_login_password.TextChanged += new System.EventHandler(this.kryptonTextBox3_TextChanged);
             // 
             // kryptonButton1
             // 
@@ -233,8 +233,8 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.kryptonButton4);
             this.Controls.Add(this.kryptonButton1);
-            this.Controls.Add(this.kryptonTextBox3);
-            this.Controls.Add(this.kryptonTextBox1);
+            this.Controls.Add(this.member_login_password);
+            this.Controls.Add(this.member_login_email);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
@@ -255,8 +255,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label2;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox kryptonTextBox1;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox kryptonTextBox3;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox member_login_email;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox member_login_password;
         public ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
         public ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton4;
         private System.Windows.Forms.PictureBox pictureBox2;
