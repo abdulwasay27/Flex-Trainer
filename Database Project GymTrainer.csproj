@@ -148,6 +148,12 @@
     <Compile Include="Trainer_DietPlan_Create.Designer.cs">
       <DependentUpon>Trainer_DietPlan_Create.cs</DependentUpon>
     </Compile>
+    <Compile Include="Trainer_Gym.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Trainer_Gym.Designer.cs">
+      <DependentUpon>Trainer_Gym.cs</DependentUpon>
+    </Compile>
     <Compile Include="Trainer_Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Trainer_DietPlan_Create.resx">
       <DependentUpon>Trainer_DietPlan_Create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Trainer_Gym.resx">
+      <DependentUpon>Trainer_Gym.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Trainer_Login.resx">
       <DependentUpon>Trainer_Login.cs</DependentUpon>
