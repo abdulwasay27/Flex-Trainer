@@ -106,7 +106,7 @@ namespace Database_Project_GymTrainer
                 else
                 {
                     query = "";
-                    query = "Insert into Trainer(trainerEmail, name, speciality, experience, qualification) values(@email, @name, @password, @speciality, @experience, @qualification)";
+                    query = "Insert into Trainer(trainerEmail, name,password, speciality, experience, qualification) values(@email, @name, @password, @speciality, @experience, @qualification)";
                     cmd.CommandText = query;
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();
