@@ -246,6 +246,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="background.png" />
     <Content Include="FLEX TRAINER.png" />
     <Content Include="Image1.png" />
   </ItemGroup>

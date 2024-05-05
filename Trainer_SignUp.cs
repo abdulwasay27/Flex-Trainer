@@ -73,5 +73,15 @@ namespace Database_Project_GymTrainer
         {
 
         }
+
+        private void kryptonTextBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void kryptonComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
