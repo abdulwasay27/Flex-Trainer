@@ -23,5 +23,30 @@ namespace Database_Project_GymTrainer
             Member_Dashboard member_Dashboard = new Member_Dashboard();
             member_Dashboard.Show();
         }
+
+        private void Member_DietPlan_Create_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
