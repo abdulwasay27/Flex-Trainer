@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -31,9 +32,45 @@ namespace Database_Project_GymTrainer
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this.Close();
-            Trainer_Dashboard trainer_Dashboard = new Trainer_Dashboard();
-            trainer_Dashboard.Show();
+            string email = trainer_login_email.Text;
+            string password = trainer_login_pw.Text;
+            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-RP5FDGT\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;Encrypt=False");
+            conn.Open();
+            SqlCommand cmd;
+            string query = "select count(*) from trainer where trainerEmail=@email";
+            cmd = new SqlCommand(query, conn);
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+                MessageBox.Show("Please enter email and passowrd!");
+            else
+            {
+                cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
+                cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
+                cmd.CommandText = query;
+                int count = (int)cmd.ExecuteScalar();
+                if (count == 0)
+                {
+                    MessageBox.Show("Email does not exist. Please Sign Up!");
+                }
+                else
+                {
+                    query = "select password from trainer where trainerEmail=@email";
+                    cmd.CommandText = query;
+                    string returned_Password = cmd.ExecuteScalar().ToString();
+                    if (returned_Password == password)
+                    {
+                        this.Close();
+                        Trainer_Dashboard trainer_Dashboard = new Trainer_Dashboard();
+                        trainer_Dashboard.Show();
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Incorrect email or passowrd.");
+                    }
+                }
+            }
+
+
 
         }
     }

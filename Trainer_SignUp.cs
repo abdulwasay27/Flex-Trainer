@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -71,7 +73,53 @@ namespace Database_Project_GymTrainer
 
         private void button3_Click(object sender, EventArgs e)
         {
+            string name = trainer_signup_name.Text;
+            string email = trainer_signup_email.Text;
+            string password = trainer_signup_pw.Text;
+            string speciality = trainer_signup_speciality.Text;
+            string qualification = trainer_signup_qualification.Text;
+            string experience = trainer_signup_exp.Text;
 
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Please enter all compulsory fields!");
+            }
+            else
+            {
+                SqlConnection conn = new SqlConnection("Data Source=DESKTOP-RP5FDGT\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;Encrypt=False");
+                conn.Open();
+                SqlCommand cmd;
+                string query = "select count(*) from Trainer where trainerEmail=@email";
+                cmd = new SqlCommand(query, conn);
+                cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
+                cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
+                cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
+                cmd.Parameters.Add("@speciality", SqlDbType.VarChar).Value = speciality;
+                cmd.Parameters.Add("@qualification", SqlDbType.VarChar).Value = qualification;
+                cmd.Parameters.Add("@experience", SqlDbType.VarChar).Value = experience;
+
+                int count = (int)cmd.ExecuteScalar();
+                if (count > 0)
+                {
+                    MessageBox.Show("Email already exists!");
+                }
+                else
+                {
+                    query = "";
+                    query = "Insert into Trainer(trainerEmail, name, speciality, experience, qualification) values(@email, @name, @password, @speciality, @experience, @qualification)";
+                    cmd.CommandText = query;
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                    conn.Close();
+
+                    MessageBox.Show("Sign Up Successfull!");
+
+                    this.Close();
+                    Trainer_Dashboard trainer = new Trainer_Dashboard();
+                    trainer.Show();
+                }
+
+            }
         }
 
         private void kryptonTextBox4_TextChanged(object sender, EventArgs e)
