@@ -66,7 +66,7 @@ namespace Database_Project_GymTrainer
             kryptonTextBox1.Visible = false;
             label1.Visible = false;
             this.Hide();
-            Member_WorkoutPlan_Create member_WorkoutPlan_Create = new Member_WorkoutPlan_Create(memberEmail);
+            Member_WorkoutPlan_Create member_WorkoutPlan_Create = new Member_WorkoutPlan_Create(owner_email);
             member_WorkoutPlan_Create.Show();
         }
 
@@ -75,7 +75,7 @@ namespace Database_Project_GymTrainer
             kryptonTextBox1.Visible = false;
             label1.Visible = false;
             this.Hide();
-            Member_DietPlan_Create member_DietPlan_ = new Member_DietPlan_Create(memberEmail);
+            Member_DietPlan_Create member_DietPlan_ = new Member_DietPlan_Create(owner_email);
             member_DietPlan_.Show();
         }
 
