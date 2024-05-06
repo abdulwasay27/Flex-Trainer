@@ -74,7 +74,6 @@ namespace Database_Project_GymTrainer
                     {
                         Member_Dashboard member = new Member_Dashboard(owneremail,email,gym);
                         this.Close();
-                        Member_Dashboard member = new Member_Dashboard(email);
                         member.Show();
 
                     }

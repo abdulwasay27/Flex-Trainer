@@ -61,7 +61,7 @@ namespace Database_Project_GymTrainer
         private void button4_Click(object sender, EventArgs e)
         {
             currently_selected_button = "gym";
-            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+            SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
             SqlDataAdapter sqlDA = new SqlDataAdapter("Select Gym.gymName, Gym.gymOwner, Gym.adminEmail, Gym.location, Gym.membership_fees from Member join Gym on Member.gymName = Gym.gymName;", conn);
             DataTable dt = new DataTable();
             sqlDA.Fill(dt);
@@ -78,14 +78,20 @@ namespace Database_Project_GymTrainer
         {
             currently_selected_button = "workout";
             kryptonTextBox1.Visible = false;
-            label1.Visible = false;          
+            label1.Visible = false;
+            Member_WorkoutPlan_Create member_WorkoutPlan_Create = new Member_WorkoutPlan_Create(member_email);
+            member_WorkoutPlan_Create.Show();
+            this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             currently_selected_button = "diet";
             kryptonTextBox1.Visible = false;
-            label1.Visible = false;           
+            label1.Visible = false;
+            Member_DietPlan_Create member_DietPlan_Create = new Member_DietPlan_Create(member_email);
+            member_DietPlan_Create.Show();
+            this.Hide();
         }
 
         private void kryptonButton4_Click(object sender, EventArgs e)
@@ -97,7 +103,7 @@ namespace Database_Project_GymTrainer
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
             currently_selected_button = "trainer";
-            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+            SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
             SqlDataAdapter sqlDA = new SqlDataAdapter("Select Trainer.trainerEmail, Trainer.name, Trainer.speciality, Trainer.experience from Trainer join Member on Trainer.trainerEmail = Member.trainerEmail;", conn);
             DataTable dt = new DataTable();
             sqlDA.Fill(dt);
@@ -116,7 +122,7 @@ namespace Database_Project_GymTrainer
             kryptonTextBox1.Visible = true;
             if (currently_selected_button == "gym")
             {
-                SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+                SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
                 conn.Open();
                 string query = "Select Gym.gymName, Gym.gymOwner, Gym.adminEmail, Gym.location, Gym.membership_fees from Gym";
                 using (SqlCommand command = new SqlCommand(query, conn))
@@ -137,7 +143,7 @@ namespace Database_Project_GymTrainer
             }
             else if (currently_selected_button == "trainer")
             {
-                SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+                SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
                 conn.Open();
                 string query = "SELECT Trainer.trainerEmail, Trainer.name, Trainer.speciality, Trainer.experience FROM Trainer " +
                        "JOIN GymTrainers ON GymTrainers.trainerEmail = Trainer.trainerEmail " +
@@ -180,7 +186,7 @@ namespace Database_Project_GymTrainer
         {
             if (currently_selected_button == "gym")
             {
-                SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+                SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
                 conn.Open();
                 string query = "Select Gym.gymName, Gym.gymOwner, Gym.adminEmail, Gym.location, Gym.membership_fees from Gym";
                 using (SqlCommand command = new SqlCommand(query, conn))
@@ -200,7 +206,7 @@ namespace Database_Project_GymTrainer
                 }
                 else
                 {
-                    conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+                    conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
                     conn.Open();
                     SqlCommand cmd;
                     query = "";
@@ -237,7 +243,7 @@ namespace Database_Project_GymTrainer
                 }
                 else
                 {
-                    SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+                    SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
                     conn.Open();
                     SqlCommand cmd;
                     string query = "select count(*) from Trainer where trainerEmail=@trainerEmail";

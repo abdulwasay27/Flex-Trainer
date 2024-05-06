@@ -74,7 +74,7 @@ namespace Database_Project_GymTrainer
         private void button4_Click_1(object sender, EventArgs e)
         {
             this.Hide();
-            Trainer_DietPlan_Create training_WorkoutPlan_ = new Trainer_DietPlan_Create();
+            Trainer_DietPlan_Create training_WorkoutPlan_ = new Trainer_DietPlan_Create(trainerEmail);
             training_WorkoutPlan_.Show();
         }
 
