@@ -23,7 +23,7 @@ namespace Database_Project_GymTrainer
             SqlDataAdapter sqlDA = new SqlDataAdapter("Select * FROM Approval inner join gym on Approval.gymName = gym.gymName where gym.isApproved = 0 ;",conn);
             DataTable dt = new DataTable();
             sqlDA.Fill(dt);
-            dataGridView1.DataSource = dt;
+            kryptonDataGridView1.DataSource = dt;
 
         }
 
@@ -49,7 +49,7 @@ namespace Database_Project_GymTrainer
             SqlDataAdapter sqlDA = new SqlDataAdapter("Select * FROM Approval inner join gym on Approval.gymName = gym.gymName where gym.isApproved = 0 ;", conn);
             DataTable dt = new DataTable();
             sqlDA.Fill(dt);
-            dataGridView1.DataSource = dt;
+            kryptonDataGridView1.DataSource = dt;
 
             conn.Close();
 
@@ -101,7 +101,7 @@ namespace Database_Project_GymTrainer
                 SqlDataAdapter sqlDA = new SqlDataAdapter("Select * FROM Approval inner join gym on Approval.gymName = gym.gymName where gym.isApproved = 0 ;", conn);
                 DataTable dt = new DataTable();
                 sqlDA.Fill(dt);
-                dataGridView1.DataSource = dt;
+                kryptonDataGridView1.DataSource = dt;
 
                 conn.Close();
 

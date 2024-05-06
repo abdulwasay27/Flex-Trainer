@@ -12,9 +12,11 @@ namespace Database_Project_GymTrainer
 {
     public partial class Member_DietPlan_Create : Form
     {
-        public Member_DietPlan_Create()
+        string memberEmail;
+        public Member_DietPlan_Create(string memberEmail)
         {
             InitializeComponent();
+            this.memberEmail = memberEmail;
         }
 
         private void button3_Click(object sender, EventArgs e)

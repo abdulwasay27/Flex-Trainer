@@ -12,9 +12,11 @@ namespace Database_Project_GymTrainer
 {
     public partial class Member_Dashboard : Form
     {
-        public Member_Dashboard()
+        string memberEmail;
+        public Member_Dashboard(string email="")
         {
             InitializeComponent();
+            this.memberEmail = email;
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -50,14 +52,14 @@ namespace Database_Project_GymTrainer
         private void button2_Click_1(object sender, EventArgs e)
         {
             this.Hide();
-            Member_WorkoutPlan_Create member_WorkoutPlan_Create = new Member_WorkoutPlan_Create();
+            Member_WorkoutPlan_Create member_WorkoutPlan_Create = new Member_WorkoutPlan_Create(memberEmail);
             member_WorkoutPlan_Create.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Member_DietPlan_Create member_DietPlan_ = new Member_DietPlan_Create();
+            Member_DietPlan_Create member_DietPlan_ = new Member_DietPlan_Create(memberEmail);
             member_DietPlan_.Show();
         }
 

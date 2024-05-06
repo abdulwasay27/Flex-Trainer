@@ -68,7 +68,7 @@ namespace Database_Project_GymTrainer
                     string returned_Password = cmd.ExecuteScalar().ToString();
                     if (returned_Password == password)
                     {
-                        Member_Dashboard member = new Member_Dashboard();
+                        Member_Dashboard member = new Member_Dashboard(email);
                         this.Close();
                         member.Show();
 
