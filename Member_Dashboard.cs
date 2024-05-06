@@ -7,19 +7,29 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Database_Project_GymTrainer
 {
     public partial class Member_Dashboard : Form
     {
-        string owner_email;
-        public Member_Dashboard(string email = "")
+        string owner_email, member_email;
+        string currently_selected_button;
+        string current_gym;
+        public Member_Dashboard(string email = "", string email2 = "", string current_gym = "")
         {
             InitializeComponent();
+            currently_selected_button = "";
+            this.current_gym = current_gym;
             owner_email = email;
+            member_email = email2;
             kryptonTextBox1.Visible = false;
+            kryptonButton7.Visible = false;
+            kryptonButton6.Visible = false;
+            kryptonButton8.Visible = false;
             label1.Visible = false;
         }
 
@@ -50,33 +60,32 @@ namespace Database_Project_GymTrainer
 
         private void button4_Click(object sender, EventArgs e)
         {
+            currently_selected_button = "gym";
             SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
             SqlDataAdapter sqlDA = new SqlDataAdapter("Select Gym.gymName, Gym.gymOwner, Gym.adminEmail, Gym.location, Gym.membership_fees from Member join Gym on Member.gymName = Gym.gymName;", conn);
             DataTable dt = new DataTable();
             sqlDA.Fill(dt);
             dataGridView1.DataSource = dt;
 
-            kryptonTextBox1.Visible = true;
-            label1.Text = "Enter GymName: ";
-            label1.Visible = true;
+            kryptonButton8.Visible = false;
+            kryptonButton7.Visible = true;
+            kryptonButton6.Visible = false;
+            kryptonTextBox1.Visible = false;
+            label1.Visible = false;
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
+            currently_selected_button = "workout";
             kryptonTextBox1.Visible = false;
-            label1.Visible = false;
-            this.Hide();
-            Member_WorkoutPlan_Create member_WorkoutPlan_Create = new Member_WorkoutPlan_Create(owner_email);
-            member_WorkoutPlan_Create.Show();
+            label1.Visible = false;          
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            currently_selected_button = "diet";
             kryptonTextBox1.Visible = false;
-            label1.Visible = false;
-            this.Hide();
-            Member_DietPlan_Create member_DietPlan_ = new Member_DietPlan_Create(owner_email);
-            member_DietPlan_.Show();
+            label1.Visible = false;           
         }
 
         private void kryptonButton4_Click(object sender, EventArgs e)
@@ -87,20 +96,69 @@ namespace Database_Project_GymTrainer
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
+            currently_selected_button = "trainer";
             SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
-            SqlDataAdapter sqlDA = new SqlDataAdapter("Select Trainer.trainerEmail, Trainer.name, Trainer.speciality, Trainer.experience from Trainer join GymTrainers on Trainer.trainerEmail = GymTrainers.trainerEmail join Gym on Gym.gymName = GymTrainers.gymName where trainer.isVerified = 1;", conn);
+            SqlDataAdapter sqlDA = new SqlDataAdapter("Select Trainer.trainerEmail, Trainer.name, Trainer.speciality, Trainer.experience from Trainer join Member on Trainer.trainerEmail = Member.trainerEmail;", conn);
             DataTable dt = new DataTable();
             sqlDA.Fill(dt);
             dataGridView1.DataSource = dt;
 
-            kryptonTextBox1.Visible = true;
-            label1.Text = "Enter Trainer Email: ";
-            label1.Visible = true;
+            kryptonButton7.Visible = true;
+            kryptonButton7.Text = "Change";
+            kryptonButton6.Visible = false;
+            kryptonButton8.Visible = false;
+            kryptonTextBox1.Visible = false;
+            label1.Visible = false;
         }
 
         private void kryptonButton7_Click(object sender, EventArgs e)
-        {
-
+        {      
+            kryptonTextBox1.Visible = true;
+            if (currently_selected_button == "gym")
+            {
+                SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+                conn.Open();
+                string query = "Select Gym.gymName, Gym.gymOwner, Gym.adminEmail, Gym.location, Gym.membership_fees from Gym";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@currentgym", current_gym);
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        dataGridView1.DataSource = dt;
+                    }
+                }
+                label1.Text = "Enter Gym Name: ";
+                label1.Visible = true;
+                kryptonButton7.Visible = false;
+                kryptonButton8.Location = kryptonButton7.Location;
+                kryptonButton8.Visible = true;
+            }
+            else if (currently_selected_button == "trainer")
+            {
+                SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+                conn.Open();
+                string query = "SELECT Trainer.trainerEmail, Trainer.name, Trainer.speciality, Trainer.experience FROM Trainer " +
+                       "JOIN GymTrainers ON GymTrainers.trainerEmail = Trainer.trainerEmail " +
+                       "WHERE GymTrainers.gymName = @currentgym;";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@currentgym", current_gym);
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        dataGridView1.DataSource = dt;
+                    }
+                }
+                label1.Text = "Enter Trainer Email: ";
+                label1.Visible = true;
+                kryptonButton7.Visible = false;
+                kryptonButton8.Location = kryptonButton7.Location;
+                kryptonButton8.Visible = true;
+            }
+            
         }
 
         private void kryptonTextBox1_TextChanged(object sender, EventArgs e)
@@ -111,6 +169,101 @@ namespace Database_Project_GymTrainer
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void kryptonButton8_MouseClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void kryptonButton8_Click(object sender, EventArgs e)
+        {
+            if (currently_selected_button == "gym")
+            {
+                SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+                conn.Open();
+                string query = "Select Gym.gymName, Gym.gymOwner, Gym.adminEmail, Gym.location, Gym.membership_fees from Gym";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@currentgym", current_gym);
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        dataGridView1.DataSource = dt;
+                    }
+                }
+                string gymname = kryptonTextBox1.Text;
+                if (string.IsNullOrEmpty(gymname))
+                {
+                    MessageBox.Show("Please enter all compulsory fields!");
+                }
+                else
+                {
+                    conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+                    conn.Open();
+                    SqlCommand cmd;
+                    query = "";
+                    query = "select count(*) from Gym where gymName=@gymName";
+                    cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.Add("@gymName", SqlDbType.VarChar).Value = gymname;
+                    int count = (int)cmd.ExecuteScalar();
+
+                    if (count != 0)
+                    {
+                        query = "";
+                        query = "select gymOwner from Gym where gymName = @gymName";
+                        owner_email = cmd.ExecuteScalar().ToString();
+
+                        query = "";
+                        query = "update Member set gymName = @gymName where memberEmail = @memberEmail";
+                        cmd.Parameters.Add("@memberEmail", SqlDbType.VarChar).Value = member_email;
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Gym Changed Successfully. Now in order to select the trainer, goto Trainer Tab!");
+                        kryptonTextBox1.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid Gym Name!");
+                    }
+                }
+            }
+            else if (currently_selected_button == "trainer")
+            {
+                string traineremail = kryptonTextBox1.Text;
+                if (string.IsNullOrEmpty(traineremail))
+                {
+                    MessageBox.Show("Please enter all compulsory fields!");
+                }
+                else
+                {
+                    SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+                    conn.Open();
+                    SqlCommand cmd;
+                    string query = "select count(*) from Trainer where trainerEmail=@trainerEmail";
+                    cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.Add("@trainerEmail", SqlDbType.VarChar).Value = traineremail;
+                    int count = (int)cmd.ExecuteScalar();
+
+                    if (count != 0)
+                    {
+                        query = "";
+                        query = "select gymOwner from Gym where gymName = @gymName";
+                        owner_email = cmd.ExecuteScalar().ToString();
+
+                        query = "";
+                        query = "update Member set gymName = @gymName where memberEmail = @memberEmail";
+                        cmd.Parameters.Add("@memberEmail", SqlDbType.VarChar).Value = member_email;
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Gym Changed Successfully. Now in order to select the trainer, goto Trainer Tab!");
+                        kryptonTextBox1.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid Trainer Email!");
+                    }
+                }
+            }
         }
     }
 }

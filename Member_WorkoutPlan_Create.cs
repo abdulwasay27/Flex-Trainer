@@ -61,7 +61,7 @@ namespace Database_Project_GymTrainer
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
             conn.Open();
             SqlCommand cmd;
             string get_workoutPlanId = "SELECT MAX(workoutPlanId) From WorkoutPlan ;";
@@ -183,7 +183,7 @@ namespace Database_Project_GymTrainer
                 }
 
                 string add_goal_and_experience_level = "UPDATE WorkoutPlan SET goal = @goal, experienceLevel = @experienceLevel where workoutplanID = @workoutPlanID;";
-                SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+                SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
                 conn.Open();
                 SqlCommand cmd;
                 cmd = new SqlCommand(add_goal_and_experience_level, conn);

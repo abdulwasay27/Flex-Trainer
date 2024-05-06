@@ -14,10 +14,12 @@ namespace Database_Project_GymTrainer
     public partial class Member_Login : Form
     {
         string owneremail;
-        public Member_Login(string owner_email = "")
+        string gym;
+        public Member_Login(string owner_email = "",string gym = "")
         {
             InitializeComponent();
             this.owneremail = owner_email;
+            this.gym = gym;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -70,6 +72,7 @@ namespace Database_Project_GymTrainer
                     string returned_Password = cmd.ExecuteScalar().ToString();
                     if (returned_Password == password)
                     {
+                        Member_Dashboard member = new Member_Dashboard(owneremail,email,gym);
                         this.Close();
                         Member_Dashboard member = new Member_Dashboard(email);
                         member.Show();

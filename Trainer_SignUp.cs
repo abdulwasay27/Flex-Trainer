@@ -14,9 +14,12 @@ namespace Database_Project_GymTrainer
 {
     public partial class Trainer_SignUp : Form
     {
-        public Trainer_SignUp()
+
+        string owner_email;
+        public Trainer_SignUp(string owner_email = "")
         {
             InitializeComponent();
+            this.owner_email = owner_email;
         }
 
         private void Trainer_SignUp_Load(object sender, EventArgs e)
@@ -110,12 +113,16 @@ namespace Database_Project_GymTrainer
                     cmd.CommandText = query;
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();
+                    query = "";
+                    query = "insert into Trainer_Verification(trainerEmail) values (@email)";
+                    cmd.CommandText = query;
+                    cmd.ExecuteNonQuery(); 
+                    cmd.Dispose();
                     conn.Close();
-
                     MessageBox.Show("Sign Up Successfull!");
 
                     this.Close();
-                    Trainer_Dashboard trainer = new Trainer_Dashboard();
+                    Trainer_Login trainer = new Trainer_Login();
                     trainer.Show();
                 }
 

@@ -108,7 +108,7 @@ namespace Database_Project_GymTrainer
                         MessageBox.Show("Sign Up Successfull!");
 
                         this.Close();
-                        Member_Login member = new Member_Login(owner_email);
+                        Member_Login member = new Member_Login(owner_email,gym);
                         member.Show();
 
                     }
