@@ -37,7 +37,7 @@ namespace Database_Project_GymTrainer
             SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
             conn.Open();
             SqlCommand cmd;
-            string query = "select count(*) from trainer where trainerEmail=@email";
+            string query = "select count(*) from trainer where trainerEmail=@email"; // ADD ISAPRROVED = 1
             cmd = new SqlCommand(query, conn);
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
                 MessageBox.Show("Please enter email and passowrd!");
