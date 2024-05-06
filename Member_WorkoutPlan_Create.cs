@@ -93,7 +93,7 @@ namespace Database_Project_GymTrainer
 
                 string create_workoutplan_record = "INSERT INTO workoutPlan (memberEmail) VALUES(@memberEmail);";
                 cmd.CommandText = create_workoutplan_record;
-                cmd.Parameters.Add("@memberEmail", SqlDbType.VarChar).Value = memberEmail;
+                cmd.Parameters.Add("@memberEmail", SqlDbType.VarChar).Value = this.memberEmail;
                 cmd.ExecuteNonQuery();
 
                 isWorkoutPlanCreated = true;
@@ -147,7 +147,7 @@ namespace Database_Project_GymTrainer
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
             Member_Dashboard member_Dashboard = new Member_Dashboard();
             member_Dashboard.Show();
         }
@@ -198,6 +198,7 @@ namespace Database_Project_GymTrainer
                 this.Controls.Remove(label3);
                 this.Controls.Remove(kryptonTextBox1);
                 this.Controls.Remove(kryptonTextBox2);
+                this.Controls.Remove(kryptonButton2);
                 kryptonDataGridView1.DataSource = null;
                 kryptonDataGridView1.Rows.Clear();
                 int moveAmount = 30;
@@ -255,7 +256,7 @@ namespace Database_Project_GymTrainer
         private void kryptonComboBox3_DropDown(object sender, EventArgs e)
         {
             kryptonComboBox3.Items.Clear();
-            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+            SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
             conn.Open();
             SqlCommand cmd;
             string display_targetMuscle = "SELECT distinct(targetMuscle) From exercise ;";
@@ -276,7 +277,7 @@ namespace Database_Project_GymTrainer
         private void kryptonComboBox2_DropDown(object sender, EventArgs e)
         {
             kryptonComboBox2.Items.Clear();
-            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+            SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
             conn.Open();
             SqlCommand cmd;
             string display_exerciseNames_specific = "SELECT exerciseName From exercise where targetMuscle = @target_muscle;";

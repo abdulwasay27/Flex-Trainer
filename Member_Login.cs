@@ -46,7 +46,7 @@ namespace Database_Project_GymTrainer
         {
             string email = member_login_email.Text;
             string password = member_login_password.Text;
-            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+            SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
             conn.Open();
             SqlCommand cmd;
             string query = "select count(*) from member where memberEmail=@email"; // ADD ISAPRROVED = 1
@@ -70,8 +70,8 @@ namespace Database_Project_GymTrainer
                     string returned_Password = cmd.ExecuteScalar().ToString();
                     if (returned_Password == password)
                     {
-                        Member_Dashboard member = new Member_Dashboard(owneremail);
                         this.Close();
+                        Member_Dashboard member = new Member_Dashboard(email);
                         member.Show();
 
                     }

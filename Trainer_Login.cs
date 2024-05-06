@@ -34,7 +34,7 @@ namespace Database_Project_GymTrainer
         {
             string email = trainer_login_email.Text;
             string password = trainer_login_pw.Text;
-            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+            SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
             conn.Open();
             SqlCommand cmd;
             string query = "select count(*) from trainer where trainerEmail=@email";
@@ -59,7 +59,7 @@ namespace Database_Project_GymTrainer
                     if (returned_Password == password)
                     {
                         this.Close();
-                        Trainer_Dashboard trainer_Dashboard = new Trainer_Dashboard();
+                        Trainer_Dashboard trainer_Dashboard = new Trainer_Dashboard(email);
                         trainer_Dashboard.Show();
 
                     }
