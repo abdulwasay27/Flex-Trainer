@@ -28,5 +28,10 @@ namespace Database_Project_GymTrainer
         {
 
         }
+
+        private void Trainer_DietPlan_Create_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -48,7 +48,7 @@
             this.linkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.linkLabel1.Location = new System.Drawing.Point(268, 330);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(281, 28);
+            this.linkLabel1.Size = new System.Drawing.Size(280, 28);
             this.linkLabel1.TabIndex = 17;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Don\'t have an account? Sign Up !";
@@ -62,7 +62,7 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(328, 89);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(196, 42);
+            this.label2.Size = new System.Drawing.Size(198, 42);
             this.label2.TabIndex = 16;
             this.label2.Text = "TRAINER LOGIN";
             // 
@@ -73,7 +73,7 @@
             this.label3.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
             this.label3.Location = new System.Drawing.Point(220, 221);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(104, 28);
+            this.label3.Size = new System.Drawing.Size(105, 28);
             this.label3.TabIndex = 15;
             this.label3.Text = "Password *";
             // 
@@ -84,7 +84,7 @@
             this.label1.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(220, 184);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 28);
+            this.label1.Size = new System.Drawing.Size(71, 28);
             this.label1.TabIndex = 12;
             this.label1.Text = "Email *";
             // 
@@ -240,6 +240,7 @@
             this.Name = "Trainer_Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Trainer_Login";
+            this.Load += new System.EventHandler(this.Trainer_Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -89,7 +89,7 @@ namespace Database_Project_GymTrainer
         private void kryptonComboBox3_DropDown(object sender, EventArgs e)
         {
             kryptonComboBox3.Items.Clear();
-            SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
             conn.Open();
             SqlCommand cmd;
             string display_targetMuscle = "SELECT distinct(targetMuscle) From exercise ;";
@@ -110,7 +110,7 @@ namespace Database_Project_GymTrainer
         private void kryptonComboBox2_DropDown(object sender, EventArgs e)
         {
             kryptonComboBox2.Items.Clear();
-            SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
             conn.Open();
             SqlCommand cmd;
             string display_exerciseNames_specific = "SELECT exerciseName From exercise where targetMuscle = @target_muscle;";

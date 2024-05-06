@@ -47,7 +47,7 @@
             this.label4.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
             this.label4.Location = new System.Drawing.Point(205, 187);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(149, 28);
+            this.label4.Size = new System.Drawing.Size(150, 28);
             this.label4.TabIndex = 54;
             this.label4.Text = "Machine Name *";
             this.label4.Click += new System.EventHandler(this.label4_Click);
@@ -60,7 +60,7 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(358, 112);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(190, 42);
+            this.label2.Size = new System.Drawing.Size(189, 42);
             this.label2.TabIndex = 52;
             this.label2.Text = "ADD MACHINE";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -227,6 +227,7 @@
             this.Name = "GymOwner_AddMachine";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GymOwner_AddMachine";
+            this.Load += new System.EventHandler(this.GymOwner_AddMachine_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

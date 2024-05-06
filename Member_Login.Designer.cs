@@ -48,7 +48,7 @@
             this.label1.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(224, 187);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 28);
+            this.label1.Size = new System.Drawing.Size(71, 28);
             this.label1.TabIndex = 2;
             this.label1.Text = "Email *";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -60,7 +60,7 @@
             this.label3.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
             this.label3.Location = new System.Drawing.Point(224, 220);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(104, 28);
+            this.label3.Size = new System.Drawing.Size(105, 28);
             this.label3.TabIndex = 6;
             this.label3.Text = "Password *";
             // 
@@ -71,7 +71,7 @@
             this.linkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.linkLabel1.Location = new System.Drawing.Point(272, 329);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(281, 28);
+            this.linkLabel1.Size = new System.Drawing.Size(280, 28);
             this.linkLabel1.TabIndex = 8;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Don\'t have an account? Sign Up !";
@@ -85,9 +85,10 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(333, 102);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(197, 42);
+            this.label2.Size = new System.Drawing.Size(198, 42);
             this.label2.TabIndex = 7;
             this.label2.Text = "MEMBER LOGIN";
+            this.label2.Click += new System.EventHandler(this.label2_Click_1);
             // 
             // member_login_email
             // 
