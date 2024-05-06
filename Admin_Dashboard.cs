@@ -24,7 +24,6 @@ namespace Database_Project_GymTrainer
             DataTable dt = new DataTable();
             sqlDA.Fill(dt);
             kryptonDataGridView1.DataSource = dt;
-
         }
 
         private void Admin_Dashboard_Load(object sender, EventArgs e)
