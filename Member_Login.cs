@@ -13,9 +13,11 @@ namespace Database_Project_GymTrainer
 {
     public partial class Member_Login : Form
     {
-        public Member_Login()
+        string owneremail;
+        public Member_Login(string owner_email = "")
         {
             InitializeComponent();
+            this.owneremail = owner_email;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -44,10 +46,10 @@ namespace Database_Project_GymTrainer
         {
             string email = member_login_email.Text;
             string password = member_login_password.Text;
-            SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
             conn.Open();
             SqlCommand cmd;
-            string query = "select count(*) from member where memberEmail=@email";
+            string query = "select count(*) from member where memberEmail=@email"; // ADD ISAPRROVED = 1
             cmd = new SqlCommand(query, conn);
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
                 MessageBox.Show("Please enter email and passowrd!");
@@ -68,7 +70,7 @@ namespace Database_Project_GymTrainer
                     string returned_Password = cmd.ExecuteScalar().ToString();
                     if (returned_Password == password)
                     {
-                        Member_Dashboard member = new Member_Dashboard(email);
+                        Member_Dashboard member = new Member_Dashboard(owneremail);
                         this.Close();
                         member.Show();
 
@@ -98,6 +100,11 @@ namespace Database_Project_GymTrainer
         }
 
         private void kryptonTextBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
         {
 
         }

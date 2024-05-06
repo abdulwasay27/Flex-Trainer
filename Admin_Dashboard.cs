@@ -19,7 +19,7 @@ namespace Database_Project_GymTrainer
         {
             InitializeComponent();
             this.current_email = current_email;
-            SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
             SqlDataAdapter sqlDA = new SqlDataAdapter("Select * FROM Approval inner join gym on Approval.gymName = gym.gymName where gym.isApproved = 0 ;",conn);
             DataTable dt = new DataTable();
             sqlDA.Fill(dt);
@@ -34,7 +34,7 @@ namespace Database_Project_GymTrainer
 
         private void kryptonButton2_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
             conn.Open();
             SqlCommand cmd;
             string delete_approval_record = "DELETE FROM Approval;";
@@ -65,7 +65,7 @@ namespace Database_Project_GymTrainer
             int approval_id = Int32.Parse(kryptonNumericUpDown1.Text);
             if ( approval_id > 0)
             {
-                SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+                SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
                 conn.Open();
                 SqlCommand cmd;
 

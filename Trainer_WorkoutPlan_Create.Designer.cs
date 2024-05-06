@@ -70,7 +70,7 @@
             this.label7.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
             this.label7.Location = new System.Drawing.Point(211, 297);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 28);
+            this.label7.Size = new System.Drawing.Size(64, 28);
             this.label7.TabIndex = 59;
             this.label7.Text = "Reps *";
             // 
@@ -114,7 +114,7 @@
             this.label2.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
             this.label2.Location = new System.Drawing.Point(28, 151);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 28);
+            this.label2.Size = new System.Drawing.Size(69, 28);
             this.label2.TabIndex = 54;
             this.label2.Text = "Day (i)";
             // 
@@ -125,7 +125,7 @@
             this.label1.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(28, 92);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 28);
+            this.label1.Size = new System.Drawing.Size(62, 28);
             this.label1.TabIndex = 51;
             this.label1.Text = "Goal *";
             // 
@@ -384,6 +384,7 @@
             this.Name = "Trainer_WorkoutPlan_Create";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Trainer_WorkoutPlan_Create";
+            this.Load += new System.EventHandler(this.Trainer_WorkoutPlan_Create_Load);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

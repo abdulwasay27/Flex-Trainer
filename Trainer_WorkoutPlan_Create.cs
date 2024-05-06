@@ -23,5 +23,10 @@ namespace Database_Project_GymTrainer
             Trainer_Dashboard trainer_Dashboard = new Trainer_Dashboard();
             trainer_Dashboard.Show();
         }
+
+        private void Trainer_WorkoutPlan_Create_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

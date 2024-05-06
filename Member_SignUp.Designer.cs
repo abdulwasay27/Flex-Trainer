@@ -61,7 +61,7 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(324, 51);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(218, 42);
+            this.label2.Size = new System.Drawing.Size(220, 42);
             this.label2.TabIndex = 16;
             this.label2.Text = "MEMBER SIGN UP";
             // 
@@ -72,7 +72,7 @@
             this.label3.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
             this.label3.Location = new System.Drawing.Point(224, 166);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(104, 28);
+            this.label3.Size = new System.Drawing.Size(105, 28);
             this.label3.TabIndex = 15;
             this.label3.Text = "Password *";
             // 
@@ -83,7 +83,7 @@
             this.label1.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(258, 132);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 28);
+            this.label1.Size = new System.Drawing.Size(71, 28);
             this.label1.TabIndex = 12;
             this.label1.Text = "Email *";
             // 
@@ -94,7 +94,7 @@
             this.label4.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
             this.label4.Location = new System.Drawing.Point(255, 97);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 28);
+            this.label4.Size = new System.Drawing.Size(74, 28);
             this.label4.TabIndex = 20;
             this.label4.Text = "Name *";
             this.label4.Click += new System.EventHandler(this.label4_Click);
@@ -243,6 +243,7 @@
             // 
             // member_signup_gym
             // 
+            this.member_signup_gym.AllowDrop = true;
             this.member_signup_gym.DropDownWidth = 220;
             this.member_signup_gym.Location = new System.Drawing.Point(346, 197);
             this.member_signup_gym.Name = "member_signup_gym";
@@ -252,6 +253,8 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.member_signup_gym.StateCommon.ComboBox.Border.Rounding = 5;
             this.member_signup_gym.TabIndex = 95;
+            this.member_signup_gym.DropDown += new System.EventHandler(this.member_signup_gym_SelectedIndexChanged);
+            this.member_signup_gym.SelectedIndexChanged += new System.EventHandler(this.member_signup_gym_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -260,7 +263,7 @@
             this.label8.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
             this.label8.Location = new System.Drawing.Point(266, 197);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(62, 28);
+            this.label8.Size = new System.Drawing.Size(63, 28);
             this.label8.TabIndex = 94;
             this.label8.Text = "Gym *";
             // 
@@ -304,7 +307,7 @@
             this.label6.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
             this.label6.Location = new System.Drawing.Point(137, 320);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(191, 28);
+            this.label6.Size = new System.Drawing.Size(192, 28);
             this.label6.TabIndex = 98;
             this.label6.Text = "Type of Membership *";
             // 
@@ -326,7 +329,7 @@
             this.label7.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
             this.label7.Location = new System.Drawing.Point(232, 231);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(96, 28);
+            this.label7.Size = new System.Drawing.Size(95, 28);
             this.label7.TabIndex = 100;
             this.label7.Text = "Objective ";
             // 
@@ -340,6 +343,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.member_signup_date.StateCommon.Border.Rounding = 5;
             this.member_signup_date.TabIndex = 102;
+            this.member_signup_date.ValueChanged += new System.EventHandler(this.member_signup_date_ValueChanged);
             // 
             // label9
             // 
@@ -384,6 +388,7 @@
             this.Name = "Member_SignUp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Trainer_LS";
+            this.Load += new System.EventHandler(this.Member_SignUp_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.member_signup_gym)).EndInit();
             this.ResumeLayout(false);

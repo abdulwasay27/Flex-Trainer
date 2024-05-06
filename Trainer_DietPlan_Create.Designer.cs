@@ -63,7 +63,7 @@
             this.label4.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
             this.label4.Location = new System.Drawing.Point(201, 228);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(117, 28);
+            this.label4.Size = new System.Drawing.Size(118, 28);
             this.label4.TabIndex = 73;
             this.label4.Text = "Meal Name *";
             // 
@@ -86,7 +86,7 @@
             this.label2.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
             this.label2.Location = new System.Drawing.Point(130, 177);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 28);
+            this.label2.Size = new System.Drawing.Size(69, 28);
             this.label2.TabIndex = 71;
             this.label2.Text = "Day (i)";
             // 
@@ -97,7 +97,7 @@
             this.label1.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(33, 94);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 28);
+            this.label1.Size = new System.Drawing.Size(92, 28);
             this.label1.TabIndex = 68;
             this.label1.Text = "Purpose *";
             // 
@@ -305,6 +305,7 @@
             this.Name = "Trainer_DietPlan_Create";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Trainer_DietPlan_Create";
+            this.Load += new System.EventHandler(this.Trainer_DietPlan_Create_Load);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);

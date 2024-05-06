@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComponentFactory.Krypton.Toolkit;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,14 +10,18 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Database_Project_GymTrainer
 {
     public partial class Member_SignUp : Form
     {
-        public Member_SignUp()
+        string owner_email;
+        public Member_SignUp(string Owner_Email = "")
         {
             InitializeComponent();
+            this.owner_email = Owner_Email;
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -59,7 +64,7 @@ namespace Database_Project_GymTrainer
             }
             else
             {
-                SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+                SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
                 conn.Open();
                 SqlCommand cmd;
                 string query = "select count(*) from Member where memberEmail=@email";
@@ -72,6 +77,7 @@ namespace Database_Project_GymTrainer
                 cmd.Parameters.Add("@duration", SqlDbType.Int).Value = Int32.Parse(duration);
                 cmd.Parameters.Add("@selectedDate", SqlDbType.DateTime).Value = date;
                 cmd.Parameters.Add("@type", SqlDbType.VarChar).Value = type;
+                cmd.Parameters.Add("@owneremail", SqlDbType.VarChar).Value = owner_email;
                 DateTime currentDate = DateTime.Now;
                 int count = (int)cmd.ExecuteScalar();
                 if (count > 0)
@@ -93,18 +99,49 @@ namespace Database_Project_GymTrainer
                         cmd.CommandText = query;
                         cmd.ExecuteNonQuery();
                         cmd.Dispose();
+                        query = "";
+                        query = "insert into Member_Verification(memberEmail) values (@email);";
+                        cmd.CommandText = query;
+                        cmd.ExecuteNonQuery();
                         conn.Close();
 
                         MessageBox.Show("Sign Up Successfull!");
 
                         this.Close();
-                        Member_Dashboard member = new Member_Dashboard();
+                        Member_Login member = new Member_Login(owner_email);
                         member.Show();
 
                     }
                 }
 
             }
+        }
+
+        private void Member_SignUp_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void member_signup_gym_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+            conn.Open();
+            string query = "SELECT gymName FROM Gym WHERE isApproved = 1;";
+            SqlCommand cmd;
+            cmd = new SqlCommand(query, conn);
+            string target_muscle = member_signup_gym.Text;
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                string exerciseName = reader.GetString(0);
+                member_signup_gym.Items.Add(exerciseName);
+            }
+        }
+
+        private void member_signup_date_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

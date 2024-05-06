@@ -68,5 +68,10 @@ namespace Database_Project_GymTrainer
         {
 
         }
+
+        private void GymOwner_AddMachine_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
