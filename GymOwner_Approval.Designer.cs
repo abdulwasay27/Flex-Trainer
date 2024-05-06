@@ -37,14 +37,14 @@
             this.kryptonButton4 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.kryptonTextBox3 = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.kryptonTextBox4 = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.kryptonTextBox5 = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.kryptonTextBox6 = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.kryptonNumericUpDown1 = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
+            this.kryptonNumericUpDown2 = new ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +53,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(286, 201);
+            this.label1.Location = new System.Drawing.Point(285, 201);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(145, 36);
@@ -77,7 +77,7 @@
             // kryptonTextBox1
             // 
             this.kryptonTextBox1.Location = new System.Drawing.Point(469, 165);
-            this.kryptonTextBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonTextBox1.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonTextBox1.Name = "kryptonTextBox1";
             this.kryptonTextBox1.Size = new System.Drawing.Size(300, 31);
             this.kryptonTextBox1.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -90,7 +90,7 @@
             // kryptonTextBox2
             // 
             this.kryptonTextBox2.Location = new System.Drawing.Point(469, 204);
-            this.kryptonTextBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonTextBox2.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonTextBox2.Name = "kryptonTextBox2";
             this.kryptonTextBox2.Size = new System.Drawing.Size(300, 31);
             this.kryptonTextBox2.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -102,7 +102,7 @@
             // kryptonButton1
             // 
             this.kryptonButton1.Location = new System.Drawing.Point(469, 434);
-            this.kryptonButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonButton1.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
             this.kryptonButton1.OverrideDefault.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
@@ -143,7 +143,7 @@
             // kryptonButton4
             // 
             this.kryptonButton4.Location = new System.Drawing.Point(48, 458);
-            this.kryptonButton4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonButton4.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonButton4.Name = "kryptonButton4";
             this.kryptonButton4.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
             this.kryptonButton4.OverrideDefault.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
@@ -203,7 +203,7 @@
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(16, -94);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(343, 325);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -222,30 +222,6 @@
             this.label3.TabIndex = 92;
             this.label3.Text = "REQUEST APPROVAL";
             this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // kryptonTextBox3
-            // 
-            this.kryptonTextBox3.Location = new System.Drawing.Point(469, 319);
-            this.kryptonTextBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.kryptonTextBox3.Name = "kryptonTextBox3";
-            this.kryptonTextBox3.Size = new System.Drawing.Size(300, 31);
-            this.kryptonTextBox3.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonTextBox3.StateCommon.Border.Rounding = 5;
-            this.kryptonTextBox3.TabIndex = 96;
-            // 
-            // kryptonTextBox4
-            // 
-            this.kryptonTextBox4.Location = new System.Drawing.Point(469, 278);
-            this.kryptonTextBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.kryptonTextBox4.Name = "kryptonTextBox4";
-            this.kryptonTextBox4.Size = new System.Drawing.Size(300, 31);
-            this.kryptonTextBox4.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonTextBox4.StateCommon.Border.Rounding = 5;
-            this.kryptonTextBox4.TabIndex = 95;
             // 
             // label4
             // 
@@ -276,7 +252,7 @@
             // kryptonTextBox5
             // 
             this.kryptonTextBox5.Location = new System.Drawing.Point(469, 359);
-            this.kryptonTextBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonTextBox5.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonTextBox5.Name = "kryptonTextBox5";
             this.kryptonTextBox5.Size = new System.Drawing.Size(300, 31);
             this.kryptonTextBox5.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -300,7 +276,7 @@
             // 
             // kryptonTextBox6
             // 
-            this.kryptonTextBox6.Location = new System.Drawing.Point(469, 239);
+            this.kryptonTextBox6.Location = new System.Drawing.Point(469, 241);
             this.kryptonTextBox6.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonTextBox6.Name = "kryptonTextBox6";
             this.kryptonTextBox6.Size = new System.Drawing.Size(300, 31);
@@ -322,6 +298,38 @@
             this.label7.TabIndex = 101;
             this.label7.Text = "Membership Fees*";
             // 
+            // kryptonNumericUpDown1
+            // 
+            this.kryptonNumericUpDown1.Location = new System.Drawing.Point(469, 280);
+            this.kryptonNumericUpDown1.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+            this.kryptonNumericUpDown1.Name = "kryptonNumericUpDown1";
+            this.kryptonNumericUpDown1.Size = new System.Drawing.Size(300, 30);
+            this.kryptonNumericUpDown1.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonNumericUpDown1.StateCommon.Border.Rounding = 5;
+            this.kryptonNumericUpDown1.TabIndex = 102;
+            // 
+            // kryptonNumericUpDown2
+            // 
+            this.kryptonNumericUpDown2.Location = new System.Drawing.Point(469, 320);
+            this.kryptonNumericUpDown2.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+            this.kryptonNumericUpDown2.Name = "kryptonNumericUpDown2";
+            this.kryptonNumericUpDown2.Size = new System.Drawing.Size(300, 30);
+            this.kryptonNumericUpDown2.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonNumericUpDown2.StateCommon.Border.Rounding = 5;
+            this.kryptonNumericUpDown2.TabIndex = 103;
+            // 
             // GymOwner_Approval
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -330,12 +338,12 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1075, 551);
+            this.Controls.Add(this.kryptonNumericUpDown2);
+            this.Controls.Add(this.kryptonNumericUpDown1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.kryptonTextBox6);
             this.Controls.Add(this.kryptonTextBox5);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.kryptonTextBox3);
-            this.Controls.Add(this.kryptonTextBox4);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
@@ -367,13 +375,13 @@
         public ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton4;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label3;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox kryptonTextBox3;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox kryptonTextBox4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox kryptonTextBox5;
         private System.Windows.Forms.Label label6;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox kryptonTextBox6;
         private System.Windows.Forms.Label label7;
+        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown kryptonNumericUpDown1;
+        private ComponentFactory.Krypton.Toolkit.KryptonNumericUpDown kryptonNumericUpDown2;
     }
 }
