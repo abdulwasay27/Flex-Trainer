@@ -64,7 +64,7 @@ namespace Database_Project_GymTrainer
             }
             else
             {
-                SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
                 conn.Open();
                 SqlCommand cmd;
                 string query = "select count(*) from Member where memberEmail=@email";
@@ -124,7 +124,7 @@ namespace Database_Project_GymTrainer
 
         private void member_signup_gym_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             conn.Open();
             string query = "SELECT gymName FROM Gym WHERE isApproved = 1;";
             SqlCommand cmd;

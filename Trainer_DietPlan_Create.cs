@@ -33,5 +33,10 @@ namespace Database_Project_GymTrainer
         {
 
         }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

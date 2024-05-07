@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace Database_Project_GymTrainer
 {
+    
     public partial class MainForm : Form
     {
         public MainForm()

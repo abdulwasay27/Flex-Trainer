@@ -83,7 +83,7 @@ namespace Database_Project_GymTrainer
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             string loc = kryptonTextBox1.Text;
             string gym_name = kryptonTextBox2.Text ;
             string business_plan = kryptonTextBox6.Text;

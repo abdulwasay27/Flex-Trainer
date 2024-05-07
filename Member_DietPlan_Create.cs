@@ -61,7 +61,7 @@ namespace Database_Project_GymTrainer
 
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             conn.Open();
             SqlCommand cmd;
             string get_dietPlanId = "SELECT MAX(dietPlanId) From dietPlan ;";
@@ -142,7 +142,7 @@ namespace Database_Project_GymTrainer
         private void kryptonComboBox1_DropDown(object sender, EventArgs e)
         {
             kryptonComboBox1.Items.Clear();
-            SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             conn.Open();
             SqlCommand cmd;
             string display_allergens = "SELECT distinct(allergen) From meal ;";
@@ -163,7 +163,7 @@ namespace Database_Project_GymTrainer
         private void kryptonComboBox2_DropDown(object sender, EventArgs e)
         {
             kryptonComboBox2.Items.Clear();
-            SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             conn.Open();
             SqlCommand cmd;
             string display_meals_specific = "SELECT mealName FROM Meal WHERE allergen != @allergen OR allergen = 'None';";
@@ -227,7 +227,7 @@ namespace Database_Project_GymTrainer
                 }
 
                 string add_typeOfDiet_and_purpose = "UPDATE dietPlan SET typeOfDiet = @typeOfDiet, purpose = @purpose where dietPlanID = @dietPlanID;";
-                SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
                 conn.Open();
                 SqlCommand cmd;
                 cmd = new SqlCommand(add_typeOfDiet_and_purpose, conn);

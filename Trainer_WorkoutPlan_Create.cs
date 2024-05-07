@@ -64,7 +64,7 @@ namespace Database_Project_GymTrainer
                 }
 
                 string add_goal_and_experience_level = "UPDATE WorkoutPlan SET goal = @goal, experienceLevel = @experienceLevel where workoutplanID = @workoutPlanID;";
-                SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
                 conn.Open();
                 SqlCommand cmd;
                 cmd = new SqlCommand(add_goal_and_experience_level, conn);
@@ -126,7 +126,7 @@ namespace Database_Project_GymTrainer
         private void kryptonComboBox3_DropDown(object sender, EventArgs e)
         {
             kryptonComboBox3.Items.Clear();
-            SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             conn.Open();
             SqlCommand cmd;
             string display_targetMuscle = "SELECT distinct(targetMuscle) From exercise ;";
@@ -147,7 +147,7 @@ namespace Database_Project_GymTrainer
         private void kryptonComboBox2_DropDown(object sender, EventArgs e)
         {
             kryptonComboBox2.Items.Clear();
-            SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             conn.Open();
             SqlCommand cmd;
             string display_exerciseNames_specific = "SELECT exerciseName From exercise where targetMuscle = @target_muscle;";
@@ -187,7 +187,7 @@ namespace Database_Project_GymTrainer
 
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             conn.Open();
             SqlCommand cmd;
             string get_workoutPlanId = "SELECT MAX(workoutPlanId) From WorkoutPlan ;";

@@ -43,8 +43,8 @@ namespace Database_Project_GymTrainer
             else
             {
 
-                SqlConnection conn = new SqlConnection("Data Source=DESKTOP-I1CSL1J\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
-                conn.Open(); 
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                conn.Open();
                 SqlCommand cmd;
                 string query = "select count(*) from admin where adminEmail=@email";
                 cmd = new SqlCommand(query, conn);

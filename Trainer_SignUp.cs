@@ -89,7 +89,8 @@ namespace Database_Project_GymTrainer
             }
             else
             {
-                SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+
                 conn.Open();
                 SqlCommand cmd;
                 string query = "select count(*) from Trainer where trainerEmail=@email";
@@ -116,7 +117,7 @@ namespace Database_Project_GymTrainer
                     query = "";
                     query = "insert into Trainer_Verification(trainerEmail) values (@email)";
                     cmd.CommandText = query;
-                    cmd.ExecuteNonQuery(); 
+                    cmd.ExecuteNonQuery();
                     cmd.Dispose();
                     conn.Close();
                     MessageBox.Show("Sign Up Successfull!");

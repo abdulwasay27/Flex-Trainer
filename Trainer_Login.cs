@@ -34,7 +34,7 @@ namespace Database_Project_GymTrainer
         {
             string email = trainer_login_email.Text;
             string password = trainer_login_pw.Text;
-            SqlConnection conn = new SqlConnection("Data Source=Shaif-PC\\SQLEXPRESS;Initial Catalog=FlexTrainer;Integrated Security=True;");
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             conn.Open();
             SqlCommand cmd;
             string query = "select count(*) from trainer where trainerEmail=@email"; // ADD ISAPRROVED = 1
