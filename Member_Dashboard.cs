@@ -26,6 +26,8 @@ namespace Database_Project_GymTrainer
             this.current_gym = current_gym;
             owner_email = email;
             member_email = email2;
+
+            dataGridView1.Visible = false;
             kryptonTextBox1.Visible = false;
             kryptonButton7.Visible = false;
             kryptonButton6.Visible = false;
@@ -60,6 +62,7 @@ namespace Database_Project_GymTrainer
 
         private void button4_Click(object sender, EventArgs e)
         {
+            dataGridView1.Visible = true ;
             currently_selected_button = "gym";
             SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             SqlDataAdapter sqlDA = new SqlDataAdapter("Select Gym.gymName, Gym.gymOwner, Gym.adminEmail, Gym.location, Gym.membership_fees from Member join Gym on Member.gymName = Gym.gymName;", conn);
@@ -76,16 +79,54 @@ namespace Database_Project_GymTrainer
 
         private void button2_Click_1(object sender, EventArgs e)
         {
+            dataGridView1.Visible = true;
             currently_selected_button = "workout";
-            kryptonTextBox1.Visible = false;
-            label1.Visible = false;
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+            conn.Open();
+            string query = "SELECT WorkoutPlan.workoutPlanID, WorkoutPlan.goal, WorkoutPlan.schedule, WorkoutPlan.experienceLevel " +
+                "FROM WorkoutPlan JOIN Member ON WorkoutPlan.workoutPlanID = Member.currentlyFollowingWorkoutPlanID;";
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                command.Parameters.AddWithValue("@memberemail", member_email);
+                using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                {
+                    DataTable dt = new DataTable();
+                    sqlDA.Fill(dt);
+                    dataGridView1.DataSource = dt;
+                }
+            }
+            kryptonButton8.Visible=false; // SELECT
+            kryptonButton6.Visible = true; // CREATE
+            kryptonButton7.Visible = true; // CHANGE
+            kryptonTextBox1.Visible = false; // INPUT BOX     
+            label1.Visible = false; // LABEL "ENTER"
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            dataGridView1.Visible = true;
             currently_selected_button = "diet";
             kryptonTextBox1.Visible = false;
             label1.Visible = false;
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+            conn.Open();
+            string query = "SELECT dietPlan.dietPlanID, dietPlan.purpose, dietPlan.typeOfDiet " +
+                "FROM dietPlan JOIN Member ON dietPlan.dietPlanID = Member.dietPlanID ";
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                command.Parameters.AddWithValue("@memberemail", member_email);
+                using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                {
+                    DataTable dt = new DataTable();
+                    sqlDA.Fill(dt);
+                    dataGridView1.DataSource = dt;
+                }
+            }
+            kryptonButton8.Visible = false; // SELECT
+            kryptonButton6.Visible = true; // CREATE
+            kryptonButton7.Visible = true; // CHANGE
+            kryptonTextBox1.Visible = false; // INPUT BOX     
+            label1.Visible = false; // LABEL "ENTER"
         }
 
         private void kryptonButton4_Click(object sender, EventArgs e)
@@ -96,13 +137,13 @@ namespace Database_Project_GymTrainer
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
+            dataGridView1.Visible = true;
             currently_selected_button = "trainer";
             SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             SqlDataAdapter sqlDA = new SqlDataAdapter("Select Trainer.trainerEmail, Trainer.name, Trainer.speciality, Trainer.experience from Trainer join Member on Trainer.trainerEmail = Member.trainerEmail;", conn);
             DataTable dt = new DataTable();
             sqlDA.Fill(dt);
-            dataGridView1.DataSource = dt;
-
+            dataGridView1.DataSource = dt;          
             kryptonButton7.Visible = true;
             kryptonButton7.Text = "Change";
             kryptonButton6.Visible = false;
@@ -112,8 +153,13 @@ namespace Database_Project_GymTrainer
         }
 
         private void kryptonButton7_Click(object sender, EventArgs e)
-        {
-            kryptonTextBox1.Visible = true;
+        {      
+            kryptonButton8.Visible = true; // SELECT
+            kryptonButton6.Visible = false; // CREATE
+            kryptonButton7.Visible = false; // CHANGE
+            kryptonTextBox1.Visible = true; // INPUT BOX     
+            label1.Visible = true; // LABEL "ENTER"
+            kryptonButton8.Location = kryptonButton7.Location;
             if (currently_selected_button == "gym")
             {
                 SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
@@ -130,10 +176,6 @@ namespace Database_Project_GymTrainer
                     }
                 }
                 label1.Text = "Enter Gym Name: ";
-                label1.Visible = true;
-                kryptonButton7.Visible = false;
-                kryptonButton8.Location = kryptonButton7.Location;
-                kryptonButton8.Visible = true;
             }
             else if (currently_selected_button == "trainer")
             {
@@ -158,6 +200,46 @@ namespace Database_Project_GymTrainer
                 kryptonButton8.Location = kryptonButton7.Location;
                 kryptonButton8.Visible = true;
             }
+            else if (currently_selected_button == "workout")
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                conn.Open();
+                string query = "SELECT workoutPlanID, trainerEmail, memberEmail, goal, schedule, experienceLevel FROM WorkoutPlan;";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        dataGridView1.DataSource = dt;
+                    }
+                }
+                label1.Text = "Enter WorkoutPlan ID: ";
+                label1.Visible = true;
+                kryptonButton7.Visible = false;
+                kryptonButton8.Location = kryptonButton7.Location;
+                kryptonButton8.Visible = true;
+            }
+            else if (currently_selected_button == "diet")
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                conn.Open();
+                string query = "SELECT dietplanID, trainerEmail, memberEmail, purpose, typeOfDiet FROM DietPlan;";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        dataGridView1.DataSource = dt;
+                    }
+                }
+                label1.Text = "Enter DietPlan ID: ";
+                label1.Visible = true;
+                kryptonButton7.Visible = false;
+                kryptonButton8.Location = kryptonButton7.Location;
+                kryptonButton8.Visible = true;
+            }
 
         }
 
@@ -174,6 +256,22 @@ namespace Database_Project_GymTrainer
         private void kryptonButton8_MouseClick(object sender, MouseEventArgs e)
         {
 
+        }
+
+        private void kryptonButton6_Click(object sender, EventArgs e)
+        {
+            if ( currently_selected_button == "workout")
+            {
+                this.Close();
+                Member_WorkoutPlan_Create member = new Member_WorkoutPlan_Create(member_email, owner_email, current_gym);
+                member.Show();
+            }
+            else if ( currently_selected_button == "diet")
+            {
+                this.Close();
+                Member_DietPlan_Create member = new Member_DietPlan_Create(member_email, owner_email, current_gym);
+                member.Show();
+            }
         }
 
         private void kryptonButton8_Click(object sender, EventArgs e)
@@ -217,6 +315,7 @@ namespace Database_Project_GymTrainer
 
                         query = "";
                         query = "update Member set gymName = @gymName where memberEmail = @memberEmail";
+                        cmd.CommandText = query;
                         cmd.Parameters.Add("@memberEmail", SqlDbType.VarChar).Value = member_email;
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Gym Changed Successfully. Now in order to select the trainer, goto Trainer Tab!");
@@ -253,6 +352,7 @@ namespace Database_Project_GymTrainer
 
                         query = "";
                         query = "update Member set gymName = @gymName where memberEmail = @memberEmail";
+                        cmd.CommandText = query;
                         cmd.Parameters.Add("@memberEmail", SqlDbType.VarChar).Value = member_email;
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Gym Changed Successfully. Now in order to select the trainer, goto Trainer Tab!");
@@ -261,6 +361,72 @@ namespace Database_Project_GymTrainer
                     else
                     {
                         MessageBox.Show("Invalid Trainer Email!");
+                    }
+                }
+            }
+            else if (currently_selected_button == "workout")
+            {
+                string workoutid = kryptonTextBox1.Text;
+                if (string.IsNullOrEmpty(workoutid))
+                {
+                    MessageBox.Show("Please enter all compulsory fields!");
+                }
+                else
+                {
+                    SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                    conn.Open();
+                    SqlCommand cmd;
+                    string query = "select count(*) from WorkoutPlan where workoutPlanID = @workoutid";
+                    cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.Add("@workoutid", SqlDbType.VarChar).Value = workoutid;
+                    int count = (int)cmd.ExecuteScalar();
+
+                    if (count != 0)
+                    {
+                        query = "";
+                        query = "update Member set currentlyFollowingWorkoutPlanID = @workoutid where memberEmail = @memberEmail";
+                        cmd.CommandText = query;  
+                        cmd.Parameters.Add("@memberEmail", SqlDbType.VarChar).Value = member_email;
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Workoutplan Changed Successfully!");
+                        kryptonTextBox1.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid Workout ID!");
+                    }
+                }
+            }
+            else if (currently_selected_button == "diet")
+            {
+                string dietplanid = kryptonTextBox1.Text;
+                if (string.IsNullOrEmpty(dietplanid))
+                {
+                    MessageBox.Show("Please enter all compulsory fields!");
+                }
+                else
+                {
+                    SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                    conn.Open();
+                    SqlCommand cmd;
+                    string query = "select count(*) from DietPlan where dietPlanID = @dietplanid";
+                    cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.Add("@dietplanid", SqlDbType.VarChar).Value = dietplanid;
+                    int count = (int)cmd.ExecuteScalar();
+
+                    if (count != 0)
+                    {
+                        query = "";
+                        query = "update Member set dietPlanID = @dietplanid where memberEmail = @memberEmail";
+                        cmd.CommandText = query;
+                        cmd.Parameters.Add("@memberEmail", SqlDbType.VarChar).Value = member_email;
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Dietplan Changed Successfully!");
+                        kryptonTextBox1.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid Diet Plan ID!");
                     }
                 }
             }

@@ -1,7 +1,9 @@
-﻿using System;
+﻿using ComponentFactory.Krypton.Toolkit;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,10 +15,20 @@ namespace Database_Project_GymTrainer
     public partial class Trainer_Dashboard : Form
     {
         string trainerEmail;
+        string currently_selected_button;
         public Trainer_Dashboard(string email="")
         {
             InitializeComponent();
             this.trainerEmail = email;
+            this.currently_selected_button = "";
+
+            currently_selected_button = "gym";
+            dataGridView1.Visible = false;
+            kryptonButton8.Visible = false; // SELECT
+            kryptonButton10.Visible = false; // CHANGE
+            kryptonButton9.Visible = false; // CREATE
+            kryptonTextBox1.Visible = false;
+            label1.Visible = false;
         }
 
         private void Trainer_Dashboard_Load(object sender, EventArgs e)
@@ -31,7 +43,15 @@ namespace Database_Project_GymTrainer
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            currently_selected_button = "gym";
+            dataGridView1.Visible = false;
+            kryptonButton8.Visible = false; // SELECT
+            kryptonButton10.Visible = false; // CHANGE
+            kryptonButton9.Visible = false; // CREATE
+            kryptonTextBox1.Visible = false;
+            label1.Visible = false;
+            Trainer_Gym trainer = new Trainer_Gym(trainerEmail);
+            trainer.Show();
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -85,7 +105,12 @@ namespace Database_Project_GymTrainer
 
         private void kryptonButton4_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Close();
+        }
+
+        private void kryptonButton8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

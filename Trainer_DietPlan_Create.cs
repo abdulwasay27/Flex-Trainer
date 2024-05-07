@@ -259,14 +259,16 @@ namespace Database_Project_GymTrainer
             {
                 MessageBox.Show($"Diet plan created successfully with ID: {current_dietPlanID}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
-                Trainer_Dashboard trainer = new Trainer_Dashboard();
+                Trainer_Dashboard trainer = new Trainer_Dashboard(trainerEmail);
                 trainer.Show();
             }
         }
 
-        private void kryptonButton1_Click(object sender, EventArgs e)
+        private void kryptonButton2_Click(object sender, EventArgs e)
         {
-
+            this.Close();
+            Trainer_Dashboard trainer = new Trainer_Dashboard(trainerEmail);
+            trainer.Show();
         }
     }
 }

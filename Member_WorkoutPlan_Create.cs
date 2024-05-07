@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,10 +18,14 @@ namespace Database_Project_GymTrainer
         int current_workoutPlanID;
         bool isWorkoutPlanCreated = false;
         int current_day;
-        public Member_WorkoutPlan_Create(string memberEmail = "")
+
+        string owner_email, current_gym;
+        public Member_WorkoutPlan_Create(string memberEmail = "", string owner = "", string gym = "")
         {
             InitializeComponent();
             this.memberEmail = memberEmail;
+            this.owner_email = owner;
+            this.current_gym = gym;
             int.TryParse(label2.Text.Substring(4), out current_day);
         }
 
@@ -148,7 +153,7 @@ namespace Database_Project_GymTrainer
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
-            Member_Dashboard member_Dashboard = new Member_Dashboard();
+            Member_Dashboard member_Dashboard = new Member_Dashboard(owner_email, memberEmail, current_gym);
             member_Dashboard.Show();
         }
 
@@ -237,7 +242,7 @@ namespace Database_Project_GymTrainer
             {
                 MessageBox.Show($"Workout plan created successfully with ID: {current_workoutPlanID}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
-                Member_Dashboard member = new Member_Dashboard();
+                Member_Dashboard member = new Member_Dashboard(owner_email,memberEmail,current_gym);
                 member.Show();
             }
         }

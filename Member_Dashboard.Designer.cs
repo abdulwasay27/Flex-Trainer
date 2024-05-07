@@ -219,7 +219,7 @@
             this.kryptonButton3.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
             this.kryptonButton3.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
             this.kryptonButton3.TabIndex = 57;
-            this.kryptonButton3.Values.Text = "Current Gym";
+            this.kryptonButton3.Values.Text = "Gym";
             this.kryptonButton3.Click += new System.EventHandler(this.button4_Click);
             // 
             // kryptonButton5
@@ -329,7 +329,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(162, 400);
+            this.label1.Location = new System.Drawing.Point(151, 400);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 28);
             this.label1.TabIndex = 86;
@@ -338,7 +338,7 @@
             // 
             // kryptonTextBox1
             // 
-            this.kryptonTextBox1.Location = new System.Drawing.Point(334, 400);
+            this.kryptonTextBox1.Location = new System.Drawing.Point(360, 400);
             this.kryptonTextBox1.Name = "kryptonTextBox1";
             this.kryptonTextBox1.Size = new System.Drawing.Size(225, 27);
             this.kryptonTextBox1.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -386,6 +386,7 @@
             this.kryptonButton6.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
             this.kryptonButton6.TabIndex = 88;
             this.kryptonButton6.Values.Text = "Create";
+            this.kryptonButton6.Click += new System.EventHandler(this.kryptonButton6_Click);
             // 
             // kryptonButton8
             // 

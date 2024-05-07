@@ -58,7 +58,7 @@
             this.label8.Location = new System.Drawing.Point(26, 340);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(155, 36);
+            this.label8.Size = new System.Drawing.Size(125, 28);
             this.label8.TabIndex = 120;
             this.label8.Text = "Meals Added:";
             // 
@@ -78,7 +78,7 @@
             this.kryptonComboBox1.Location = new System.Drawing.Point(451, 229);
             this.kryptonComboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonComboBox1.Name = "kryptonComboBox1";
-            this.kryptonComboBox1.Size = new System.Drawing.Size(299, 29);
+            this.kryptonComboBox1.Size = new System.Drawing.Size(299, 25);
             this.kryptonComboBox1.StateCommon.ComboBox.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
@@ -94,7 +94,7 @@
             this.label5.Location = new System.Drawing.Point(273, 225);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(113, 36);
+            this.label5.Size = new System.Drawing.Size(92, 28);
             this.label5.TabIndex = 117;
             this.label5.Text = "Allergens";
             // 
@@ -178,6 +178,7 @@
             this.kryptonButton2.StateTracking.Content.ShortText.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
             this.kryptonButton2.TabIndex = 114;
             this.kryptonButton2.Values.Text = "Go back";
+            this.kryptonButton2.Click += new System.EventHandler(this.kryptonButton2_Click);
             // 
             // kryptonComboBox2
             // 
@@ -185,7 +186,7 @@
             this.kryptonComboBox2.Location = new System.Drawing.Point(451, 275);
             this.kryptonComboBox2.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonComboBox2.Name = "kryptonComboBox2";
-            this.kryptonComboBox2.Size = new System.Drawing.Size(299, 29);
+            this.kryptonComboBox2.Size = new System.Drawing.Size(299, 25);
             this.kryptonComboBox2.StateCommon.ComboBox.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
@@ -283,7 +284,7 @@
             this.label4.Location = new System.Drawing.Point(273, 276);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(146, 36);
+            this.label4.Size = new System.Drawing.Size(118, 28);
             this.label4.TabIndex = 110;
             this.label4.Text = "Meal Name *";
             // 
@@ -295,7 +296,7 @@
             this.label3.Location = new System.Drawing.Point(566, 111);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(146, 36);
+            this.label3.Size = new System.Drawing.Size(116, 28);
             this.label3.TabIndex = 109;
             this.label3.Text = "Type of Diet*";
             // 
@@ -307,7 +308,7 @@
             this.label2.Location = new System.Drawing.Point(212, 180);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 36);
+            this.label2.Size = new System.Drawing.Size(54, 28);
             this.label2.TabIndex = 108;
             this.label2.Text = "Day 1";
             // 
@@ -319,7 +320,7 @@
             this.label1.Location = new System.Drawing.Point(39, 111);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(114, 36);
+            this.label1.Size = new System.Drawing.Size(92, 28);
             this.label1.TabIndex = 107;
             this.label1.Text = "Purpose *";
             // 
