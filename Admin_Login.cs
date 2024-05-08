@@ -86,5 +86,23 @@ namespace Database_Project_GymTrainer
         {
 
         }
+
+        private void kryptonButton5_Click(object sender, EventArgs e)
+        {
+            if (admin_login_password.PasswordChar == '\0')
+            {
+                kryptonButton2.BringToFront();
+                admin_login_password.PasswordChar = '•';
+            }
+        }
+
+        private void kryptonButton2_Click(object sender, EventArgs e)
+        {
+            if (admin_login_password.PasswordChar == '•')
+            {
+                kryptonButton5.BringToFront();
+                admin_login_password.PasswordChar = '\0';
+            }
+        }
     }
 }

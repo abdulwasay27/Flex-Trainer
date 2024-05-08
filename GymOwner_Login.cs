@@ -93,23 +93,51 @@ namespace Database_Project_GymTrainer
                 }
                 else
                 {
-                    query = "select password from gymOwner where ownerEmail=@email";
+                    query = "select count(*) from gymOwner where ownerEmail=@email AND addedBy is NULL;";
                     cmd.CommandText = query;
-                    string returned_Password = cmd.ExecuteScalar().ToString();
-                    if (returned_Password == password)
+                    count = (int)cmd.ExecuteScalar();
+                    if ( count == 1)
                     {
-                        this.Close();
-                        GymOwner_Dashboard gymowner_dashboard = new GymOwner_Dashboard(email);
-                        gymowner_dashboard.Show();
+                        MessageBox.Show("Email not Approved!");
                     }
                     else
                     {
-                        MessageBox.Show("Incorrect email or passowrd.");
+                        query = "select password from gymOwner where ownerEmail=@email";
+                        cmd.CommandText = query;
+                        string returned_Password = cmd.ExecuteScalar().ToString();
+                        if (returned_Password == password)
+                        {
+                            this.Close();
+                            GymOwner_Dashboard gymowner_dashboard = new GymOwner_Dashboard(email);
+                            gymowner_dashboard.Show();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Incorrect email or passowrd.");
+                        }
                     }
                 }
             }
 
 
+        }
+
+        private void kryptonButton5_Click(object sender, EventArgs e)
+        {
+            if (gymowner_login_pw.PasswordChar == '\0')
+            {
+                kryptonButton2.BringToFront();
+                gymowner_login_pw.PasswordChar = '•';
+            }
+        }
+
+        private void kryptonButton2_Click(object sender, EventArgs e)
+        {
+            if (gymowner_login_pw.PasswordChar == '•')
+            {
+                kryptonButton5.BringToFront();
+                gymowner_login_pw.PasswordChar = '\0';
+            }
         }
     }
 }

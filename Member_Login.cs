@@ -67,20 +67,38 @@ namespace Database_Project_GymTrainer
                 }
                 else
                 {
-                    query = "select password from member where memberEmail=@email";
+                    query = "select count(*) from Member where memberEmail=@email AND addedBy is NULL;";
                     cmd.CommandText = query;
-                    string returned_Password = cmd.ExecuteScalar().ToString();
-                    if (returned_Password == password)
+                    count = (int)cmd.ExecuteScalar();
+                    if (count == 1)
                     {
-                        Member_Dashboard member = new Member_Dashboard(owneremail, email, gym);
-                        this.Close();
-                        member.Show();
-
+                        MessageBox.Show("Email not Approved!");
                     }
                     else
                     {
-                        MessageBox.Show("Incorrect email or passowrd.");
-                    }
+                        query = "select password from member where memberEmail=@email";
+                        cmd.CommandText = query;
+                        string returned_Password = cmd.ExecuteScalar().ToString();
+                        if (returned_Password == password)
+                        {
+                            query = "select addedBy from member where memberEmail = @email;";
+                            cmd.CommandText = query;
+                            owneremail = cmd.ExecuteScalar().ToString();
+
+                            query = "select gymName from member where memberEmail = @email;";
+                            cmd.CommandText = query;
+                            gym = cmd.ExecuteScalar().ToString();
+
+                            Member_Dashboard member = new Member_Dashboard(owneremail, email, gym);
+                            this.Close();
+                            member.Show();
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Incorrect email or passowrd.");
+                        }
+                    }                   
                 }
             }
 
@@ -109,6 +127,24 @@ namespace Database_Project_GymTrainer
         private void label2_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void kryptonButton5_Click(object sender, EventArgs e)
+        {
+            if (member_login_password.PasswordChar == '\0')
+            {
+                kryptonButton2.BringToFront();
+                member_login_password.PasswordChar = '•';
+            }
+        }
+
+        private void kryptonButton2_Click(object sender, EventArgs e)
+        {
+            if (member_login_password.PasswordChar == '•')
+            {
+                kryptonButton5.BringToFront();
+                member_login_password.PasswordChar = '\0';
+            }
         }
     }
 }

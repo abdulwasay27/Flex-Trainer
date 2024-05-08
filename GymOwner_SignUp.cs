@@ -53,6 +53,11 @@ namespace Database_Project_GymTrainer
                     cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
                     cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
                     cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
+                    cmd.ExecuteNonQuery();
+
+                    query = "";
+                    query = "Insert into Approval(gymOwnerEmail) values (@email);";
+                    cmd.CommandText = query;
 
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();

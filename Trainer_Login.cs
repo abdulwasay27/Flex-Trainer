@@ -14,7 +14,7 @@ namespace Database_Project_GymTrainer
     public partial class Trainer_Login : Form
     {
         public Trainer_Login()
-        {
+        {       
             InitializeComponent();
         }
 
@@ -53,19 +53,29 @@ namespace Database_Project_GymTrainer
                 }
                 else
                 {
-                    query = "select password from trainer where trainerEmail=@email";
+                    query = "select count(*) from Trainer where trainerEmail=@email AND addedBy is NULL;";
                     cmd.CommandText = query;
-                    string returned_Password = cmd.ExecuteScalar().ToString();
-                    if (returned_Password == password)
+                    count = (int)cmd.ExecuteScalar();
+                    if (count == 1)
                     {
-                        this.Close();
-                        Trainer_Dashboard trainer_Dashboard = new Trainer_Dashboard(email);
-                        trainer_Dashboard.Show();
-
+                        MessageBox.Show("Email not Approved!");
                     }
                     else
                     {
-                        MessageBox.Show("Incorrect email or passowrd.");
+                        query = "select password from trainer where trainerEmail=@email";
+                        cmd.CommandText = query;
+                        string returned_Password = cmd.ExecuteScalar().ToString();
+                        if (returned_Password == password)
+                        {
+                            this.Close();
+                            Trainer_Dashboard trainer_Dashboard = new Trainer_Dashboard(email);
+                            trainer_Dashboard.Show();
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Incorrect email or passowrd.");
+                        }
                     }
                 }
             }
@@ -77,6 +87,29 @@ namespace Database_Project_GymTrainer
         private void Trainer_Login_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void trainer_login_email_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void kryptonButton5_Click(object sender, EventArgs e)
+        {
+            if (trainer_login_pw.PasswordChar == '\0')
+            {
+                kryptonButton2.BringToFront();
+                trainer_login_pw.PasswordChar = '•';
+            }
+        }
+
+        private void kryptonButton2_Click_2(object sender, EventArgs e)
+        {
+            if (trainer_login_pw.PasswordChar == '•')
+            {
+                kryptonButton5.BringToFront();
+                trainer_login_pw.PasswordChar = '\0';
+            }
         }
     }
 }

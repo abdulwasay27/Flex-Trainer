@@ -100,7 +100,7 @@ namespace Database_Project_GymTrainer
                     cmd.CommandText = query;
                     cmd.Parameters.Add("@trainerEmail", SqlDbType.VarChar).Value = trainer_email;
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Gym Changed Successfully. Now in order to select the trainer, goto Trainer Tab!");
+                    MessageBox.Show("Gym Selected Successfully!");
                     kryptonTextBox1.Text = "";
                 }
                 else

@@ -274,6 +274,26 @@ namespace Database_Project_GymTrainer
             }
         }
 
+        private void kryptonButton9_Click(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+            conn.Open();
+            string query = "Select trainerEmail from member where memberEmail = @memberEmail;";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.Add("@memberEmail", SqlDbType.VarChar).Value = member_email;
+            string trainer_email = cmd.ExecuteScalar().ToString();
+            if(trainer_email == "")
+            {
+                MessageBox.Show("Select a Trainer First !");
+                return;
+            }
+
+            this.Close();
+            Member_BookAppointment member = new Member_BookAppointment(owner_email, member_email, current_gym,trainer_email);
+            member.Show();
+        }
+
         private void kryptonButton8_Click(object sender, EventArgs e)
         {
             if (currently_selected_button == "gym")
@@ -351,11 +371,11 @@ namespace Database_Project_GymTrainer
                         owner_email = cmd.ExecuteScalar().ToString();
 
                         query = "";
-                        query = "update Member set gymName = @gymName where memberEmail = @memberEmail";
+                        query = "update Member set trainerEmail = @trainerEmail where memberEmail = @memberEmail";
                         cmd.CommandText = query;
                         cmd.Parameters.Add("@memberEmail", SqlDbType.VarChar).Value = member_email;
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("Gym Changed Successfully. Now in order to select the trainer, goto Trainer Tab!");
+                        MessageBox.Show("Trainer Selected Successfully!");
                         kryptonTextBox1.Text = "";
                     }
                     else

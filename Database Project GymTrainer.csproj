@@ -117,6 +117,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Member_BookAppointment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Member_BookAppointment.Designer.cs">
+      <DependentUpon>Member_BookAppointment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Member_Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Member_BookAppointment.resx">
+      <DependentUpon>Member_BookAppointment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Member_Dashboard.resx">
       <DependentUpon>Member_Dashboard.cs</DependentUpon>
