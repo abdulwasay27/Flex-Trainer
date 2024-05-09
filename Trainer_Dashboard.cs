@@ -100,7 +100,9 @@ namespace Database_Project_GymTrainer
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-
+            this.Hide();
+            Trainer_Appointments trainer = new Trainer_Appointments(trainerEmail);
+            trainer.Show();
         }
 
         private void kryptonButton4_Click(object sender, EventArgs e)

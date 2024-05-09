@@ -303,6 +303,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.kryptonNumericUpDown1.StateCommon.Border.Rounding = 5;
             this.kryptonNumericUpDown1.TabIndex = 120;
+            this.kryptonNumericUpDown1.ValueChanged += new System.EventHandler(this.kryptonNumericUpDown1_ValueChanged);
             // 
             // Member_BookAppointment
             // 

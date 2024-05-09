@@ -61,7 +61,7 @@ namespace Database_Project_GymTrainer
             DateTime date = appointmentdatepicker.Value;
             DateTime Now = DateTime.Now;
 
-            if (DateTime.Compare(Now, date) < 0)
+            if (DateTime.Compare(Now, date) > 0)
             {
                 MessageBox.Show("Invalid date!");
             }
@@ -147,6 +147,11 @@ namespace Database_Project_GymTrainer
             {
                 MessageBox.Show("Invalid Appointment ID.");
             }
+
+        }
+
+        private void kryptonNumericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
 
         }
 
