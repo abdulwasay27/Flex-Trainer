@@ -135,7 +135,7 @@ namespace Database_Project_GymTrainer
 
         private void kryptonButton9_Click(object sender, EventArgs e)
         {
-            int trainer_ver_id = Int32.Parse(kryptonNumericUpDown1.Text);
+            int trainer_ver_id = Int32.Parse(kryptonNumericUpDown2.Text);
             if (trainer_ver_id > 0)
             {
                 SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
