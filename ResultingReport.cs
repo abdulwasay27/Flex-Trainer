@@ -115,6 +115,96 @@ namespace Database_Project_GymTrainer
                     }
                 }
             }
+            else if (p == "6")
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                conn.Open();
+                string query = "Select DietPlan.dietPlanID, DietPlan.purpose, DietPlan.typeOfDiet from DietPlan " +
+                               "join Diet_Meal on DietPlan.dietPlanID = Diet_Meal.dietPlanID " +
+                               "join Meal on Diet_Meal.mealName = Meal.mealName " +
+                               "where Meal.carbs < 300 ;";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        kryptonDataGridView1.DataSource = dt;
+                    }
+                }
+            }
+            else if (p == "7")
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                conn.Open();
+                string query = "Select WorkoutPlan.WorkoutPlanID from WorkoutPlan " +
+                               "join Workout_Exercises on WorkoutPlan.WorkoutPlanID = Workout_Exercises.WorkoutPlanID " +
+                               "join Gym_Machines on Workout_Exercises.exerciseName = Gym_Machines.exerciseName " +
+                               "where Gym_Machines.machineName is NULL";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        kryptonDataGridView1.DataSource = dt;
+                    }
+                }
+            }
+            else if (p == "8")
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                conn.Open();
+                string query = "Select DietPlan.dietPlanID, DietPlan.purpose, DietPlan.typeOfDiet from DietPlan " +
+                               "join Diet_Meal on DietPlan.dietPlanID = Diet_Meal.dietPlanID " +
+                               "join Meal on Diet_Meal.mealName = Meal.mealName " +
+                               "where Meal.allergen != 'peanuts' ;";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        kryptonDataGridView1.DataSource = dt;
+                    }
+                }
+            }
+            else if (p == "9")
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                conn.Open();
+                string query = "Select * from Member " +
+                               "join Gym on Member.gymName = Gym.gymName " +
+                               "where Gym.gymOwner = @owner AND Member.signup_date < DATEADD(MONTH, -3, GETDATE())";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.Add("@owner", SqlDbType.VarChar).Value = s1;
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        kryptonDataGridView1.DataSource = dt;
+                    }
+                }
+            }
+            else if (p == "10")
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                conn.Open();
+                string query = "SELECT Gym.gymName, COUNT(Member.memberEmail) AS TotalMembers " +
+                               "FROM Gym LEFT JOIN Member ON Gym.gymName = Member.gymName " +
+                               "WHERE Member.signup_date >= DATEADD(MONTH, -6, GETDATE()) " +
+                               "GROUP BY Gym.gymName;";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        kryptonDataGridView1.DataSource = dt;
+                    }
+                }
+            }
         }
 
         private void ResultingReport_Load(object sender, EventArgs e)
