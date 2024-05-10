@@ -74,6 +74,18 @@
     <Compile Include="Admin_Login.Designer.cs">
       <DependentUpon>Admin_Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin_Reports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin_Reports.Designer.cs">
+      <DependentUpon>Admin_Reports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin_Reports_2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin_Reports_2.Designer.cs">
+      <DependentUpon>Admin_Reports_2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin_SignUp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +167,12 @@
     <Compile Include="Member_SignUp.Designer.cs">
       <DependentUpon>Member_SignUp.cs</DependentUpon>
     </Compile>
+    <Compile Include="ResultingReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ResultingReport.Designer.cs">
+      <DependentUpon>ResultingReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Trainer_Appointments.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +220,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin_Login.resx">
       <DependentUpon>Admin_Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin_Reports.resx">
+      <DependentUpon>Admin_Reports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin_Reports_2.resx">
+      <DependentUpon>Admin_Reports_2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin_SignUp.resx">
       <DependentUpon>Admin_SignUp.cs</DependentUpon>
@@ -251,6 +275,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ResultingReport.resx">
+      <DependentUpon>ResultingReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Trainer_Appointments.resx">
       <DependentUpon>Trainer_Appointments.cs</DependentUpon>
     </EmbeddedResource>
