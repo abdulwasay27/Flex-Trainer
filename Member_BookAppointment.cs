@@ -155,6 +155,11 @@ namespace Database_Project_GymTrainer
 
         }
 
+        private void Member_BookAppointment_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void kryptonRichTextBox1_TextChanged(object sender, EventArgs e)
         {
 
