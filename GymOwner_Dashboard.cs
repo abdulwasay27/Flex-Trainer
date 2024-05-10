@@ -232,7 +232,9 @@ namespace Database_Project_GymTrainer
 
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
-
+            this.Close();
+            GymOwner_Report gr = new GymOwner_Report(current_email);
+            gr.Show();
         }
     }
 }

@@ -117,6 +117,18 @@
     <Compile Include="GymOwner_Login.Designer.cs">
       <DependentUpon>GymOwner_Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="GymOwner_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GymOwner_Report.Designer.cs">
+      <DependentUpon>GymOwner_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GymOwner_Report_2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GymOwner_Report_2.Designer.cs">
+      <DependentUpon>GymOwner_Report_2.cs</DependentUpon>
+    </Compile>
     <Compile Include="GymOwner_SignUp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -241,6 +253,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GymOwner_Login.resx">
       <DependentUpon>GymOwner_Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GymOwner_Report.resx">
+      <DependentUpon>GymOwner_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GymOwner_Report_2.resx">
+      <DependentUpon>GymOwner_Report_2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GymOwner_SignUp.resx">
       <DependentUpon>GymOwner_SignUp.cs</DependentUpon>
