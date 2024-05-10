@@ -75,6 +75,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.kryptonButton11 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton12 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.panel11 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -95,6 +96,7 @@
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel11.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -110,9 +112,10 @@
             this.flowLayoutPanel1.Controls.Add(this.panel8);
             this.flowLayoutPanel1.Controls.Add(this.panel9);
             this.flowLayoutPanel1.Controls.Add(this.panel10);
+            this.flowLayoutPanel1.Controls.Add(this.panel11);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 140);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1002, 640);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1002, 734);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // panel1
@@ -1036,7 +1039,7 @@
             // 
             // kryptonButton11
             // 
-            this.kryptonButton11.Location = new System.Drawing.Point(828, 807);
+            this.kryptonButton11.Location = new System.Drawing.Point(825, 7);
             this.kryptonButton11.Name = "kryptonButton11";
             this.kryptonButton11.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
             this.kryptonButton11.OverrideDefault.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
@@ -1093,7 +1096,7 @@
             // 
             // kryptonButton12
             // 
-            this.kryptonButton12.Location = new System.Drawing.Point(21, 807);
+            this.kryptonButton12.Location = new System.Drawing.Point(28, 7);
             this.kryptonButton12.Name = "kryptonButton12";
             this.kryptonButton12.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
             this.kryptonButton12.OverrideDefault.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
@@ -1148,6 +1151,15 @@
             this.kryptonButton12.Values.Text = "Go Back";
             this.kryptonButton12.Click += new System.EventHandler(this.kryptonButton12_Click);
             // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.kryptonButton12);
+            this.panel11.Controls.Add(this.kryptonButton11);
+            this.panel11.Location = new System.Drawing.Point(3, 643);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(999, 67);
+            this.panel11.TabIndex = 10;
+            // 
             // Admin_Reports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1155,8 +1167,6 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1001, 886);
-            this.Controls.Add(this.kryptonButton12);
-            this.Controls.Add(this.kryptonButton11);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.pictureBox2);
@@ -1193,6 +1203,7 @@
             this.panel9.PerformLayout();
             this.panel10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel11.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1246,5 +1257,6 @@
         public ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton10;
         public ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton11;
         public ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton12;
+        private System.Windows.Forms.Panel panel11;
     }
 }
