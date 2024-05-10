@@ -16,12 +16,17 @@ namespace Database_Project_GymTrainer
     {
         string current_email;
 
-        public GymOwner_Dashboard(string current_email="")
+        public GymOwner_Dashboard(string current_email = "")
         {
             InitializeComponent();
             this.current_email = current_email;
-
             SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+            conn.Open();
+            string query = $"select count(*) from gym where gymOwner='{current_email}';";
+            SqlCommand cmd = new SqlCommand(query, conn); ;
+
+            if ((int)cmd.ExecuteScalar() == 0)
+                kryptonButton5.Visible = false;
             SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from Member_Verification;", conn);
             DataTable dt = new DataTable();
             sqlDA.Fill(dt);
@@ -45,7 +50,7 @@ namespace Database_Project_GymTrainer
         private void kryptonButton5_Click(object sender, EventArgs e)
         {
             Close();
-            GymOwner_AddMachine gymOwner_AddMachine = new GymOwner_AddMachine();
+            GymOwner_AddMachine gymOwner_AddMachine = new GymOwner_AddMachine(current_email);
             gymOwner_AddMachine.Show();
         }
 
@@ -221,6 +226,11 @@ namespace Database_Project_GymTrainer
         }
 
         private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void kryptonButton3_Click(object sender, EventArgs e)
         {
 
         }
