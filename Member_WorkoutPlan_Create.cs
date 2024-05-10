@@ -320,6 +320,11 @@ namespace Database_Project_GymTrainer
             conn.Close();
         }
 
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void kryptonDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 

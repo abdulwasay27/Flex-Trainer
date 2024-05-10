@@ -6,10 +6,12 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Database_Project_GymTrainer
@@ -65,10 +67,24 @@ namespace Database_Project_GymTrainer
             dataGridView1.Visible = true ;
             currently_selected_button = "gym";
             SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
-            SqlDataAdapter sqlDA = new SqlDataAdapter("Select Gym.gymName, Gym.gymOwner, Gym.adminEmail, Gym.location, Gym.membership_fees from Member join Gym on Member.gymName = Gym.gymName;", conn);
+            conn.Open();
+
+            string query_member = "Select Gym.gymName, Gym.gymOwner, Gym.adminEmail, Gym.location, Gym.membership_fees from Member join Gym on Member.gymName = Gym.gymName where member.memberEmail= @memberEmail;";
+            SqlCommand command = new SqlCommand(query_member, conn);
+
+            command.Parameters.AddWithValue("@memberEmail", member_email);
+
+            // Use SqlDataReader to execute the query
+            SqlDataReader reader = command.ExecuteReader();
+
+            // Load data into DataTable
             DataTable dt = new DataTable();
-            sqlDA.Fill(dt);
+            dt.Load(reader);
+
+            // Bind DataTable to DataGridView
+
             dataGridView1.DataSource = dt;
+            dt.Dispose();
 
             kryptonButton8.Visible = false;
             kryptonButton7.Visible = true;
@@ -84,10 +100,10 @@ namespace Database_Project_GymTrainer
             SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             conn.Open();
             string query = "SELECT WorkoutPlan.workoutPlanID, WorkoutPlan.goal, WorkoutPlan.schedule, WorkoutPlan.experienceLevel " +
-                "FROM WorkoutPlan JOIN Member ON WorkoutPlan.workoutPlanID = Member.currentlyFollowingWorkoutPlanID;";
+                "FROM WorkoutPlan INNER JOIN Member ON WorkoutPlan.workoutPlanID = Member.currentlyFollowingWorkoutPlanID where member.memberEmail = @memberEmail;";
             using (SqlCommand command = new SqlCommand(query, conn))
             {
-                command.Parameters.AddWithValue("@memberemail", member_email);
+                command.Parameters.AddWithValue("@memberEmail", member_email);
                 using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
                 {
                     DataTable dt = new DataTable();
@@ -111,7 +127,7 @@ namespace Database_Project_GymTrainer
             SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             conn.Open();
             string query = "SELECT dietPlan.dietPlanID, dietPlan.purpose, dietPlan.typeOfDiet " +
-                "FROM dietPlan JOIN Member ON dietPlan.dietPlanID = Member.dietPlanID ";
+                "FROM dietPlan Inner JOIN Member ON dietPlan.dietPlanID = Member.dietPlanID where member.memberEmail = @memberemail ";
             using (SqlCommand command = new SqlCommand(query, conn))
             {
                 command.Parameters.AddWithValue("@memberemail", member_email);
@@ -140,10 +156,24 @@ namespace Database_Project_GymTrainer
             dataGridView1.Visible = true;
             currently_selected_button = "trainer";
             SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
-            SqlDataAdapter sqlDA = new SqlDataAdapter("Select Trainer.trainerEmail, Trainer.name, Trainer.speciality, Trainer.experience from Trainer join Member on Trainer.trainerEmail = Member.trainerEmail;", conn);
+            conn.Open();
+
+            string query_member = "Select Trainer.trainerEmail, Trainer.name, Trainer.speciality, Trainer.experience from Trainer join Member on Trainer.trainerEmail = Member.trainerEmail where member.memberEmail = @memberEmail;";
+            SqlCommand command = new SqlCommand(query_member, conn);
+
+            command.Parameters.AddWithValue("@memberEmail", member_email);
+
+            // Use SqlDataReader to execute the query
+            SqlDataReader reader = command.ExecuteReader();
+
+            // Load data into DataTable
             DataTable dt = new DataTable();
-            sqlDA.Fill(dt);
-            dataGridView1.DataSource = dt;          
+            dt.Load(reader);
+
+            // Bind DataTable to DataGridView
+
+            dataGridView1.DataSource = dt;
+            dt.Dispose();
             kryptonButton7.Visible = true;
             kryptonButton7.Text = "Change";
             kryptonButton6.Visible = false;
@@ -164,7 +194,7 @@ namespace Database_Project_GymTrainer
             {
                 SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
                 conn.Open();
-                string query = "Select Gym.gymName, Gym.gymOwner, Gym.adminEmail, Gym.location, Gym.membership_fees from Gym";
+                string query = "Select Gym.gymName, Gym.gymOwner, Gym.adminEmail, Gym.location, Gym.membership_fees from Gym where gymName != @currentgym";
                 using (SqlCommand command = new SqlCommand(query, conn))
                 {
                     command.Parameters.AddWithValue("@currentgym", current_gym);
@@ -181,12 +211,11 @@ namespace Database_Project_GymTrainer
             {
                 SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
                 conn.Open();
-                string query = "SELECT Trainer.trainerEmail, Trainer.name, Trainer.speciality, Trainer.experience FROM Trainer " +
-                       "JOIN GymTrainers ON GymTrainers.trainerEmail = Trainer.trainerEmail " +
-                       "WHERE GymTrainers.gymName = @currentgym;";
+                string query = "SELECT Trainer.trainerEmail, Trainer.name, Trainer.speciality, Trainer.experience FROM Trainer where trainer.trainerEmail in (select gymtrainers.trainerEmail from  gymtrainers inner join trainer on trainer.trainerEmail=GymTrainers.trainerEmail inner join member on trainer.trainerEmail!=member.trainerEmail or member.trainerEmail is NULL where gymtrainers.gymName=@currentGym and member.memberEmail=@memberEmail);";
                 using (SqlCommand command = new SqlCommand(query, conn))
                 {
                     command.Parameters.AddWithValue("@currentgym", current_gym);
+                    command.Parameters.AddWithValue("@memberEmail", member_email);
                     using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
                     {
                         DataTable dt = new DataTable();
@@ -204,9 +233,11 @@ namespace Database_Project_GymTrainer
             {
                 SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
                 conn.Open();
-                string query = "SELECT workoutPlanID, trainerEmail, memberEmail, goal, schedule, experienceLevel FROM WorkoutPlan;";
+                string query = "SELECT WorkoutPlan.workoutPlanID, WorkoutPlan.goal, WorkoutPlan.schedule, WorkoutPlan.experienceLevel FROM WorkoutPlan inner join Member on Member.memberEmail = WorkoutPlan.memberEmail where Member.memberEmail = @memberEmail UNION SELECT WorkoutPlan.workoutPlanID, WorkoutPlan.goal, WorkoutPlan.schedule, WorkoutPlan.experienceLevel FROM WorkoutPlan inner join Trainer on trainer.trainerEmail = WorkoutPlan.trainerEmail inner join Member on Trainer.trainerEmail = Member.trainerEmail where Member.memberEmail = @memberEmail EXCEPT SELECT WorkoutPlan.workoutPlanID, WorkoutPlan.goal, WorkoutPlan.schedule, WorkoutPlan.experienceLevel FROM WorkoutPlan inner join member on Member.currentlyFollowingWorkoutPlanID = WorkoutPlan.workoutPlanID where Member.memberEmail = @memberEmail ;";
+
                 using (SqlCommand command = new SqlCommand(query, conn))
                 {
+                    command.Parameters.AddWithValue("@memberEmail", member_email);
                     using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
                     {
                         DataTable dt = new DataTable();
@@ -224,11 +255,14 @@ namespace Database_Project_GymTrainer
             {
                 SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
                 conn.Open();
-                string query = "SELECT dietplanID, trainerEmail, memberEmail, purpose, typeOfDiet FROM DietPlan;";
+                string query = "SELECT dietPlan.dietplanID, dietPlan.trainerEmail, dietPlan.memberEmail, dietPlan.purpose, dietPlan.typeOfDiet FROM DietPlan inner join Member on Member.memberEmail = dietPlan.memberEmail where Member.memberEmail = @memberEmail " +
+                    "UNION SELECT dietPlan.dietplanID, dietPlan.trainerEmail, dietPlan.memberEmail, dietPlan.purpose, dietPlan.typeOfDiet FROM DietPlan inner join Trainer on trainer.trainerEmail = dietPlan.trainerEmail inner join Member on Trainer.trainerEmail = Member.trainerEmail where Member.memberEmail = @memberEmail " +
+                    "EXCEPT SELECT dietPlan.dietplanID, dietPlan.trainerEmail, dietPlan.memberEmail, dietPlan.purpose, dietPlan.typeOfDiet FROM DietPlan inner join member on Member.currentlyFollowingWorkoutPlanID = dietPlan.dietPlanID where Member.memberEmail = @memberEmail ;";
                 using (SqlCommand command = new SqlCommand(query, conn))
                 {
                     using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
                     {
+                        command.Parameters.AddWithValue("@memberEmail", member_email);
                         DataTable dt = new DataTable();
                         sqlDA.Fill(dt);
                         dataGridView1.DataSource = dt;
@@ -300,7 +334,7 @@ namespace Database_Project_GymTrainer
             {
                 SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
                 conn.Open();
-                string query = "Select Gym.gymName, Gym.gymOwner, Gym.adminEmail, Gym.location, Gym.membership_fees from Gym";
+                string query = "Select Gym.gymName, Gym.gymOwner, Gym.adminEmail, Gym.location, Gym.membership_fees from Gym where gymName != @currentgym";
                 using (SqlCommand command = new SqlCommand(query, conn))
                 {
                     command.Parameters.AddWithValue("@currentgym", current_gym);
@@ -334,12 +368,19 @@ namespace Database_Project_GymTrainer
                         owner_email = cmd.ExecuteScalar().ToString();
 
                         query = "";
-                        query = "update Member set gymName = @gymName where memberEmail = @memberEmail";
+                        query = "update Member set addedBy = NULL,currentlyFollowingWorkoutPlanID = NULL , dietPlanID = NULL, gymName = NULL,isApproved = 0,trainerEmail = NULL where memberEmail = @memberEmail";
                         cmd.CommandText = query;
                         cmd.Parameters.Add("@memberEmail", SqlDbType.VarChar).Value = member_email;
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("Gym Changed Successfully. Now in order to select the trainer, goto Trainer Tab!");
+                        query = "Insert into member_verification(memberEmail, gymName) VALUES(@memberEmail,@gymName)";
+                        cmd.CommandText = query;
+                        cmd.ExecuteNonQuery();
+
+                        MessageBox.Show("Leaving Current Gym. Approval Request sent to Gym Owner. Kindly Wait for Gym Owner's Approval. Once Aprroved, you will be able to login.");
+                        this.Close();
                         kryptonTextBox1.Text = "";
+                        current_gym = " ";
+                        owner_email = " ";
                     }
                     else
                     {
@@ -366,9 +407,7 @@ namespace Database_Project_GymTrainer
 
                     if (count != 0)
                     {
-                        query = "";
-                        query = "select gymOwner from Gym where gymName = @gymName";
-                        owner_email = cmd.ExecuteScalar().ToString();
+                        
 
                         query = "";
                         query = "update Member set trainerEmail = @trainerEmail where memberEmail = @memberEmail";
@@ -377,6 +416,8 @@ namespace Database_Project_GymTrainer
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Trainer Selected Successfully!");
                         kryptonTextBox1.Text = "";
+                        kryptonButton7_Click(sender,e);
+
                     }
                     else
                     {
@@ -409,6 +450,7 @@ namespace Database_Project_GymTrainer
                         cmd.Parameters.Add("@memberEmail", SqlDbType.VarChar).Value = member_email;
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Workoutplan Changed Successfully!");
+                        button2_Click_1(sender, e);
                         kryptonTextBox1.Text = "";
                     }
                     else
@@ -443,6 +485,7 @@ namespace Database_Project_GymTrainer
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Dietplan Changed Successfully!");
                         kryptonTextBox1.Text = "";
+                        button1_Click(sender, e);
                     }
                     else
                     {

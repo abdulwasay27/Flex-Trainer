@@ -78,6 +78,7 @@
             this.label2.Size = new System.Drawing.Size(69, 36);
             this.label2.TabIndex = 35;
             this.label2.Text = "Day 1";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
