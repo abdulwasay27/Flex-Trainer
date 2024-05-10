@@ -326,7 +326,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Resources\GymOwner_Reports.zip" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
