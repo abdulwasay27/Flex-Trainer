@@ -16,8 +16,8 @@ namespace Database_Project_GymTrainer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new MainForm());
-            Application.Run(new Admin_Reports());
+            Application.Run(new MainForm());
+            //Application.Run(new Admin_Reports());
         }
     }
 }
