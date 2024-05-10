@@ -106,7 +106,7 @@ namespace Database_Project_GymTrainer
             cmd.Parameters.Add("@gymName", SqlDbType.VarChar).Value = gym_name;
             cmd.CommandText = query;
             cmd.ExecuteNonQuery();
-            MessageBox.Show("Exercise Added Successfully!");
+            MessageBox.Show("Machine Added Successfully!");
         }
 
         private void GymOwner_AddMachine_Load(object sender, EventArgs e)
