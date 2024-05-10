@@ -25,9 +25,9 @@ namespace Database_Project_GymTrainer
             string query = $"select count(*) from gym where gymOwner='{current_email}';";
             SqlCommand cmd = new SqlCommand(query, conn); ;
 
-            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
-            conn.Open();
-
+            if ((int)cmd.ExecuteScalar() == 0)
+                kryptonButton5.Visible = false;
+          
             string query_member = "SELECT * FROM Member_Verification WHERE gymName = (SELECT gymName FROM GYM WHERE gymOwner = @current_email)";
             string query_trainer = "SELECT * FROM Trainer_Verification WHERE gymName = (SELECT gymName FROM GYM WHERE gymOwner = @current_email)";
             SqlCommand command = new SqlCommand(query_member, conn);
@@ -38,9 +38,6 @@ namespace Database_Project_GymTrainer
             SqlDataReader reader = command.ExecuteReader();
 
             // Load data into DataTable
-            if ((int)cmd.ExecuteScalar() == 0)
-                kryptonButton5.Visible = false;
-            SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from Member_Verification;", conn);
             DataTable dt = new DataTable();
             dt.Load(reader);
 
@@ -225,6 +222,11 @@ namespace Database_Project_GymTrainer
             {
                 MessageBox.Show("Trainer Verification ID must be entered!");
             }
+        }
+
+        private void kryptonButton3_Click(object sender, EventArgs e)
+        {
+           
         }
 
         private void kryptonDataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
