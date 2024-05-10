@@ -113,5 +113,12 @@ namespace Database_Project_GymTrainer
             ad2.Show();
             this.Hide();
         }
+
+        private void kryptonButton12_Click(object sender, EventArgs e)
+        {
+            Admin_Dashboard ad = new Admin_Dashboard(current_admin);
+            this.Hide();
+            ad.Show();
+        }
     }
 }

@@ -77,7 +77,9 @@ namespace Database_Project_GymTrainer
 
         private void kryptonButton1_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            Admin_Reports ad = new Admin_Reports(current_email);
+            ad.Show();
         }
 
         private void kryptonButton4_Click(object sender, EventArgs e)
