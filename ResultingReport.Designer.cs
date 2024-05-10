@@ -45,6 +45,7 @@
             this.kryptonDataGridView1.ReadOnly = true;
             this.kryptonDataGridView1.Size = new System.Drawing.Size(880, 513);
             this.kryptonDataGridView1.TabIndex = 0;
+            this.kryptonDataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.kryptonDataGridView1_CellContentClick);
             // 
             // pictureBox2
             // 

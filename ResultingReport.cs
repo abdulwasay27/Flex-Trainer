@@ -14,6 +14,12 @@ namespace Database_Project_GymTrainer
     public partial class ResultingReport : Form
     {
         string s1, s2, s3;
+
+        private void kryptonDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
         public ResultingReport(string s1 = "", string s2 = "", string s3 = "", string p = "")
         {
             InitializeComponent();

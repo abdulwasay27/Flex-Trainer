@@ -117,7 +117,7 @@ namespace Database_Project_GymTrainer
                         MessageBox.Show("Sign Up Successfull!");
 
                         this.Close();
-                        Member_Login member = new Member_Login(owner_email,gym);
+                        Member_Login member = new Member_Login(owner_email, gym);
                         member.Show();
 
                     }
@@ -149,6 +149,11 @@ namespace Database_Project_GymTrainer
         }
 
         private void member_signup_date_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void member_signup_type_TextChanged(object sender, EventArgs e)
         {
 
         }
