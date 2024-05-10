@@ -126,7 +126,7 @@
     <Compile Include="GymOwner_Report_2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GymOwner_Report_2.designer.cs">
+    <Compile Include="GymOwner_Report_2.Designer.cs">
       <DependentUpon>GymOwner_Report_2.cs</DependentUpon>
     </Compile>
     <Compile Include="GymOwner_SignUp.cs">
