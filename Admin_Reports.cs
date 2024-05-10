@@ -21,7 +21,7 @@ namespace Database_Project_GymTrainer
             for (int i = 1; i <= 10; i++)
             {
                 Panel panel = Controls.Find("panel" + i, true).FirstOrDefault() as Panel;
-                if (panel != null && i%2 == 0)
+                if (panel != null && i % 2 == 0)
                 {
                     panel.Visible = false;
                 }
@@ -32,7 +32,7 @@ namespace Database_Project_GymTrainer
         {
             if (kryptonComboBox1.Text != "" && kryptonComboBox2.Text != "")
             {
-                ResultingReport rp = new ResultingReport(kryptonComboBox1.Text, kryptonComboBox2.Text,"", "1");
+                ResultingReport rp = new ResultingReport(kryptonComboBox1.Text, kryptonComboBox2.Text, "", "1");
                 rp.Show();
             }
             else
@@ -46,10 +46,10 @@ namespace Database_Project_GymTrainer
             for (int i = 1; i <= 10; i++)
             {
                 Panel panel = Controls.Find("panel" + i, true).FirstOrDefault() as Panel;
-                if (panel != null && i%2 == 0)
+                if (panel != null && i % 2 == 0)
                 {
-                    panel.Visible = (panel == panel1); 
-                    panel.Visible = (panel == panel2); 
+                    panel.Visible = (panel == panel1);
+                    panel.Visible = (panel == panel2);
                 }
             }
         }
@@ -289,7 +289,7 @@ namespace Database_Project_GymTrainer
         {
             if (kryptonComboBox5.Text != "" && kryptonComboBox6.Text != "")
             {
-                ResultingReport rp = new ResultingReport(kryptonComboBox6.Text, kryptonComboBox5.Text,"", "3");
+                ResultingReport rp = new ResultingReport(kryptonComboBox6.Text, kryptonComboBox5.Text, "", "3");
                 rp.Show();
             }
             else
@@ -322,7 +322,7 @@ namespace Database_Project_GymTrainer
         private void kryptonComboBox7_DropDown(object sender, EventArgs e)
         {
             string gym = kryptonComboBox8.Text;
-            if ( gym == "" )
+            if (gym == "")
             {
                 MessageBox.Show("Select Gym First.");
                 return;
@@ -353,7 +353,7 @@ namespace Database_Project_GymTrainer
             kryptonComboBox9.Items.Clear();
             for (int i = 1; i <= 6; i++)
             {
-                kryptonComboBox9.Items.Add(i.ToString());
+                kryptonComboBox9.Items.Add(i);
             }
         }
 
@@ -361,7 +361,7 @@ namespace Database_Project_GymTrainer
         {
             if (kryptonComboBox8.Text != "" && kryptonComboBox7.Text != "" && kryptonComboBox9.Text != "")
             {
-                ResultingReport rp = new ResultingReport(kryptonComboBox8.Text, kryptonComboBox7.Text,kryptonComboBox9.Text, "4");
+                ResultingReport rp = new ResultingReport(kryptonComboBox8.Text, kryptonComboBox7.Text, kryptonComboBox9.Text, "4");
                 rp.Show();
             }
             else
@@ -371,9 +371,9 @@ namespace Database_Project_GymTrainer
         }
 
         private void kryptonButton10_Click(object sender, EventArgs e)
-        { 
-                ResultingReport rp = new ResultingReport("","","","5");
-                rp.Show();
+        {
+            ResultingReport rp = new ResultingReport("", "", "", "5");
+            rp.Show();
         }
     }
 }

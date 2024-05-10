@@ -33,7 +33,7 @@ namespace Database_Project_GymTrainer
         {
             Admin_Reports ad = new Admin_Reports(current_admin);
             ad.Show();
-            this.Hide();
+            Close();
         }
 
         private void Admin_Reports_2_Load(object sender, EventArgs e)
