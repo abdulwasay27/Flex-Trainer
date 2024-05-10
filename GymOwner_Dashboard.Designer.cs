@@ -139,7 +139,7 @@
             this.label1.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(294, 110);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(203, 28);
+            this.label1.Size = new System.Drawing.Size(204, 28);
             this.label1.TabIndex = 85;
             this.label1.Text = "Member Verification ID";
             // 
@@ -220,6 +220,7 @@
             this.kryptonButton3.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
             this.kryptonButton3.TabIndex = 91;
             this.kryptonButton3.Values.Text = "View Member Report";
+            this.kryptonButton3.Click += new System.EventHandler(this.kryptonButton3_Click);
             // 
             // kryptonButton5
             // 
@@ -389,7 +390,7 @@
             this.label2.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
             this.label2.Location = new System.Drawing.Point(13, 110);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(266, 28);
+            this.label2.Size = new System.Drawing.Size(267, 28);
             this.label2.TabIndex = 102;
             this.label2.Text = "Waiting Member Verifications:";
             // 
@@ -400,7 +401,7 @@
             this.label3.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
             this.label3.Location = new System.Drawing.Point(13, 308);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(256, 28);
+            this.label3.Size = new System.Drawing.Size(257, 28);
             this.label3.TabIndex = 108;
             this.label3.Text = "Waiting Trainer Verifications:";
             this.label3.Click += new System.EventHandler(this.label3_Click);
@@ -506,7 +507,7 @@
             this.label4.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
             this.label4.Location = new System.Drawing.Point(294, 308);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(193, 28);
+            this.label4.Size = new System.Drawing.Size(194, 28);
             this.label4.TabIndex = 103;
             this.label4.Text = "Trainer Verification ID";
             this.label4.Click += new System.EventHandler(this.label4_Click);
