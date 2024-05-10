@@ -22,7 +22,7 @@ namespace Database_Project_GymTrainer
             // Joined Gyms
             SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             conn.Open();
-            string query = "Select Gym.gymName from Gym join GymTrainers on Gym.gymName = GymTrainers.gymName;";
+            string query = "Select Gym.gymName from Gym join GymTrainers on Gym.gymName = GymTrainers.gymName where trainerEmail = @trainerEmail;";
             using (SqlCommand command = new SqlCommand(query, conn))
             {
                 command.Parameters.AddWithValue("@trainerEmail", trainer_email);
@@ -35,7 +35,7 @@ namespace Database_Project_GymTrainer
             }
             // Available Gyms
             query = "";
-            query = "Select Gym.gymName from Gym left join GymTrainers on Gym.gymName = GymTrainers.gymName where GymTrainers.gymName IS NULL;";
+            query = "Select Gym.gymName from Gym EXCEPT Select GymTrainers.GymName FROM GymTrainers inner join trainer on gymtrainers.trainerEmail=trainer.trainerEmail where trainer.trainerEmail = @trainerEmail;";
             using (SqlCommand command = new SqlCommand(query, conn))
             {
                 command.Parameters.AddWithValue("@trainerEmail", trainer_email);
@@ -109,9 +109,9 @@ namespace Database_Project_GymTrainer
                 }
 
                 // Joined Gyms
-                conn = new SqlConnection(ConnectionString.ServerName);
-                conn.Open();
-                query = "Select Gym.gymName from Gym join GymTrainers on Gym.gymName = GymTrainers.gymName;";
+                
+                query = "Select Gym.gymName from Gym join GymTrainers on Gym.gymName = GymTrainers.gymName where trainerEmail = @trainerEmail;";
+                
                 using (SqlCommand command = new SqlCommand(query, conn))
                 {
                     command.Parameters.AddWithValue("@trainerEmail", trainer_email);
@@ -124,7 +124,7 @@ namespace Database_Project_GymTrainer
                 }
                 // Available Gyms
                 query = "";
-                query = "Select Gym.gymName from Gym left join GymTrainers on Gym.gymName = GymTrainers.gymName where GymTrainers.gymName IS NULL;";
+                query = "Select Gym.gymName from Gym EXCEPT Select GymTrainers.GymName FROM GymTrainers inner join trainer on gymtrainers.trainerEmail=trainer.trainerEmail where trainer.trainerEmail = @trainerEmail;";
                 using (SqlCommand command = new SqlCommand(query, conn))
                 {
                     command.Parameters.AddWithValue("@trainerEmail", trainer_email);

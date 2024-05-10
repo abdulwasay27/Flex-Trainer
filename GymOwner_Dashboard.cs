@@ -226,7 +226,9 @@ namespace Database_Project_GymTrainer
 
         private void kryptonButton3_Click(object sender, EventArgs e)
         {
-           
+            GymOwner_Report gr = new GymOwner_Report(current_email);
+            gr.Show();
+            this.Close();
         }
 
         private void kryptonDataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)

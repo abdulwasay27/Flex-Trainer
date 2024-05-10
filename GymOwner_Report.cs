@@ -32,9 +32,9 @@ namespace Database_Project_GymTrainer
 
         private void kryptonButton12_Click(object sender, EventArgs e)
         {
+            this.Close();
             GymOwner_Dashboard gd = new GymOwner_Dashboard(current_email);
             gd.Show();
-            this.Close();
         }
 
         private void kryptonButton2_Click(object sender, EventArgs e)
@@ -190,9 +190,9 @@ namespace Database_Project_GymTrainer
 
         private void kryptonButton11_Click(object sender, EventArgs e)
         {
+            this.Close();
             GymOwner_Report_2 gr = new GymOwner_Report_2(current_email);
             gr.Show();
-            this.Close();
         }
 
         private void GymOwner_Report_Load(object sender, EventArgs e)

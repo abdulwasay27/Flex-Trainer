@@ -37,7 +37,7 @@ namespace Database_Project_GymTrainer
             SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             conn.Open();
             SqlCommand cmd;
-            string query = "select count(*) from trainer where trainerEmail=@email"; // ADD ISAPRROVED = 1
+            string query = "select count(*) from trainer where trainerEmail=@email"; 
             cmd = new SqlCommand(query, conn);
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
                 MessageBox.Show("Please enter email and passowrd!");
@@ -53,30 +53,22 @@ namespace Database_Project_GymTrainer
                 }
                 else
                 {
-                    query = "select count(*) from Trainer where trainerEmail=@email AND addedBy is NULL;";
+
+                    query = "select password from trainer where trainerEmail=@email";
                     cmd.CommandText = query;
-                    count = (int)cmd.ExecuteScalar();
-                    if (count == 1)
+                    string returned_Password = cmd.ExecuteScalar().ToString();
+                    if (returned_Password == password)
                     {
-                        MessageBox.Show("Email not Approved!");
+                        this.Close();
+                        Trainer_Dashboard trainer_Dashboard = new Trainer_Dashboard(email);
+                        trainer_Dashboard.Show();
+
                     }
                     else
                     {
-                        query = "select password from trainer where trainerEmail=@email";
-                        cmd.CommandText = query;
-                        string returned_Password = cmd.ExecuteScalar().ToString();
-                        if (returned_Password == password)
-                        {
-                            this.Close();
-                            Trainer_Dashboard trainer_Dashboard = new Trainer_Dashboard(email);
-                            trainer_Dashboard.Show();
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("Incorrect email or passowrd.");
-                        }
+                        MessageBox.Show("Incorrect email or passowrd.");
                     }
+
                 }
             }
 

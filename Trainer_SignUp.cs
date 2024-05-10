@@ -114,11 +114,7 @@ namespace Database_Project_GymTrainer
                     cmd.CommandText = query;
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();
-                    query = "";
-                    query = "insert into Trainer_Verification(trainerEmail) values (@email)";
-                    cmd.CommandText = query;
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
+                    
                     conn.Close();
                     MessageBox.Show("Sign Up Successfull!");
 
