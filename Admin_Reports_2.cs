@@ -1,7 +1,9 @@
-﻿using System;
+﻿using ComponentFactory.Krypton.Toolkit;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -33,7 +35,7 @@ namespace Database_Project_GymTrainer
         {
             Admin_Reports ad = new Admin_Reports(current_admin);
             ad.Show();
-            this.Hide();
+            Close();
         }
 
         private void Admin_Reports_2_Load(object sender, EventArgs e)
@@ -104,6 +106,92 @@ namespace Database_Project_GymTrainer
                     panel.Visible = (panel == panel10);
                 }
             }
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            ResultingReport rp = new ResultingReport("","","","6");
+            rp.Show();
+        }
+
+        private void kryptonComboBox4_DropDown(object sender, EventArgs e)
+        {
+            kryptonComboBox4.Items.Clear();
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+            conn.Open();
+            string query = "SELECT distinct machineName From Gym_Machines;";
+            SqlCommand cmd;
+            cmd = new SqlCommand(query, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                string ss = reader.GetString(0);
+                kryptonComboBox4.Items.Add(ss);
+            }
+
+
+            cmd.Dispose();
+            conn.Close();
+        }
+
+        private void kryptonButton4_Click(object sender, EventArgs e)
+        {
+            if (kryptonComboBox4.Text != "" )
+            {
+                ResultingReport rp = new ResultingReport(kryptonComboBox4.Text,"", "", "7");
+                rp.Show();
+            }
+            else
+            {
+                MessageBox.Show("Fill required fields first.");
+            }
+        }
+
+        private void kryptonButton6_Click(object sender, EventArgs e)
+        {
+            ResultingReport rp = new ResultingReport("", "", "", "8");
+            rp.Show();
+        }
+
+        private void kryptonComboBox1_DropDown(object sender, EventArgs e)
+        {
+            kryptonComboBox1.Items.Clear();
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+            conn.Open();
+            string query = "SELECT ownerEmail From GymOwner;";
+            SqlCommand cmd;
+            cmd = new SqlCommand(query, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                string ss = reader.GetString(0);
+                kryptonComboBox1.Items.Add(ss);
+            }
+
+
+            cmd.Dispose();
+            conn.Close();
+        }
+
+        private void kryptonButton8_Click(object sender, EventArgs e)
+        {
+            if (kryptonComboBox1.Text != "")
+            {
+                ResultingReport rp = new ResultingReport(kryptonComboBox1.Text, "", "", "9");
+                rp.Show();
+            }
+            else
+            {
+                MessageBox.Show("Fill required fields first.");
+            }
+        }
+
+        private void kryptonButton10_Click(object sender, EventArgs e)
+        {
+            ResultingReport rp = new ResultingReport("" , "", "", "10");
+            rp.Show();
         }
     }
 }

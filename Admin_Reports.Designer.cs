@@ -76,6 +76,8 @@
             this.kryptonButton11 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonButton12 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.label15 = new System.Windows.Forms.Label();
+            this.kryptonComboBox9 = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -97,6 +99,7 @@
             this.panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox9)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -272,6 +275,8 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.kryptonComboBox2.StateCommon.ComboBox.Border.Rounding = 5;
             this.kryptonComboBox2.TabIndex = 98;
+            this.kryptonComboBox2.DropDown += new System.EventHandler(this.kryptonComboBox2_DropDown);
+            this.kryptonComboBox2.SelectedIndexChanged += new System.EventHandler(this.kryptonComboBox2_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -296,6 +301,8 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.kryptonComboBox1.StateCommon.ComboBox.Border.Rounding = 5;
             this.kryptonComboBox1.TabIndex = 94;
+            this.kryptonComboBox1.DropDown += new System.EventHandler(this.kryptonComboBox1_DropDown);
+            this.kryptonComboBox1.SelectedIndexChanged += new System.EventHandler(this.kryptonComboBox1_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -449,6 +456,7 @@
             this.kryptonButton4.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
             this.kryptonButton4.TabIndex = 99;
             this.kryptonButton4.Values.Text = "Generate Report";
+            this.kryptonButton4.Click += new System.EventHandler(this.kryptonButton4_Click);
             // 
             // kryptonComboBox3
             // 
@@ -461,6 +469,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.kryptonComboBox3.StateCommon.ComboBox.Border.Rounding = 5;
             this.kryptonComboBox3.TabIndex = 98;
+            this.kryptonComboBox3.DropDown += new System.EventHandler(this.kryptonComboBox3_DropDown);
             // 
             // label6
             // 
@@ -485,6 +494,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.kryptonComboBox4.StateCommon.ComboBox.Border.Rounding = 5;
             this.kryptonComboBox4.TabIndex = 94;
+            this.kryptonComboBox4.DropDown += new System.EventHandler(this.kryptonComboBox4_DropDown);
             // 
             // label7
             // 
@@ -639,6 +649,7 @@
             this.kryptonButton6.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
             this.kryptonButton6.TabIndex = 99;
             this.kryptonButton6.Values.Text = "Generate Report";
+            this.kryptonButton6.Click += new System.EventHandler(this.kryptonButton6_Click);
             // 
             // kryptonComboBox5
             // 
@@ -651,6 +662,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.kryptonComboBox5.StateCommon.ComboBox.Border.Rounding = 5;
             this.kryptonComboBox5.TabIndex = 98;
+            this.kryptonComboBox5.DropDown += new System.EventHandler(this.kryptonComboBox5_DropDown);
             // 
             // label9
             // 
@@ -675,6 +687,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.kryptonComboBox6.StateCommon.ComboBox.Border.Rounding = 5;
             this.kryptonComboBox6.TabIndex = 94;
+            this.kryptonComboBox6.DropDown += new System.EventHandler(this.kryptonComboBox6_DropDown);
             // 
             // label10
             // 
@@ -781,6 +794,8 @@
             // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.kryptonComboBox9);
+            this.panel8.Controls.Add(this.label15);
             this.panel8.Controls.Add(this.kryptonButton8);
             this.panel8.Controls.Add(this.kryptonComboBox7);
             this.panel8.Controls.Add(this.label12);
@@ -793,7 +808,7 @@
             // 
             // kryptonButton8
             // 
-            this.kryptonButton8.Location = new System.Drawing.Point(787, 13);
+            this.kryptonButton8.Location = new System.Drawing.Point(785, 7);
             this.kryptonButton8.Name = "kryptonButton8";
             this.kryptonButton8.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
             this.kryptonButton8.OverrideDefault.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
@@ -829,18 +844,20 @@
             this.kryptonButton8.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
             this.kryptonButton8.TabIndex = 99;
             this.kryptonButton8.Values.Text = "Generate Report";
+            this.kryptonButton8.Click += new System.EventHandler(this.kryptonButton8_Click);
             // 
             // kryptonComboBox7
             // 
             this.kryptonComboBox7.DropDownWidth = 224;
-            this.kryptonComboBox7.Location = new System.Drawing.Point(486, 20);
+            this.kryptonComboBox7.Location = new System.Drawing.Point(431, 20);
             this.kryptonComboBox7.Name = "kryptonComboBox7";
-            this.kryptonComboBox7.Size = new System.Drawing.Size(146, 25);
+            this.kryptonComboBox7.Size = new System.Drawing.Size(116, 25);
             this.kryptonComboBox7.StateCommon.ComboBox.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.kryptonComboBox7.StateCommon.ComboBox.Border.Rounding = 5;
             this.kryptonComboBox7.TabIndex = 98;
+            this.kryptonComboBox7.DropDown += new System.EventHandler(this.kryptonComboBox7_DropDown);
             // 
             // label12
             // 
@@ -848,23 +865,24 @@
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
             this.label12.ForeColor = System.Drawing.Color.Red;
-            this.label12.Location = new System.Drawing.Point(375, 20);
+            this.label12.Location = new System.Drawing.Point(291, 20);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(105, 28);
+            this.label12.Size = new System.Drawing.Size(139, 28);
             this.label12.TabIndex = 97;
-            this.label12.Text = "Select Gym";
+            this.label12.Text = "Select Machine";
             // 
             // kryptonComboBox8
             // 
             this.kryptonComboBox8.DropDownWidth = 224;
-            this.kryptonComboBox8.Location = new System.Drawing.Point(185, 20);
+            this.kryptonComboBox8.Location = new System.Drawing.Point(146, 20);
             this.kryptonComboBox8.Name = "kryptonComboBox8";
-            this.kryptonComboBox8.Size = new System.Drawing.Size(146, 25);
+            this.kryptonComboBox8.Size = new System.Drawing.Size(123, 25);
             this.kryptonComboBox8.StateCommon.ComboBox.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.kryptonComboBox8.StateCommon.ComboBox.Border.Rounding = 5;
             this.kryptonComboBox8.TabIndex = 94;
+            this.kryptonComboBox8.DropDown += new System.EventHandler(this.kryptonComboBox8_DropDown);
             // 
             // label13
             // 
@@ -874,9 +892,9 @@
             this.label13.ForeColor = System.Drawing.Color.Red;
             this.label13.Location = new System.Drawing.Point(40, 20);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(139, 28);
+            this.label13.Size = new System.Drawing.Size(105, 28);
             this.label13.TabIndex = 93;
-            this.label13.Text = "Select Machine";
+            this.label13.Text = "Select Gym";
             // 
             // panel9
             // 
@@ -1014,12 +1032,13 @@
             this.kryptonButton10.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
             this.kryptonButton10.TabIndex = 99;
             this.kryptonButton10.Values.Text = "Generate Report";
+            this.kryptonButton10.Click += new System.EventHandler(this.kryptonButton10_Click);
             // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(378, -101);
+            this.pictureBox2.Location = new System.Drawing.Point(378, -83);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(257, 264);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1160,6 +1179,31 @@
             this.panel11.Size = new System.Drawing.Size(999, 67);
             this.panel11.TabIndex = 10;
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
+            this.label15.ForeColor = System.Drawing.Color.Red;
+            this.label15.Location = new System.Drawing.Point(568, 20);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(99, 28);
+            this.label15.TabIndex = 100;
+            this.label15.Text = "Select Day";
+            // 
+            // kryptonComboBox9
+            // 
+            this.kryptonComboBox9.DropDownWidth = 224;
+            this.kryptonComboBox9.Location = new System.Drawing.Point(670, 20);
+            this.kryptonComboBox9.Name = "kryptonComboBox9";
+            this.kryptonComboBox9.Size = new System.Drawing.Size(78, 25);
+            this.kryptonComboBox9.StateCommon.ComboBox.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonComboBox9.StateCommon.ComboBox.Border.Rounding = 5;
+            this.kryptonComboBox9.TabIndex = 101;
+            this.kryptonComboBox9.DropDown += new System.EventHandler(this.kryptonComboBox9_DropDown);
+            // 
             // Admin_Reports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1204,6 +1248,7 @@
             this.panel10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel11.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox9)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1258,5 +1303,7 @@
         public ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton11;
         public ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton12;
         private System.Windows.Forms.Panel panel11;
+        private ComponentFactory.Krypton.Toolkit.KryptonComboBox kryptonComboBox9;
+        private System.Windows.Forms.Label label15;
     }
 }

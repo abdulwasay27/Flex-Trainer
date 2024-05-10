@@ -20,6 +20,10 @@ namespace Database_Project_GymTrainer
         {
             InitializeComponent();
             this.current_email = current_email;
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+            conn.Open();
+            string query = $"select count(*) from gym where gymOwner='{current_email}';";
+            SqlCommand cmd = new SqlCommand(query, conn); ;
 
             SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             conn.Open();
@@ -34,6 +38,9 @@ namespace Database_Project_GymTrainer
             SqlDataReader reader = command.ExecuteReader();
 
             // Load data into DataTable
+            if ((int)cmd.ExecuteScalar() == 0)
+                kryptonButton5.Visible = false;
+            SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from Member_Verification;", conn);
             DataTable dt = new DataTable();
             dt.Load(reader);
 
@@ -62,7 +69,7 @@ namespace Database_Project_GymTrainer
         private void kryptonButton5_Click(object sender, EventArgs e)
         {
             Close();
-            GymOwner_AddMachine gymOwner_AddMachine = new GymOwner_AddMachine();
+            GymOwner_AddMachine gymOwner_AddMachine = new GymOwner_AddMachine(current_email);
             gymOwner_AddMachine.Show();
         }
 

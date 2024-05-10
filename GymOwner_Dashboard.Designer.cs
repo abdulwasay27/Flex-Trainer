@@ -142,7 +142,7 @@
             this.label1.Location = new System.Drawing.Point(392, 135);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(251, 36);
+            this.label1.Size = new System.Drawing.Size(204, 28);
             this.label1.TabIndex = 85;
             this.label1.Text = "Member Verification ID";
             // 
@@ -225,6 +225,7 @@
             this.kryptonButton3.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
             this.kryptonButton3.TabIndex = 91;
             this.kryptonButton3.Values.Text = "View Member Report";
+            this.kryptonButton3.Click += new System.EventHandler(this.kryptonButton3_Click);
             // 
             // kryptonButton5
             // 
@@ -400,7 +401,7 @@
             this.label2.Location = new System.Drawing.Point(17, 135);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(329, 36);
+            this.label2.Size = new System.Drawing.Size(267, 28);
             this.label2.TabIndex = 102;
             this.label2.Text = "Waiting Member Verifications:";
             // 
@@ -412,7 +413,7 @@
             this.label3.Location = new System.Drawing.Point(17, 379);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(318, 36);
+            this.label3.Size = new System.Drawing.Size(257, 28);
             this.label3.TabIndex = 108;
             this.label3.Text = "Waiting Trainer Verifications:";
             this.label3.Click += new System.EventHandler(this.label3_Click);
@@ -521,7 +522,7 @@
             this.label4.Location = new System.Drawing.Point(392, 379);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(240, 36);
+            this.label4.Size = new System.Drawing.Size(194, 28);
             this.label4.TabIndex = 103;
             this.label4.Text = "Trainer Verification ID";
             this.label4.Click += new System.EventHandler(this.label4_Click);

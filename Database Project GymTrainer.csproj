@@ -167,6 +167,12 @@
     <Compile Include="Member_SignUp.Designer.cs">
       <DependentUpon>Member_SignUp.cs</DependentUpon>
     </Compile>
+    <Compile Include="ResultingReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ResultingReport.Designer.cs">
+      <DependentUpon>ResultingReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Trainer_Appointments.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -269,6 +275,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ResultingReport.resx">
+      <DependentUpon>ResultingReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Trainer_Appointments.resx">
       <DependentUpon>Trainer_Appointments.cs</DependentUpon>
     </EmbeddedResource>
