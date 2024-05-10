@@ -96,11 +96,11 @@ namespace Database_Project_GymTrainer
                 if ( count != 0 )
                 {
                     query = "";
-                    query = "insert into GymTrainers(gymName,trainerEmail) values (@gymName,@trainerEmail);";
+                    query = "insert into Trainer_Verification(gymName,trainerEmail) values (@gymName,@trainerEmail);";
                     cmd.CommandText = query;
                     cmd.Parameters.Add("@trainerEmail", SqlDbType.VarChar).Value = trainer_email;
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Gym Selected Successfully!");
+                    MessageBox.Show("Joining Request Sent to Gym Owner. Please Wait for Gym Owner's Approval.");
                     kryptonTextBox1.Text = "";
                 }
                 else

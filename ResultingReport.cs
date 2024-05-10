@@ -15,14 +15,14 @@ namespace Database_Project_GymTrainer
     public partial class ResultingReport : Form
     {
         string s1, s2, s3;
-        public ResultingReport(string s1 = "",string s2 = "",string s3 = "", string p = "")
+        public ResultingReport(string s1 = "", string s2 = "", string s3 = "", string p = "")
         {
             InitializeComponent();
             this.s1 = s1;
             this.s2 = s2;
             this.s3 = s3;
 
-            if ( p == "1")
+            if (p == "1")
             {
                 SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
                 conn.Open();
@@ -58,7 +58,7 @@ namespace Database_Project_GymTrainer
                     }
                 }
             }
-            else if (p == "3") 
+            else if (p == "3")
             {
                 SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
                 conn.Open();
@@ -88,7 +88,7 @@ namespace Database_Project_GymTrainer
                 {
                     command.Parameters.Add("@gym", SqlDbType.VarChar).Value = s1;
                     command.Parameters.Add("@machine", SqlDbType.VarChar).Value = s2;
-                    command.Parameters.Add("@day", SqlDbType.VarChar).Value = s3;
+                    command.Parameters.Add("@day", SqlDbType.Int).Value = s3;
 
                     using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
                     {
@@ -102,7 +102,7 @@ namespace Database_Project_GymTrainer
             {
                 SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
                 conn.Open();
-                string query = "Select DietPlan.dietPlanID, DietPlan.purpose, DietPlan.typeOfDiet from DietPlan " +
+                string query = "Select DietPlan.dietPlanID, DietPlan.purpose, DietPlan.typeOfDiet, Meal.calories from DietPlan " +
                                "join Diet_Meal on DietPlan.dietPlanID = Diet_Meal.dietPlanID " +
                                "join Meal on Diet_Meal.mealName = Meal.mealName " +
                                "where Meal.calories < 500 ;";

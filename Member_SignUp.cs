@@ -104,12 +104,12 @@ namespace Database_Project_GymTrainer
                     else
                     {
                         query = "";
-                        query = "Insert into Member(memberEmail, memberName, password, gymName, objectives, membershipDuration, signup_date) values(@email, @name, @password, @gym, @objective, @duration, @selectedDate)";
+                        query = "Insert into Member(memberEmail, memberName, password, gymName, objectives, membershipDuration, signup_date) values(@email, @name, @password, NULL, @objective, @duration, @selectedDate)";
                         cmd.CommandText = query;
                         cmd.ExecuteNonQuery();
                         cmd.Dispose();
                         query = "";
-                        query = "insert into Member_Verification(memberEmail) values (@email);";
+                        query = "insert into Member_Verification(memberEmail,gymName) values (@email,@gym);";
                         cmd.CommandText = query;
                         cmd.ExecuteNonQuery();
                         conn.Close();
