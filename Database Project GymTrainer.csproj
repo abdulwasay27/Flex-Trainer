@@ -147,11 +147,23 @@
     <Compile Include="Member_DietPlan_Create.Designer.cs">
       <DependentUpon>Member_DietPlan_Create.cs</DependentUpon>
     </Compile>
+    <Compile Include="Member_Gym_Feedback_Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Member_Gym_Feedback_Dashboard.Designer.cs">
+      <DependentUpon>Member_Gym_Feedback_Dashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Member_Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Member_Login.Designer.cs">
       <DependentUpon>Member_Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Member_Trainer_Feedback_Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Member_Trainer_Feedback_Dashboard.Designer.cs">
+      <DependentUpon>Member_Trainer_Feedback_Dashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Member_WorkoutPlan_Create.cs">
       <SubType>Form</SubType>
@@ -257,11 +269,17 @@
     <EmbeddedResource Include="Member_DietPlan_Create.resx">
       <DependentUpon>Member_DietPlan_Create.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Member_Gym_Feedback_Dashboard.resx">
+      <DependentUpon>Member_Gym_Feedback_Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Member_Login.resx">
       <DependentUpon>Member_Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Member_SignUp.resx">
       <DependentUpon>Member_SignUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Member_Trainer_Feedback_Dashboard.resx">
+      <DependentUpon>Member_Trainer_Feedback_Dashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Member_WorkoutPlan_Create.resx">
       <DependentUpon>Member_WorkoutPlan_Create.cs</DependentUpon>

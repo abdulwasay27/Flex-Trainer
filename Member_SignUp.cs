@@ -74,9 +74,15 @@ namespace Database_Project_GymTrainer
                 cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
                 cmd.Parameters.Add("@gym", SqlDbType.VarChar).Value = gym;
                 cmd.Parameters.Add("@objective", SqlDbType.VarChar).Value = objective;
+
                 try
                 {
                     cmd.Parameters.Add("@duration", SqlDbType.Int).Value = Int32.Parse(duration);
+                    if (Int32.Parse(duration) > 12 || Int32.Parse(duration) < 1)
+                    {
+                        MessageBox.Show("Please enter a valid integer in duration.");
+                        return;
+                    }
                 }
 
                 catch (FormatException)

@@ -1,5 +1,6 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -35,6 +36,21 @@ namespace Database_Project_GymTrainer
             kryptonButton6.Visible = false;
             kryptonButton8.Visible = false;
             label1.Visible = false;
+
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+            conn.Open();
+            SqlCommand cmd;
+            string query = "select count(*) from Gym_CustomerSatisfaction where memberEmail=@email and gymName=@gymName";
+            cmd = new SqlCommand(query, conn);
+            string trainer_email;
+            cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = member_email;
+            cmd.Parameters.Add("@gymName", SqlDbType.VarChar).Value = current_gym;
+            if ((int)cmd.ExecuteScalar() > 0)
+                kryptonButton10.Visible = false;
+            else
+                kryptonButton10.Visible = true;
+
+
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -64,7 +80,7 @@ namespace Database_Project_GymTrainer
 
         private void button4_Click(object sender, EventArgs e)
         {
-            dataGridView1.Visible = true ;
+            dataGridView1.Visible = true;
             currently_selected_button = "gym";
             SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             conn.Open();
@@ -111,7 +127,7 @@ namespace Database_Project_GymTrainer
                     dataGridView1.DataSource = dt;
                 }
             }
-            kryptonButton8.Visible=false; // SELECT
+            kryptonButton8.Visible = false; // SELECT
             kryptonButton6.Visible = true; // CREATE
             kryptonButton7.Visible = true; // CHANGE
             kryptonTextBox1.Visible = false; // INPUT BOX     
@@ -183,7 +199,7 @@ namespace Database_Project_GymTrainer
         }
 
         private void kryptonButton7_Click(object sender, EventArgs e)
-        {      
+        {
             kryptonButton8.Visible = true; // SELECT
             kryptonButton6.Visible = false; // CREATE
             kryptonButton7.Visible = false; // CHANGE
@@ -294,13 +310,13 @@ namespace Database_Project_GymTrainer
 
         private void kryptonButton6_Click(object sender, EventArgs e)
         {
-            if ( currently_selected_button == "workout")
+            if (currently_selected_button == "workout")
             {
                 this.Close();
                 Member_WorkoutPlan_Create member = new Member_WorkoutPlan_Create(member_email, owner_email, current_gym);
                 member.Show();
             }
-            else if ( currently_selected_button == "diet")
+            else if (currently_selected_button == "diet")
             {
                 this.Close();
                 Member_DietPlan_Create member = new Member_DietPlan_Create(member_email, owner_email, current_gym);
@@ -317,16 +333,86 @@ namespace Database_Project_GymTrainer
             cmd.CommandType = CommandType.Text;
             cmd.Parameters.Add("@memberEmail", SqlDbType.VarChar).Value = member_email;
             string trainer_email = cmd.ExecuteScalar().ToString();
-            if(trainer_email == "")
+            if (trainer_email == "")
             {
                 MessageBox.Show("Select a Trainer First !");
                 return;
             }
 
             this.Close();
-            Member_BookAppointment member = new Member_BookAppointment(owner_email, member_email, current_gym,trainer_email);
+            Member_BookAppointment member = new Member_BookAppointment(owner_email, member_email, current_gym, trainer_email);
             member.Show();
         }
+
+        private void kryptonButton10_Click(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+            conn.Open();
+            SqlCommand cmd;
+            string query = "select count(*) from Gym_CustomerSatisfaction where memberEmail=@email and gymName=@gymName";
+            cmd = new SqlCommand(query, conn);
+            string trainer_email;
+            cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = member_email;
+            cmd.Parameters.Add("@gymName", SqlDbType.VarChar).Value = current_gym;
+            if ((int)cmd.ExecuteScalar() == 0)
+            {
+                Member_Gym_Feedback_Dashboard feedback = new Member_Gym_Feedback_Dashboard(member_email);
+                feedback.Show();
+            }
+            else
+            {
+                MessageBox.Show("Feedback already given!");
+            }
+
+        }
+
+        private void kryptonButton11_Click(object sender, EventArgs e)
+        {
+            string query = "", trainer_email;
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+            conn.Open();
+            SqlCommand cmd;
+            cmd = new SqlCommand(query, conn);
+            try
+            {
+                query = "select trainerEmail from member where memberEmail=@email";
+                cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = member_email;
+                cmd.CommandText = query;
+                trainer_email = cmd.ExecuteScalar().ToString();
+                if (string.IsNullOrEmpty(trainer_email))
+                {
+                    MessageBox.Show("Please select a trainer first!");
+                }
+                else
+                {
+
+                    cmd.Parameters.Add("@trainerEmail", SqlDbType.VarChar).Value = trainer_email;
+                    query = "select count(*) from feedback where memberEmail=@email and trainerEmail=@trainerEmail";
+
+                    cmd.CommandText = query;
+                    if ((int)cmd.ExecuteScalar() > 0)
+                    {
+                        MessageBox.Show("Feedback already given to this trainer!");
+                    }
+                    else
+                    {
+                        Member_Trainer_Feedback_Dashboard member_Trainer_Feedback_Dashboard = new Member_Trainer_Feedback_Dashboard(member_email);
+                        member_Trainer_Feedback_Dashboard.Show();
+                    }
+                }
+            }
+
+
+            catch
+            {
+                MessageBox.Show("An error occurred!");
+            }
+        }
+
+
+
+
+
 
         private void kryptonButton8_Click(object sender, EventArgs e)
         {
@@ -407,7 +493,7 @@ namespace Database_Project_GymTrainer
 
                     if (count != 0)
                     {
-                        
+
 
                         query = "";
                         query = "update Member set trainerEmail = @trainerEmail where memberEmail = @memberEmail";
@@ -416,7 +502,7 @@ namespace Database_Project_GymTrainer
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Trainer Selected Successfully!");
                         kryptonTextBox1.Text = "";
-                        kryptonButton7_Click(sender,e);
+                        kryptonButton7_Click(sender, e);
 
                     }
                     else
@@ -446,7 +532,7 @@ namespace Database_Project_GymTrainer
                     {
                         query = "";
                         query = "update Member set currentlyFollowingWorkoutPlanID = @workoutid where memberEmail = @memberEmail";
-                        cmd.CommandText = query;  
+                        cmd.CommandText = query;
                         cmd.Parameters.Add("@memberEmail", SqlDbType.VarChar).Value = member_email;
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Workoutplan Changed Successfully!");
