@@ -65,5 +65,10 @@ namespace Database_Project_GymTrainer
 
 
         }
+
+        private void kryptonButton4_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

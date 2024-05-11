@@ -16,7 +16,7 @@ namespace Database_Project_GymTrainer
     {
         string trainerEmail;
         string currently_selected_button;
-        public Trainer_Dashboard(string email="")
+        public Trainer_Dashboard(string email = "")
         {
             InitializeComponent();
             this.trainerEmail = email;
@@ -171,7 +171,37 @@ namespace Database_Project_GymTrainer
 
         private void kryptonButton10_Click(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void kryptonButton6_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Visible = true;
+            currently_selected_button = "member_feedback";
+
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+            conn.Open();
+            string query = "select * from feedback where trainerEmail = @trainerEmail";
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                command.Parameters.AddWithValue("@trainerEmail", trainerEmail);
+                using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                {
+                    DataTable dt = new DataTable();
+                    sqlDA.Fill(dt);
+                    dataGridView1.DataSource = dt;
+                }
+            }
+            kryptonButton8.Visible = false; // SELECT
+            kryptonButton9.Visible = false; // CREATE
+            kryptonButton10.Visible = false; // CHANGE
+            kryptonTextBox1.Visible = false; // INPUT BOX     
+            label1.Visible = false; // LABEL "ENTER"
         }
     }
 }
