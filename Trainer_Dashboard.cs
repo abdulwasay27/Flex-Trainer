@@ -86,16 +86,54 @@ namespace Database_Project_GymTrainer
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            this.Hide();
-            Trainer_WorkoutPlan_Create trainer_WorkoutPlan_Create = new Trainer_WorkoutPlan_Create(trainerEmail);
-            trainer_WorkoutPlan_Create.Show();
+            dataGridView1.Visible = true;
+            currently_selected_button = "workout";
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+            conn.Open();
+            string query = "SELECT WorkoutPlan.workoutPlanID, WorkoutPlan.goal, WorkoutPlan.schedule, WorkoutPlan.experienceLevel " +
+                "FROM WorkoutPlan INNER JOIN Trainer ON WorkoutPlan.trainerEmail = trainer.trainerEmail where trainer.trainerEmail = @trainerEmail;";
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                command.Parameters.AddWithValue("@trainerEmail", trainerEmail);
+                using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                {
+                    DataTable dt = new DataTable();
+                    sqlDA.Fill(dt);
+                    dataGridView1.DataSource = dt;
+                }
+            }
+            kryptonButton8.Visible = false; // SELECT
+            kryptonButton9.Visible = true; // CREATE
+            kryptonButton10.Visible = false; // CHANGE
+            kryptonTextBox1.Visible = false; // INPUT BOX     
+            label1.Visible = false; // LABEL "ENTER"
         }
 
         private void button4_Click_1(object sender, EventArgs e)
         {
-            this.Hide();
-            Trainer_DietPlan_Create training_WorkoutPlan_ = new Trainer_DietPlan_Create(trainerEmail);
-            training_WorkoutPlan_.Show();
+            dataGridView1.Visible = true;
+            currently_selected_button = "diet";
+            kryptonTextBox1.Visible = false;
+            label1.Visible = false;
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+            conn.Open();
+            string query = "SELECT dietPlan.dietPlanID, dietPlan.purpose, dietPlan.typeOfDiet " +
+                "FROM dietPlan Inner JOIN Trainer ON dietPlan.trainerEmail = trainer.trainerEmail where trainer.trainerEmail = @trainerEmail ";
+            using (SqlCommand command = new SqlCommand(query, conn))
+            {
+                command.Parameters.AddWithValue("@trainerEmail", trainerEmail);
+                using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                {
+                    DataTable dt = new DataTable();
+                    sqlDA.Fill(dt);
+                    dataGridView1.DataSource = dt;
+                }
+            }
+            kryptonButton8.Visible = false; // SELECT
+            kryptonButton9.Visible = true; // CREATE
+            kryptonButton10.Visible = false; // CHANGE
+            kryptonTextBox1.Visible = false; // INPUT BOX     
+            label1.Visible = false; // LABEL "ENTER"
         }
 
         private void button2_Click_1(object sender, EventArgs e)
@@ -113,6 +151,27 @@ namespace Database_Project_GymTrainer
         private void kryptonButton8_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void kryptonButton9_Click(object sender, EventArgs e)
+        {
+            if (currently_selected_button == "workout")
+            {
+                this.Close();
+                Trainer_WorkoutPlan_Create trainer = new Trainer_WorkoutPlan_Create(trainerEmail);
+                trainer.Show();
+            }
+            else if (currently_selected_button == "diet")
+            {
+                this.Close();
+                Trainer_DietPlan_Create trainer = new Trainer_DietPlan_Create(trainerEmail);
+                trainer.Show();
+            }
+        }
+
+        private void kryptonButton10_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
