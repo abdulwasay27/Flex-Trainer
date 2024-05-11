@@ -35,6 +35,8 @@ namespace Database_Project_GymTrainer
             kryptonButton7.Visible = false;
             kryptonButton6.Visible = false;
             kryptonButton8.Visible = false;
+            kryptonButton12.Visible = false;
+            kryptonButton13.Visible = false;
             label1.Visible = false;
 
             SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
@@ -106,6 +108,8 @@ namespace Database_Project_GymTrainer
             kryptonButton7.Visible = true;
             kryptonButton6.Visible = false;
             kryptonTextBox1.Visible = false;
+            kryptonButton12.Visible = false;
+            kryptonButton13.Visible = false;
             label1.Visible = false;
         }
 
@@ -130,7 +134,9 @@ namespace Database_Project_GymTrainer
             kryptonButton8.Visible = false; // SELECT
             kryptonButton6.Visible = true; // CREATE
             kryptonButton7.Visible = true; // CHANGE
-            kryptonTextBox1.Visible = false; // INPUT BOX     
+            kryptonTextBox1.Visible = false; // INPUT BOX
+            kryptonButton12.Visible = true;// remove button
+            kryptonButton13.Visible = false;// remove Select Button button
             label1.Visible = false; // LABEL "ENTER"
         }
 
@@ -157,7 +163,10 @@ namespace Database_Project_GymTrainer
             kryptonButton8.Visible = false; // SELECT
             kryptonButton6.Visible = true; // CREATE
             kryptonButton7.Visible = true; // CHANGE
-            kryptonTextBox1.Visible = false; // INPUT BOX     
+            kryptonTextBox1.Visible = false; // INPUT BOX
+            kryptonButton12.Visible = true;
+            kryptonButton13.Visible = false;// remove Select Button button
+
             label1.Visible = false; // LABEL "ENTER"
         }
 
@@ -196,6 +205,8 @@ namespace Database_Project_GymTrainer
             kryptonButton8.Visible = false;
             kryptonTextBox1.Visible = false;
             label1.Visible = false;
+            kryptonButton12.Visible = false;
+            kryptonButton13.Visible = false;// remove Select Button button
         }
 
         private void kryptonButton7_Click(object sender, EventArgs e)
@@ -264,6 +275,7 @@ namespace Database_Project_GymTrainer
                 label1.Text = "Enter WorkoutPlan ID: ";
                 label1.Visible = true;
                 kryptonButton7.Visible = false;
+                kryptonButton12.Visible = false;
                 kryptonButton8.Location = kryptonButton7.Location;
                 kryptonButton8.Visible = true;
             }
@@ -286,9 +298,11 @@ namespace Database_Project_GymTrainer
                 }
                 label1.Text = "Enter DietPlan ID: ";
                 label1.Visible = true;
+                kryptonButton12.Visible = false;
+
                 kryptonButton7.Visible = false;
-                kryptonButton8.Location = kryptonButton7.Location;
-                kryptonButton8.Visible = true;
+                kryptonButton13.Location = kryptonButton7.Location;
+                kryptonButton13.Visible = true;
             }
 
         }
@@ -409,10 +423,139 @@ namespace Database_Project_GymTrainer
             }
         }
 
+        private void kryptonButton12_Click(object sender, EventArgs e)
+        {
+            if (currently_selected_button == "workout")
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                conn.Open();
+                string query = "SELECT WorkoutPlan.workoutPlanID, WorkoutPlan.goal, WorkoutPlan.schedule, WorkoutPlan.experienceLevel FROM WorkoutPlan inner join Member on Member.memberEmail = WorkoutPlan.memberEmail where Member.memberEmail = @memberEmail UNION SELECT WorkoutPlan.workoutPlanID, WorkoutPlan.goal, WorkoutPlan.schedule, WorkoutPlan.experienceLevel FROM WorkoutPlan inner join Trainer on trainer.trainerEmail = WorkoutPlan.trainerEmail inner join Member on Trainer.trainerEmail = Member.trainerEmail where Member.memberEmail = @memberEmail EXCEPT SELECT WorkoutPlan.workoutPlanID, WorkoutPlan.goal, WorkoutPlan.schedule, WorkoutPlan.experienceLevel FROM WorkoutPlan inner join member on Member.currentlyFollowingWorkoutPlanID = WorkoutPlan.workoutPlanID where Member.memberEmail = @memberEmail ;";
 
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@memberEmail", member_email);
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        dataGridView1.DataSource = dt;
+                    }
+                }
+                label1.Text = "Enter WorkoutPlan ID: ";
+                label1.Visible = true;
+                kryptonButton7.Visible = false;
+                kryptonButton6.Visible = false;
+                kryptonButton12.Visible = false;
+                kryptonButton13.Location = kryptonButton7.Location;
+                kryptonButton13.Visible = true;
+                kryptonTextBox1.Visible = true;
+            }
+            else if (currently_selected_button == "diet")
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                conn.Open();
+                string query = "SELECT dietPlan.dietplanID, dietPlan.trainerEmail, dietPlan.memberEmail, dietPlan.purpose, dietPlan.typeOfDiet FROM DietPlan inner join Member on Member.memberEmail = dietPlan.memberEmail where Member.memberEmail = @memberEmail " +
+                    "UNION SELECT dietPlan.dietplanID, dietPlan.trainerEmail, dietPlan.memberEmail, dietPlan.purpose, dietPlan.typeOfDiet FROM DietPlan inner join Trainer on trainer.trainerEmail = dietPlan.trainerEmail inner join Member on Trainer.trainerEmail = Member.trainerEmail where Member.memberEmail = @memberEmail " +
+                    "EXCEPT SELECT dietPlan.dietplanID, dietPlan.trainerEmail, dietPlan.memberEmail, dietPlan.purpose, dietPlan.typeOfDiet FROM DietPlan inner join member on Member.dietPlanID = dietPlan.dietPlanID where Member.memberEmail = @memberEmail ;";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        command.Parameters.AddWithValue("@memberEmail", member_email);
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        dataGridView1.DataSource = dt;
+                    }
+                }
+                label1.Text = "Enter DietPlan ID: ";
+                label1.Visible = true;
+                kryptonButton7.Visible = false;
+                kryptonButton6.Visible = false;
+                kryptonButton12.Visible = false;
+                kryptonButton13.Location = kryptonButton7.Location;
+                kryptonButton13.Visible = true;
+                kryptonTextBox1.Visible = true;
+            }
+        }
 
+        private void kryptonButton13_Click(object sender, EventArgs e)
+        {
+            if (currently_selected_button == "workout")
+            {
+                string workoutid = kryptonTextBox1.Text;
+                if (string.IsNullOrEmpty(workoutid))
+                {
+                    MessageBox.Show("Please enter all compulsory fields!");
+                }
+                else
+                {
+                    SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                    conn.Open();
+                    SqlCommand cmd;
+                    string query = "select count(*) from WorkoutPlan where workoutPlanID = @workoutid";
+                    cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.Add("@workoutid", SqlDbType.VarChar).Value = workoutid;
+                    int count = (int)cmd.ExecuteScalar();
 
+                    if (count != 0)
+                    {
+                        query = "";
+                        query = "delete from workout_exercises where workoutPlanId=@workoutid;";
+                        cmd.CommandText = query;
+                        cmd.Parameters.Add("@memberEmail", SqlDbType.VarChar).Value = member_email;
+                        cmd.ExecuteNonQuery();
+                        query = "delete from workoutPlan where workoutPlanId=@workoutid;";
+                        cmd.CommandText = query;
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Workoutplan Removed Successfully!");
+                        button2_Click_1(sender, e);
+                        kryptonTextBox1.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid Workout ID!");
+                    }
+                }
+            }
+            else if (currently_selected_button == "diet")
+            {
+                string dietplanid = kryptonTextBox1.Text;
+                if (string.IsNullOrEmpty(dietplanid))
+                {
+                    MessageBox.Show("Please enter all compulsory fields!");
+                }
+                else
+                {
+                    SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                    conn.Open();
+                    SqlCommand cmd;
+                    string query = "select count(*) from DietPlan where dietPlanID = @dietplanid";
+                    cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.Add("@dietplanid", SqlDbType.VarChar).Value = dietplanid;
+                    int count = (int)cmd.ExecuteScalar();
 
+                    if (count != 0)
+                    {
+                        query = "";
+                        query = "delete from diet_meal where dietPlanId=@dietPlanid;";
+                        cmd.CommandText = query;
+                        cmd.Parameters.Add("@memberEmail", SqlDbType.VarChar).Value = member_email;
+                        cmd.ExecuteNonQuery();
+                        query = "delete from dietPlan where dietPlanId=@dietplanid;";
+                        cmd.CommandText = query;
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Dietplan Removed Successfully!");
+                        kryptonTextBox1.Text = "";
+                        button1_Click(sender, e);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid Diet Plan ID!");
+                    }
+                }
+            }
+
+        }
 
         private void kryptonButton8_Click(object sender, EventArgs e)
         {
