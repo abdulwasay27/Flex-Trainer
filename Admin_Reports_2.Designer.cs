@@ -61,7 +61,6 @@
             this.kryptonButton10 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.panel11 = new System.Windows.Forms.Panel();
             this.kryptonButton12 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.kryptonButton11 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.kryptonComboBox1 = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -844,7 +843,6 @@
             // panel11
             // 
             this.panel11.Controls.Add(this.kryptonButton12);
-            this.panel11.Controls.Add(this.kryptonButton11);
             this.panel11.Location = new System.Drawing.Point(3, 643);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(999, 67);
@@ -906,62 +904,6 @@
             this.kryptonButton12.TabIndex = 129;
             this.kryptonButton12.Values.Text = "Previous Page";
             this.kryptonButton12.Click += new System.EventHandler(this.kryptonButton12_Click);
-            // 
-            // kryptonButton11
-            // 
-            this.kryptonButton11.Location = new System.Drawing.Point(812, 3);
-            this.kryptonButton11.Name = "kryptonButton11";
-            this.kryptonButton11.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
-            this.kryptonButton11.OverrideDefault.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
-            this.kryptonButton11.OverrideDefault.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
-            this.kryptonButton11.OverrideDefault.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
-            this.kryptonButton11.OverrideDefault.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton11.OverrideFocus.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
-            this.kryptonButton11.OverrideFocus.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
-            this.kryptonButton11.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalSystem;
-            this.kryptonButton11.Size = new System.Drawing.Size(164, 51);
-            this.kryptonButton11.StateCommon.Back.Color1 = System.Drawing.Color.White;
-            this.kryptonButton11.StateCommon.Back.Color2 = System.Drawing.Color.White;
-            this.kryptonButton11.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton11.StateCommon.Border.Rounding = 30;
-            this.kryptonButton11.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.kryptonButton11.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.White;
-            this.kryptonButton11.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Bold);
-            this.kryptonButton11.StateDisabled.Back.Color1 = System.Drawing.Color.White;
-            this.kryptonButton11.StateDisabled.Back.Color2 = System.Drawing.Color.White;
-            this.kryptonButton11.StateDisabled.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
-            this.kryptonButton11.StateDisabled.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
-            this.kryptonButton11.StateDisabled.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton11.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
-            this.kryptonButton11.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
-            this.kryptonButton11.StateNormal.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.kryptonButton11.StateNormal.Content.ShortText.Color2 = System.Drawing.Color.White;
-            this.kryptonButton11.StatePressed.Back.Color1 = System.Drawing.Color.Transparent;
-            this.kryptonButton11.StatePressed.Back.Color2 = System.Drawing.Color.Transparent;
-            this.kryptonButton11.StatePressed.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
-            this.kryptonButton11.StatePressed.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
-            this.kryptonButton11.StatePressed.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton11.StatePressed.Content.ShortText.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
-            this.kryptonButton11.StatePressed.Content.ShortText.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
-            this.kryptonButton11.StateTracking.Back.Color1 = System.Drawing.Color.Transparent;
-            this.kryptonButton11.StateTracking.Back.Color2 = System.Drawing.Color.Transparent;
-            this.kryptonButton11.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
-            this.kryptonButton11.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
-            this.kryptonButton11.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton11.StateTracking.Content.ShortText.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
-            this.kryptonButton11.StateTracking.Content.ShortText.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(2)))), ((int)(((byte)(8)))));
-            this.kryptonButton11.TabIndex = 128;
-            this.kryptonButton11.Values.Text = "Next Page";
             // 
             // kryptonComboBox1
             // 
@@ -1060,7 +1002,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Panel panel10;
         public ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton10;
-        public ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton11;
         public ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton12;
         private System.Windows.Forms.Panel panel11;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox kryptonComboBox1;

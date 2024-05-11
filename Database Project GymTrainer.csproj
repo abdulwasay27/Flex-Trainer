@@ -34,19 +34,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ComponentFactory.Krypton.Docking">
-      <HintPath>D:\Krypton-master\Bin\ComponentFactory.Krypton.Docking.dll</HintPath>
+      <HintPath>D:\Study\Semester 04\Database System\Project\Krypton-master\Bin\ComponentFactory.Krypton.Docking.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Navigator">
-      <HintPath>D:\Krypton-master\Bin\ComponentFactory.Krypton.Navigator.dll</HintPath>
+      <HintPath>D:\Study\Semester 04\Database System\Project\Krypton-master\Bin\ComponentFactory.Krypton.Navigator.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Ribbon">
-      <HintPath>D:\Krypton-master\Bin\ComponentFactory.Krypton.Ribbon.dll</HintPath>
+      <HintPath>D:\Study\Semester 04\Database System\Project\Krypton-master\Bin\ComponentFactory.Krypton.Ribbon.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Toolkit">
-      <HintPath>D:\Krypton-master\Bin\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+      <HintPath>D:\Study\Semester 04\Database System\Project\Krypton-master\Bin\ComponentFactory.Krypton.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Workspace">
-      <HintPath>D:\Krypton-master\Bin\ComponentFactory.Krypton.Workspace.dll</HintPath>
+      <HintPath>D:\Study\Semester 04\Database System\Project\Krypton-master\Bin\ComponentFactory.Krypton.Workspace.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -116,6 +116,18 @@
     </Compile>
     <Compile Include="GymOwner_Login.Designer.cs">
       <DependentUpon>GymOwner_Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GymOwner_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GymOwner_Report.Designer.cs">
+      <DependentUpon>GymOwner_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GymOwner_Report_2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GymOwner_Report_2.Designer.cs">
+      <DependentUpon>GymOwner_Report_2.cs</DependentUpon>
     </Compile>
     <Compile Include="GymOwner_SignUp.cs">
       <SubType>Form</SubType>
@@ -250,9 +262,16 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GymOwner_Dashboard.resx">
       <DependentUpon>GymOwner_Dashboard.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GymOwner_Login.resx">
       <DependentUpon>GymOwner_Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GymOwner_Report.resx">
+      <DependentUpon>GymOwner_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GymOwner_Report_2.resx">
+      <DependentUpon>GymOwner_Report_2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GymOwner_SignUp.resx">
       <DependentUpon>GymOwner_SignUp.cs</DependentUpon>

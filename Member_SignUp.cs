@@ -159,9 +159,14 @@ namespace Database_Project_GymTrainer
 
         }
 
-        private void member_signup_type_TextChanged(object sender, EventArgs e)
+        private void member_signup_type_DropDown(object sender, EventArgs e)
         {
+            member_signup_type.Items.Clear();
+            member_signup_type.Items.Add("Platinum");
+            member_signup_type.Items.Add("Gold");
+            member_signup_type.Items.Add("Silver");
 
+           
         }
     }
 }

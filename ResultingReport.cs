@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace Database_Project_GymTrainer
 {
@@ -203,6 +204,225 @@ namespace Database_Project_GymTrainer
                                "GROUP BY Gym.gymName;";
                 using (SqlCommand command = new SqlCommand(query, conn))
                 {
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        kryptonDataGridView1.DataSource = dt;
+                    }
+                }
+            }
+            else if (p == "11")
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                conn.Open();
+                string query = "Select * from Member where gymName = (Select gymName from Gym where gymOwner = @owner);";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.Add("@owner", SqlDbType.VarChar).Value = s1;
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        kryptonDataGridView1.DataSource = dt;
+                    }
+                }
+            }
+            else if (p == "12")
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                conn.Open();
+                string query = "Select * from Member where gymName = (Select gymName from Gym where gymOwner = @owner) AND currentlyFollowingWorkoutPlanID is NULL;";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.Add("@owner", SqlDbType.VarChar).Value = s1;
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        kryptonDataGridView1.DataSource = dt;
+                    }
+                }
+            }
+            else if (p == "13")
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                conn.Open();
+                string query = "Select * from Member where gymName = (Select gymName from Gym where gymOwner = @owner) AND dietplanID is NULL;";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.Add("@owner", SqlDbType.VarChar).Value = s1;
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        kryptonDataGridView1.DataSource = dt;
+                    }
+                }
+            }
+            else if (p == "14")
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                conn.Open();
+                string query = "Select * from Member where gymName = (Select gymName from Gym where gymOwner = @owner) AND objectives = obj;";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.Add("@owner", SqlDbType.VarChar).Value = s1;
+                    command.Parameters.Add("@obj", SqlDbType.VarChar).Value = s2;
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        kryptonDataGridView1.DataSource = dt;
+                    }
+                }
+            }
+            else if (p == "15")
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                conn.Open();
+                string query = "Select * from Member where gymName = (Select gymName from Gym where gymOwner = @owner) AND trainerEmail = trainer;";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.Add("@owner", SqlDbType.VarChar).Value = s1;
+                    command.Parameters.Add("@trainer", SqlDbType.VarChar).Value = s2;
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        kryptonDataGridView1.DataSource = dt;
+                    }
+                }
+            }
+            else if (p == "16")
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM Member WHERE gymName = (Select gymName from Gym where gymOwner = @owner) " +
+                    "AND signup_date >= DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()) - 1, 0) AND " +
+                    "signup_date < DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()), 0);";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@owner", SqlDbType.VarChar).Value = s1;
+                int c1 = (int)cmd.ExecuteScalar();
+
+
+                query = "SELECT COUNT(*) FROM Member WHERE gymName = (Select gymName from Gym where gymOwner = @owner) " +
+                    "AND signup_date >= DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()) - 2, 0) " +
+                    "AND signup_date<DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()) -1, 0); ";
+                cmd.CommandText = query;
+                int c2 = (int)cmd.ExecuteScalar();
+
+                query = "SELECT Gym.membership_fees from Gym WHERE gymName = (Select gymName from Gym where gymOwner = @owner); ";
+                cmd.CommandText = query;
+                int c3 = (int)cmd.ExecuteScalar();
+
+                int ans = (c2*c3 - c1*c3) / 100;
+
+                query = "UPDATE gym set financialPerformance = @fin_perf where gymName = (Select gymName from Gym where gymOwner = @owner);";
+                cmd.Parameters.Add("@fin_perf", SqlDbType.Decimal).Value = ans;
+                cmd.CommandText= query;
+                cmd.ExecuteNonQuery();
+
+                query = "Select gymName, gymOwner, adminEmail,location,financialPerformance from Gym " +
+                    "where gymName = (Select gymName from Gym where gymOwner = @owner)";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.Add("@owner", SqlDbType.VarChar).Value = s1;
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        kryptonDataGridView1.DataSource = dt;
+                    }
+                }
+            }
+            else if (p == "17")
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM Member WHERE gymName = (Select gymName from Gym where gymOwner = @owner) " +
+                    "AND signup_date >= DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()) - 1, 0) AND " +
+                    "signup_date < DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()), 0);";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.CommandText = query;
+                cmd.Parameters.Add("@owner", SqlDbType.VarChar).Value = s1;
+                int c1 = (int)cmd.ExecuteScalar();
+
+
+                query = "SELECT COUNT(*) FROM Member WHERE gymName = (Select gymName from Gym where gymOwner = @owner) " +
+                    "AND signup_date >= DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()) - 2, 0) " +
+                    "AND signup_date<DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()) -1, 0); ";
+                cmd.CommandText = query;
+                int c2 = (int)cmd.ExecuteScalar();
+
+                query = "SELECT Gym.membership_fees from Gym WHERE gymName = (Select gymName from Gym where gymOwner = @owner); ";
+                cmd.CommandText = query;
+                int c3 = (int)cmd.ExecuteScalar();
+
+                int ans = (c2 - c1 ) / 100;
+
+                query = "UPDATE gym set membershipGrowth = @mem_growth where gymName = (Select gymName from Gym where gymOwner = @owner);";
+                cmd.Parameters.Add("@mem_growth", SqlDbType.Decimal).Value = ans;
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                query = "Select gymName, gymOwner, adminEmail,location,membershipGrowth from Gym " +
+                    "where gymName = (Select gymName from Gym where gymOwner = @owner)";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.Add("@owner", SqlDbType.VarChar).Value = s1;
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        kryptonDataGridView1.DataSource = dt;
+                    }
+                }
+            }
+            else if (p == "18")
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                conn.Open();
+                string query = "Select * from Gym_CustomerSatisfaction where gymName = (Select gymName from Gym where gymOwner = @owner)";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.Add("@owner", SqlDbType.VarChar).Value = s1;
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        kryptonDataGridView1.DataSource = dt;
+                    }
+                }
+            }
+            else if (p == "19")
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                conn.Open();
+                string query = "Select TOP 5 trainerEmail from GymTrainers join TrainerRating " +
+                               "on GymTrainers.trainerEmail = TrainerRating.trainerEmail " +
+                               "where GymTrainers.gymName = (Select gymName from Gym where gymOwner = @owner) " +
+                               "ORDER BY TrainerRating.rating DESC;";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.Add("@owner", SqlDbType.VarChar).Value = s1;
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        kryptonDataGridView1.DataSource = dt;
+                    }
+                }
+            }
+            else if (p == "20")
+            {
+                SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+                conn.Open();
+                string query = "SELECT * FROM Member WHERE membershipDuration > 6 AND gymName = (Select gymName from Gym where gymOwner = @owner);";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.Add("@owner", SqlDbType.VarChar).Value = s1;
                     using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
                     {
                         DataTable dt = new DataTable();
