@@ -273,7 +273,7 @@ namespace Database_Project_GymTrainer
                 conn.Open();
                 string query = "SELECT dietPlan.dietplanID, dietPlan.trainerEmail, dietPlan.memberEmail, dietPlan.purpose, dietPlan.typeOfDiet FROM DietPlan inner join Member on Member.memberEmail = dietPlan.memberEmail where Member.memberEmail = @memberEmail " +
                     "UNION SELECT dietPlan.dietplanID, dietPlan.trainerEmail, dietPlan.memberEmail, dietPlan.purpose, dietPlan.typeOfDiet FROM DietPlan inner join Trainer on trainer.trainerEmail = dietPlan.trainerEmail inner join Member on Trainer.trainerEmail = Member.trainerEmail where Member.memberEmail = @memberEmail " +
-                    "EXCEPT SELECT dietPlan.dietplanID, dietPlan.trainerEmail, dietPlan.memberEmail, dietPlan.purpose, dietPlan.typeOfDiet FROM DietPlan inner join member on Member.currentlyFollowingWorkoutPlanID = dietPlan.dietPlanID where Member.memberEmail = @memberEmail ;";
+                    "EXCEPT SELECT dietPlan.dietplanID, dietPlan.trainerEmail, dietPlan.memberEmail, dietPlan.purpose, dietPlan.typeOfDiet FROM DietPlan inner join member on Member.dietPlanID = dietPlan.dietPlanID where Member.memberEmail = @memberEmail ;";
                 using (SqlCommand command = new SqlCommand(query, conn))
                 {
                     using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))

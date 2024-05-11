@@ -19,17 +19,24 @@ namespace Database_Project_GymTrainer
         public GymOwner_Dashboard(string current_email = "")
         {
             InitializeComponent();
+            label5.Visible = false;
             this.current_email = current_email;
             SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             conn.Open();
-            string query = $"select count(*) from gym where gymOwner='{current_email}';";
+            string query = $"select count(*) from gym where gymOwner='{current_email}' AND isApproved = 1;";
             SqlCommand cmd = new SqlCommand(query, conn); ;
 
             if ((int)cmd.ExecuteScalar() == 0)
+            {
                 kryptonButton5.Visible = false;
+                kryptonButton3.Visible = false;
+
+            }   
           
-            string query_member = "SELECT * FROM Member_Verification WHERE gymName = (SELECT gymName FROM GYM WHERE gymOwner = @current_email)";
-            string query_trainer = "SELECT * FROM Trainer_Verification WHERE gymName = (SELECT gymName FROM GYM WHERE gymOwner = @current_email)";
+            string query_member = "SELECT * FROM Member_Verification WHERE gymName = (SELECT gymName FROM GYM WHERE gymOwner = @current_email);";
+            string query_trainer = "SELECT * FROM Trainer_Verification WHERE gymName = (SELECT gymName FROM GYM WHERE gymOwner = @current_email) AND isVerified = 0;";
+            string query_approval = "SELECT count(*) FROM Approval where gymOwnerEmail=@current_email;";
+            string check_approved = "SELECT count(*) FROM GYM where gymOwner=@current_email AND isApproved = 1;";
             SqlCommand command = new SqlCommand(query_member, conn);
 
             command.Parameters.AddWithValue("@current_email", current_email);
@@ -53,6 +60,21 @@ namespace Database_Project_GymTrainer
             kryptonDataGridView2.DataSource = dt;
 
             dt.Dispose();
+            command.CommandText = query_approval;
+            if ((int)command.ExecuteScalar() == 1)
+            {
+                kryptonButton6.Hide();
+                
+            }
+
+            command.CommandText = check_approved;
+
+            if ((int)command.ExecuteScalar() == 1)
+            {
+                label5.Visible = true;
+                kryptonButton6.Hide();
+
+            }
 
             command.Dispose();
             conn.Close();
@@ -126,7 +148,7 @@ namespace Database_Project_GymTrainer
                 SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
                 conn.Open();
                 SqlCommand cmd;
-                string query = "SELECT count(*) FROM Member_Verification WHERE verificationID = @verID;";
+                string query = "SELECT count(*) FROM Member_Verification WHERE verificationID = @verID AND gymName = (Select gymName from Gym where gymOwner=@ownerEmail);";
                 cmd = new SqlCommand(query, conn);
                 cmd.Parameters.Add("@verID", SqlDbType.Int).Value = member_ver_id;
                 cmd.Parameters.Add("@ownerEmail", SqlDbType.VarChar).Value = current_email;
@@ -184,9 +206,10 @@ namespace Database_Project_GymTrainer
                 SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
                 conn.Open();
                 SqlCommand cmd;
-                string query = "Select count(*) FROM Trainer_Verification where VerificationID = @verID;";
+                string query = "Select count(*) FROM Trainer_Verification where VerificationID = @verID  AND gymName = (Select gymName from Gym where gymOwner=@ownerEmail);";
                 cmd = new SqlCommand(query, conn);
                 cmd.Parameters.Add("@verID", SqlDbType.Int).Value = trainer_ver_id;
+                    cmd.Parameters.Add("@ownerEmail", SqlDbType.VarChar).Value = current_email;
                 int count = (int)cmd.ExecuteScalar();
                 if (count == 1)
                 {
@@ -194,24 +217,32 @@ namespace Database_Project_GymTrainer
                     cmd.CommandText = query;
                     string returned_string = cmd.ExecuteScalar().ToString();
 
-                    query = "Update Trainer set addedBy = @ownerEmail, isVerified = 1 where trainerEmail = @trainerEmail;";
+                    query = "Update Trainer_verification set isVerified = 1 where verificationID = @verID;";
                     cmd.CommandText = query;
-                    cmd.Parameters.Add("@ownerEmail", SqlDbType.VarChar).Value = current_email;
                     cmd.Parameters.Add("@trainerEmail", SqlDbType.VarChar).Value = returned_string;
                     cmd.ExecuteNonQuery();
-
-                    query = "Delete from Trainer_Verification where VerificationID = @verID";
+                    query = "INSERT INTO GYMTRAINERS (gymName, trainerEmail) " +
+               "SELECT GYM.gymName,trainer_VErification.trainerEmail FROM  GYM INNER JOIN  trainer_VErification " +
+               "ON GYM.gymName = trainer_VErification.gymName WHERE GYM.gymOwner = @ownerEmail AND trainer_verification.verificationID = @verID;";
                     cmd.CommandText = query;
                     cmd.ExecuteNonQuery();
+                    
 
                     MessageBox.Show("Verification ID " + trainer_ver_id + " Verified Successfully!");
 
-                    conn = new SqlConnection(ConnectionString.ServerName);
-                    SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from Trainer_Verification;", conn);
+                    string query_trainer = "SELECT * FROM Trainer_Verification WHERE gymName = (SELECT gymName FROM GYM WHERE gymOwner = @ownerEmail) AND isVerified = 0;";
+
+
+                    cmd.CommandText = query_trainer;
+                    SqlDataReader reader = cmd.ExecuteReader();
                     DataTable dt = new DataTable();
-                    sqlDA.Fill(dt);
+                    dt.Load(reader);
                     kryptonDataGridView2.DataSource = dt;
+                   
                     dt.Dispose();
+
+                    cmd.Dispose();
+                    conn.Close();
                 }
                 else
                 {
@@ -243,26 +274,35 @@ namespace Database_Project_GymTrainer
 
         private void kryptonButton8_Click(object sender, EventArgs e)
         {
-            string query = "Delete from Trainer_Verification;";
             SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             conn.Open();
             SqlCommand cmd;
-            cmd = new SqlCommand(query, conn);
-            cmd.ExecuteNonQuery();
 
-            query = "Update Trainer set addedBy = @ownerEmail, isVerified = 1 where isVerified is NULL;";
+            string query = "Update Trainer_verification set isVerified = 1 where gymName =  (SELECT gymName FROM GYM WHERE gymOwner = @ownerEmail);";
+            cmd = new SqlCommand(query, conn);
             cmd.Parameters.Add("@ownerEmail", SqlDbType.VarChar).Value = current_email;
+            cmd.ExecuteNonQuery();
+            query = "INSERT INTO GYMTRAINERS (gymName, trainerEmail) " +
+                "SELECT GYM.gymName,trainer_VErification.trainerEmail FROM  GYM INNER JOIN  trainer_VErification " +
+                "ON GYM.gymName = trainer_VErification.gymName WHERE GYM.gymOwner = @ownerEmail;";
             cmd.CommandText = query;
             cmd.ExecuteNonQuery();
 
             MessageBox.Show("All Trainers Verified Successfully!");
 
-            conn = new SqlConnection(ConnectionString.ServerName);
-            SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from Trainer_Verification;", conn);
+            string query_trainer = "SELECT * FROM Trainer_Verification WHERE gymName = (SELECT gymName FROM GYM WHERE gymOwner = @ownerEmail) AND isVerified = 0;";
+
+
+            cmd.CommandText = query_trainer;
+            SqlDataReader reader = cmd.ExecuteReader();
             DataTable dt = new DataTable();
-            sqlDA.Fill(dt);
+            dt.Load(reader);
             kryptonDataGridView2.DataSource = dt;
+
             dt.Dispose();
+
+            cmd.Dispose();
+            conn.Close();
         }
 
         private void label3_Click(object sender, EventArgs e)

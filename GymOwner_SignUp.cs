@@ -63,7 +63,7 @@ namespace Database_Project_GymTrainer
                     cmd.Dispose();
                     conn.Close();
 
-                    MessageBox.Show("Sign Up Successfull!");
+                    MessageBox.Show("Sign Up Successful. Kindly wait for Admin's Approval.!");
 
                     this.Close();
                     GymOwner_Login gymOwner_Login = new GymOwner_Login();

@@ -21,7 +21,7 @@ namespace Database_Project_GymTrainer
             InitializeComponent();
             this.current_email = current_email;
             SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
-            SqlDataAdapter sqlDA = new SqlDataAdapter("Select * FROM Approval inner join gym on Approval.gymName = gym.gymName where gym.isApproved = 0 AND Approval.location is not null ;",conn);
+            SqlDataAdapter sqlDA = new SqlDataAdapter("Select * FROM Approval inner join gym on Approval.gymName = gym.gymName where gym.isApproved = 0 AND Approval.adminEmail is null ;",conn);
             DataTable dt = new DataTable();
             sqlDA.Fill(dt);
             kryptonDataGridView1.DataSource = dt;
@@ -44,8 +44,16 @@ namespace Database_Project_GymTrainer
             SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             conn.Open();
             SqlCommand cmd;
+            string check_approvals = "SELECT count(*) FROM Approval;";
+            cmd = new SqlCommand(check_approvals, conn);
+            if ((int)cmd.ExecuteScalar() == 0)
+            {
+                MessageBox.Show("No waiting Approvals!");
+                return;
+
+            }
             string delete_approval_record = "DELETE FROM Approval;";
-            cmd = new SqlCommand(delete_approval_record, conn);
+            cmd.CommandText = delete_approval_record;
             cmd.ExecuteNonQuery();
 
             string update_gym_record = "Update Gym SET isApproved = 1, adminEmail = @adminEmail where isApproved = 0;";

@@ -92,7 +92,7 @@ namespace Database_Project_GymTrainer
                     MessageBox.Show("Email does not exist. Please Sign Up!");
                 }
                 else
-                {
+                {   
                     query = "select count(*) from gymOwner where ownerEmail=@email AND addedBy is NULL;";
                     cmd.CommandText = query;
                     count = (int)cmd.ExecuteScalar();

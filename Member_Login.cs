@@ -67,7 +67,7 @@ namespace Database_Project_GymTrainer
                 }
                 else
                 {
-                    query = "select count(*) from Member where memberEmail=@email AND addedBy is NULL;";
+                    query = "select count(*) from Member where memberEmail=@email AND isApproved IS NULL AND addedBy is NULL ;";
                     cmd.CommandText = query;
                     count = (int)cmd.ExecuteScalar();
                     if (count == 1)
