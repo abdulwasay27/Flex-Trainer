@@ -192,5 +192,11 @@ namespace Database_Project_GymTrainer
         {
 
         }
+
+        private void kryptonButton3_Click(object sender, EventArgs e)
+        {
+            Admin_ApprovedGyms ad = new Admin_ApprovedGyms(current_email);
+            ad.Show();
+        }
     }
 }

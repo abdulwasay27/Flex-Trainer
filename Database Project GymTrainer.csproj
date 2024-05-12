@@ -105,6 +105,12 @@
     <Compile Include="GymOwner_Approval.Designer.cs">
       <DependentUpon>GymOwner_Approval.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin_ApprovedGyms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin_ApprovedGyms.Designer.cs">
+      <DependentUpon>Admin_ApprovedGyms.cs</DependentUpon>
+    </Compile>
     <Compile Include="GymOwner_Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,12 @@
     </Compile>
     <Compile Include="GymOwner_SignUp.Designer.cs">
       <DependentUpon>GymOwner_SignUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GymOwner_ViewMembersTrainers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GymOwner_ViewMembersTrainers.Designer.cs">
+      <DependentUpon>GymOwner_ViewMembersTrainers.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -203,6 +215,12 @@
     <Compile Include="Trainer_Appointments.Designer.cs">
       <DependentUpon>Trainer_Appointments.cs</DependentUpon>
     </Compile>
+    <Compile Include="Trainer_Clients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Trainer_Clients.Designer.cs">
+      <DependentUpon>Trainer_Clients.cs</DependentUpon>
+    </Compile>
     <Compile Include="Trainer_Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -260,6 +278,9 @@
     <EmbeddedResource Include="GymOwner_Approval.resx">
       <DependentUpon>GymOwner_Approval.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Admin_ApprovedGyms.resx">
+      <DependentUpon>Admin_ApprovedGyms.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GymOwner_Dashboard.resx">
       <DependentUpon>GymOwner_Dashboard.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -275,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GymOwner_SignUp.resx">
       <DependentUpon>GymOwner_SignUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GymOwner_ViewMembersTrainers.resx">
+      <DependentUpon>GymOwner_ViewMembersTrainers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -317,6 +341,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Trainer_Appointments.resx">
       <DependentUpon>Trainer_Appointments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Trainer_Clients.resx">
+      <DependentUpon>Trainer_Clients.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Trainer_Dashboard.resx">
       <DependentUpon>Trainer_Dashboard.cs</DependentUpon>

@@ -319,5 +319,16 @@ namespace Database_Project_GymTrainer
         {
 
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            GymOwner_ViewMembersTrainers gmt = new GymOwner_ViewMembersTrainers(current_email);
+            gmt.Show();
+        }
     }
 }

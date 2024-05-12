@@ -320,5 +320,11 @@ namespace Database_Project_GymTrainer
             kryptonTextBox1.Visible = false; // INPUT BOX     
             label1.Visible = false; // LABEL "ENTER"
         }
+
+        private void kryptonButton7_Click(object sender, EventArgs e)
+        {
+            Trainer_Clients tc = new Trainer_Clients(trainerEmail);
+            tc.Show();
+        }
     }
 }
