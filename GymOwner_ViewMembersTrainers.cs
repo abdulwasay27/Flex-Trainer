@@ -58,5 +58,163 @@ namespace Database_Project_GymTrainer
         {
             this.Close();
         }
+
+        private void kryptonButton8_Click(object sender, EventArgs e)
+        {
+            string memberEmail = member_signup_gym.Text;
+
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+            conn.Open();
+
+            string query = "SELECT count(memberEmail) FROM Member WHERE memberEmail = @member;";
+            SqlCommand cmd;
+            cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("member", memberEmail);
+            int count = (int)cmd.ExecuteScalar();
+
+            if ( count == 0 )
+            {
+                MessageBox.Show("Invalid Member Email !");
+            }
+            else
+            {
+                query = "DELETE FROM Member_Verification where memberEmail = @member";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                query = "DELETE FROM Appointment where memberEmail = @member";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                query = "DELETE FROM Gym_Membership where memberEmail = @member";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                query = "DELETE FROM Gym_CustomerSatisfaction where memberEmail = @member";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                query = "DELETE FROM Member where memberEmail = @member";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Member deleted successfully !");
+
+                query = "Select * from Member where gymName = (Select gymName from Gym where gymOwner = @owner) AND isApproved = 1;";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@owner", current_email);
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        kryptonDataGridView1.DataSource = dt;
+                    }
+                }
+            }
+        }
+
+        private void member_signup_gym_DropDown(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+            conn.Open();
+            string query = "Select memberEmail from Member where gymName = (Select gymName from Gym where gymOwner = @owner) AND isApproved = 1;";
+            SqlCommand cmd;
+            cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@owner", current_email);
+
+            string target_muscle = member_signup_gym.Text;
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                string exerciseName = reader.GetString(0);
+                member_signup_gym.Items.Add(exerciseName);
+            }
+        }
+
+        private void kryptonComboBox2_DropDown(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+            conn.Open();
+            string query = "Select Trainer.trainerEmail, Trainer.name, Trainer.password, Trainer.speciality, Trainer.experience, Trainer.qualification, " +
+                    "Trainer_Verification.gymName FROM Trainer " +
+                    "JOIN Trainer_Verification on Trainer.trainerEmail = Trainer_Verification.trainerEmail " +
+                    "where Trainer_Verification.gymName = (Select gymName from Gym where gymOwner = @owner) AND Trainer_Verification.isVerified = 1;";
+            SqlCommand cmd;
+            cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@owner", current_email);
+
+            string target_muscle = kryptonComboBox2.Text;
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                string exerciseName = reader.GetString(0);
+                kryptonComboBox2.Items.Add(exerciseName);
+            }
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            string trainerEmail = kryptonComboBox2.Text;
+
+            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+            conn.Open();
+
+            string query = "SELECT count(trainerEmail) FROM Trainer WHERE trainerEmail = @trainer;";
+            SqlCommand cmd;
+            cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("trainer", trainerEmail);
+            int count = (int)cmd.ExecuteScalar();
+
+            if (count == 0)
+            {
+                MessageBox.Show("Invalid Trainer Email !");
+            }
+            else
+            {
+                query = "DELETE FROM TrainerRating where trainerEmail = @trainer";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                query = "DELETE FROM Trainer_Verification where trainerEmail = @trainer";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                query = "DELETE FROM GymTrainers where trainerEmail = @trainer";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                query = "DELETE FROM Feedback where trainerEmail = @trainer";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                query = "DELETE FROM Appointment where trainerEmail = @trainer";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                query = "DELETE FROM Trainer where trainerEmail = @trainer";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Trainer deleted successfully !");
+
+                query = "Select Trainer.trainerEmail, Trainer.name, Trainer.password, Trainer.speciality, Trainer.experience, Trainer.qualification, " +
+                    "Trainer_Verification.gymName FROM Trainer " +
+                    "JOIN Trainer_Verification on Trainer.trainerEmail = Trainer_Verification.trainerEmail " +
+                    "where Trainer_Verification.gymName = (Select gymName from Gym where gymOwner = @owner) AND Trainer_Verification.isVerified = 1;";
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@owner", current_email);
+                    using (SqlDataAdapter sqlDA = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        sqlDA.Fill(dt);
+                        kryptonDataGridView2.DataSource = dt;
+                    }
+                }
+            }
+        }
     }
 }
