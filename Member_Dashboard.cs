@@ -301,8 +301,8 @@ namespace Database_Project_GymTrainer
                 kryptonButton12.Visible = false;
 
                 kryptonButton7.Visible = false;
-                kryptonButton13.Location = kryptonButton7.Location;
-                kryptonButton13.Visible = true;
+                kryptonButton8.Location = kryptonButton7.Location;
+                kryptonButton8.Visible = true;
             }
 
         }
@@ -429,7 +429,7 @@ namespace Database_Project_GymTrainer
             {
                 SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
                 conn.Open();
-                string query = "SELECT WorkoutPlan.workoutPlanID, WorkoutPlan.goal, WorkoutPlan.schedule, WorkoutPlan.experienceLevel FROM WorkoutPlan inner join Member on Member.memberEmail = WorkoutPlan.memberEmail where Member.memberEmail = @memberEmail UNION SELECT WorkoutPlan.workoutPlanID, WorkoutPlan.goal, WorkoutPlan.schedule, WorkoutPlan.experienceLevel FROM WorkoutPlan inner join Trainer on trainer.trainerEmail = WorkoutPlan.trainerEmail inner join Member on Trainer.trainerEmail = Member.trainerEmail where Member.memberEmail = @memberEmail EXCEPT SELECT WorkoutPlan.workoutPlanID, WorkoutPlan.goal, WorkoutPlan.schedule, WorkoutPlan.experienceLevel FROM WorkoutPlan inner join member on Member.currentlyFollowingWorkoutPlanID = WorkoutPlan.workoutPlanID where Member.memberEmail = @memberEmail ;";
+                string query = "SELECT WorkoutPlan.workoutPlanID, WorkoutPlan.goal, WorkoutPlan.schedule, WorkoutPlan.experienceLevel FROM WorkoutPlan inner join Member on Member.memberEmail = WorkoutPlan.memberEmail where Member.memberEmail = @memberEmail EXCEPT SELECT WorkoutPlan.workoutPlanID, WorkoutPlan.goal, WorkoutPlan.schedule, WorkoutPlan.experienceLevel FROM WorkoutPlan inner join member on Member.currentlyFollowingWorkoutPlanID = WorkoutPlan.workoutPlanID where Member.memberEmail = @memberEmail ;";
 
                 using (SqlCommand command = new SqlCommand(query, conn))
                 {
@@ -455,7 +455,6 @@ namespace Database_Project_GymTrainer
                 SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
                 conn.Open();
                 string query = "SELECT dietPlan.dietplanID, dietPlan.trainerEmail, dietPlan.memberEmail, dietPlan.purpose, dietPlan.typeOfDiet FROM DietPlan inner join Member on Member.memberEmail = dietPlan.memberEmail where Member.memberEmail = @memberEmail " +
-                    "UNION SELECT dietPlan.dietplanID, dietPlan.trainerEmail, dietPlan.memberEmail, dietPlan.purpose, dietPlan.typeOfDiet FROM DietPlan inner join Trainer on trainer.trainerEmail = dietPlan.trainerEmail inner join Member on Trainer.trainerEmail = Member.trainerEmail where Member.memberEmail = @memberEmail " +
                     "EXCEPT SELECT dietPlan.dietplanID, dietPlan.trainerEmail, dietPlan.memberEmail, dietPlan.purpose, dietPlan.typeOfDiet FROM DietPlan inner join member on Member.dietPlanID = dietPlan.dietPlanID where Member.memberEmail = @memberEmail ;";
                 using (SqlCommand command = new SqlCommand(query, conn))
                 {

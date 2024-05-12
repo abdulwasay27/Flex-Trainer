@@ -139,6 +139,7 @@ namespace Database_Project_GymTrainer
 
         private void member_signup_gym_SelectedIndexChanged(object sender, EventArgs e)
         {
+            member_signup_gym.Items.Clear();
             SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             conn.Open();
             string query = "SELECT gymName FROM Gym WHERE isApproved = 1;";

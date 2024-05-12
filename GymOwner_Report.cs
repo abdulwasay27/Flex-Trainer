@@ -199,5 +199,20 @@ namespace Database_Project_GymTrainer
         {
 
         }
+
+        private void kryptonComboBox2_DropDown_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel11_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel10_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

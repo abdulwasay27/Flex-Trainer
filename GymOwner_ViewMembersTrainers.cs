@@ -33,7 +33,7 @@ namespace Database_Project_GymTrainer
                 }
             }
 
-            query = "Select Trainer.trainerEmail, Trainer.name, Trainer.password, Trainer.speciality, Trainer.experience, Trainer.qualification, " +
+            query = "Select Trainer.trainerEmail, Trainer.name, Trainer.speciality, Trainer.experience, Trainer.qualification, " +
                     "Trainer_Verification.gymName FROM Trainer " +
                     "JOIN Trainer_Verification on Trainer.trainerEmail = Trainer_Verification.trainerEmail " +
                     "where Trainer_Verification.gymName = (Select gymName from Gym where gymOwner = @owner) AND Trainer_Verification.isVerified = 1;";
@@ -78,6 +78,26 @@ namespace Database_Project_GymTrainer
             }
             else
             {
+                query = "Delete FROM Workout_Exercises where workoutPlanID IN (SELECT workoutPlanID FROM workoutPlan where memberEmail= @member)";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                query = "Delete FROM WorkoutPlan where memberEmail = @member";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                query = "Delete FROM Diet_Meal where dietPlanID IN (SELECT dietPlanID FROM dietPlan where memberEmail = @member)";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                query = "Delete FROM dietPlan where memberEmail = @member";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                query = "DELETE FROM TrainerRating where memberEmail = @member";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
                 query = "DELETE FROM Member_Verification where memberEmail = @member";
                 cmd.CommandText = query;
                 cmd.ExecuteNonQuery();
@@ -115,8 +135,10 @@ namespace Database_Project_GymTrainer
         }
 
         private void member_signup_gym_DropDown(object sender, EventArgs e)
+
         {
-            SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
+            member_signup_gym.Items.Clear();
+           SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             conn.Open();
             string query = "Select memberEmail from Member where gymName = (Select gymName from Gym where gymOwner = @owner) AND isApproved = 1;";
             SqlCommand cmd;
@@ -135,6 +157,7 @@ namespace Database_Project_GymTrainer
 
         private void kryptonComboBox2_DropDown(object sender, EventArgs e)
         {
+            kryptonComboBox2.Items.Clear();
             SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             conn.Open();
             string query = "Select Trainer.trainerEmail, Trainer.name, Trainer.password, Trainer.speciality, Trainer.experience, Trainer.qualification, " +
@@ -174,6 +197,26 @@ namespace Database_Project_GymTrainer
             }
             else
             {
+                query = "Delete FROM Workout_Exercises where workoutPlanID IN (SELECT workoutPlanID FROM workoutPlan where trainerEmail= @trainer)";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                query = "Delete FROM WorkoutPlan where trainerEmail = @trainer";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                query = "Delete FROM Diet_Meal where dietPlanID IN (SELECT dietPlanID FROM dietPlan where trainerEmail = @trainer)";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                query = "Delete FROM dietPlan where trainerEmail = @trainer";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                query = "Update MEMBER set trainerEmail = NULL where trainerEmail = @trainer";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
                 query = "DELETE FROM TrainerRating where trainerEmail = @trainer";
                 cmd.CommandText = query;
                 cmd.ExecuteNonQuery();
@@ -204,6 +247,7 @@ namespace Database_Project_GymTrainer
                     "Trainer_Verification.gymName FROM Trainer " +
                     "JOIN Trainer_Verification on Trainer.trainerEmail = Trainer_Verification.trainerEmail " +
                     "where Trainer_Verification.gymName = (Select gymName from Gym where gymOwner = @owner) AND Trainer_Verification.isVerified = 1;";
+
                 using (SqlCommand command = new SqlCommand(query, conn))
                 {
                     command.Parameters.AddWithValue("@owner", current_email);

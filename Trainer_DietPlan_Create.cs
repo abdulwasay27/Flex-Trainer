@@ -67,11 +67,6 @@ namespace Database_Project_GymTrainer
                 cmd = new SqlCommand(check_dietPlan_empty, conn);
                 int rowCount = (int)cmd.ExecuteScalar();
                 current_dietPlanID = 1;
-                if (rowCount > 0)
-                {
-                    cmd.CommandText = get_dietPlanId;
-                    current_dietPlanID = (int)cmd.ExecuteScalar() + 1;
-                }
 
                 string create_dietplan_record = "INSERT INTO dietPlan (trainerEmail) VALUES(@trainerEmail);";
                 cmd.CommandText = create_dietplan_record;
@@ -79,6 +74,11 @@ namespace Database_Project_GymTrainer
                 cmd.ExecuteNonQuery();
 
                 isdietPlanCreated = true;
+                if (rowCount > 0)
+                {
+                    cmd.CommandText = get_dietPlanId;
+                    current_dietPlanID = (int)cmd.ExecuteScalar() ;
+                }
 
             }
 

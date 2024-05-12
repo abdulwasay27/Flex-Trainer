@@ -47,6 +47,7 @@ namespace Database_Project_GymTrainer
 
         private void member_signup_gym_DropDown(object sender, EventArgs e)
         {
+            member_signup_gym.Items.Clear();
             SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             conn.Open();
             string query = "SELECT gymName FROM Gym WHERE isApproved = 1 and adminEmail = @admin;";
@@ -89,6 +90,23 @@ namespace Database_Project_GymTrainer
                 cmd.ExecuteNonQuery();
 
                 query = "DELETE FROM Member_Verification where gymName = @gym";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+               
+                query = "Delete FROM Workout_Exercises where workoutPlanID IN (SELECT workoutPlanID FROM workoutPlan where memberEmail IN (SELECT MEMBEREmail FROM member where gymName = @gym))";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                query = "Delete FROM WorkoutPlan where memberEmail IN (SELECT MEMBEREmail FROM member where gymName = @gym)";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                query = "Delete FROM Diet_Meal where dietPlanID IN (SELECT dietPlanID FROM dietPlan where memberEmail IN (SELECT MEMBEREmail FROM member where gymName = @gym))";
+                cmd.CommandText = query;
+                cmd.ExecuteNonQuery();
+
+                query = "Delete FROM dietPlan where memberEmail IN (SELECT MEMBEREmail FROM member where gymName = @gym)";
                 cmd.CommandText = query;
                 cmd.ExecuteNonQuery();
 

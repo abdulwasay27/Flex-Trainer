@@ -30,6 +30,7 @@ namespace Database_Project_GymTrainer
             {
                 kryptonButton5.Visible = false;
                 kryptonButton3.Visible = false;
+                kryptonButton1.Visible = false;
 
             }   
           
@@ -71,7 +72,8 @@ namespace Database_Project_GymTrainer
 
             if ((int)command.ExecuteScalar() == 1)
             {
-                label5.Visible = true;
+                label5.Location = kryptonButton6.Location;
+                label5.Visible = true;   
                 kryptonButton6.Hide();
 
             }

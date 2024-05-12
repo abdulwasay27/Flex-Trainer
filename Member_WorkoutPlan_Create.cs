@@ -90,18 +90,18 @@ namespace Database_Project_GymTrainer
                 cmd = new SqlCommand(check_workoutPlan_empty, conn);
                 int rowCount = (int)cmd.ExecuteScalar();
                 current_workoutPlanID = 1;
-                if(rowCount > 0)
-                {
-                    cmd.CommandText = get_workoutPlanId;
-                    current_workoutPlanID = (int)cmd.ExecuteScalar() + 1;
-                }
 
                 string create_workoutplan_record = "INSERT INTO workoutPlan (memberEmail) VALUES(@memberEmail);";
                 cmd.CommandText = create_workoutplan_record;
                 cmd.Parameters.Add("@memberEmail", SqlDbType.VarChar).Value = this.memberEmail;
                 cmd.ExecuteNonQuery();
-
                 isWorkoutPlanCreated = true;
+                if(rowCount > 0)
+                {
+                    cmd.CommandText = get_workoutPlanId;
+                    current_workoutPlanID = (int)cmd.ExecuteScalar();
+                }
+
                 
             }
 

@@ -173,6 +173,10 @@ namespace Database_Project_GymTrainer
                         query = "delete from workout_exercises where workoutPlanId=@workoutid;";
                         cmd.CommandText = query;
                         cmd.ExecuteNonQuery();
+                        query = "update member set currentlyfollowingworkoutplanid=NULL where currentlyfollowingworkoutplanid=@workoutid";
+                        cmd.CommandText = query;
+                        cmd.ExecuteNonQuery();
+                       
                         query = "delete from workoutPlan where workoutPlanId=@workoutid;";
                         cmd.CommandText = query;
                         cmd.ExecuteNonQuery();
@@ -207,6 +211,9 @@ namespace Database_Project_GymTrainer
                     {
                         query = "";
                         query = "delete from diet_meal where dietPlanId=@dietPlanid;";
+                        cmd.CommandText = query;
+                        cmd.ExecuteNonQuery();
+                        query = "update member set dietplanid=NULL where dietplanid=@dietplanid";
                         cmd.CommandText = query;
                         cmd.ExecuteNonQuery();
                         query = "delete from dietPlan where dietPlanId=@dietplanid;";

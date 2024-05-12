@@ -180,9 +180,9 @@ namespace Database_Project_GymTrainer
             {
                 SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
                 conn.Open();
-                string query = "Select * from Member " +
+                string query = "Select Member.* from Member " +
                                "join Gym on Member.gymName = Gym.gymName " +
-                               "where Gym.gymOwner = @owner AND Member.signup_date < DATEADD(MONTH, -3, GETDATE())";
+                               "where Gym.gymOwner = @owner AND Member.signup_date >= DATEADD(MONTH, -3, GETDATE());";
                 using (SqlCommand command = new SqlCommand(query, conn))
                 {
                     command.Parameters.Add("@owner", SqlDbType.VarChar).Value = s1;
@@ -264,7 +264,7 @@ namespace Database_Project_GymTrainer
             {
                 SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
                 conn.Open();
-                string query = "Select * from Member where gymName = (Select gymName from Gym where gymOwner = @owner) AND objectives = obj;";
+                string query = "Select * from Member where gymName = (Select gymName from Gym where gymOwner = @owner) AND objectives = @obj;";
                 using (SqlCommand command = new SqlCommand(query, conn))
                 {
                     command.Parameters.Add("@owner", SqlDbType.VarChar).Value = s1;
@@ -281,7 +281,7 @@ namespace Database_Project_GymTrainer
             {
                 SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
                 conn.Open();
-                string query = "Select * from Member where gymName = (Select gymName from Gym where gymOwner = @owner) AND trainerEmail = trainer;";
+                string query = "Select * from Member where gymName = (Select gymName from Gym where gymOwner = @owner) AND trainerEmail = @trainer;";
                 using (SqlCommand command = new SqlCommand(query, conn))
                 {
                     command.Parameters.Add("@owner", SqlDbType.VarChar).Value = s1;
@@ -298,26 +298,17 @@ namespace Database_Project_GymTrainer
             {
                 SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
                 conn.Open();
-                string query = "SELECT COUNT(*) FROM Member WHERE gymName = (Select gymName from Gym where gymOwner = @owner) " +
-                    "AND signup_date >= DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()) - 1, 0) AND " +
-                    "signup_date < DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()), 0);";
+                string query = "SELECT COUNT(*) FROM Member WHERE gymName = (Select gymName from Gym where gymOwner = @owner); ";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.CommandText = query;
                 cmd.Parameters.Add("@owner", SqlDbType.VarChar).Value = s1;
                 int c1 = (int)cmd.ExecuteScalar();
 
-
-                query = "SELECT COUNT(*) FROM Member WHERE gymName = (Select gymName from Gym where gymOwner = @owner) " +
-                    "AND signup_date >= DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()) - 2, 0) " +
-                    "AND signup_date<DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()) -1, 0); ";
-                cmd.CommandText = query;
-                int c2 = (int)cmd.ExecuteScalar();
-
                 query = "SELECT Gym.membership_fees from Gym WHERE gymName = (Select gymName from Gym where gymOwner = @owner); ";
                 cmd.CommandText = query;
                 int c3 = (int)cmd.ExecuteScalar();
 
-                int ans = (c2*c3 - c1*c3) / 100;
+                int ans = c1*c3;
 
                 query = "UPDATE gym set financialPerformance = @fin_perf where gymName = (Select gymName from Gym where gymOwner = @owner);";
                 cmd.Parameters.Add("@fin_perf", SqlDbType.Decimal).Value = ans;
@@ -342,8 +333,8 @@ namespace Database_Project_GymTrainer
                 SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
                 conn.Open();
                 string query = "SELECT COUNT(*) FROM Member WHERE gymName = (Select gymName from Gym where gymOwner = @owner) " +
-                    "AND signup_date >= DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()) - 1, 0) AND " +
-                    "signup_date < DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()), 0);";
+                    "AND MONTH(signup_date) = MONTH(GETDATE()) AND " +
+                    "YEAR(signup_date) = YEAR(GETDATE());";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.CommandText = query;
                 cmd.Parameters.Add("@owner", SqlDbType.VarChar).Value = s1;
@@ -351,8 +342,8 @@ namespace Database_Project_GymTrainer
 
 
                 query = "SELECT COUNT(*) FROM Member WHERE gymName = (Select gymName from Gym where gymOwner = @owner) " +
-                    "AND signup_date >= DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()) - 2, 0) " +
-                    "AND signup_date<DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()) -1, 0); ";
+                    "AND MONTH(signup_date) = MONTH(DATEADD(MONTH, -6, GETDATE())) " +
+                    " AND YEAR(signup_date) = YEAR(DATEADD(MONTH, -6, GETDATE())); ";
                 cmd.CommandText = query;
                 int c2 = (int)cmd.ExecuteScalar();
 
@@ -360,7 +351,15 @@ namespace Database_Project_GymTrainer
                 cmd.CommandText = query;
                 int c3 = (int)cmd.ExecuteScalar();
 
-                int ans = (c2 - c1 ) / 100;
+                float ans;
+                if (c1 == 0 && c2 == 0)
+                {
+                    ans = 0;
+                }
+                else
+                {
+                    ans = (Math.Abs(c1 - c2) / (c1 + c2)) * 100;
+                }
 
                 query = "UPDATE gym set membershipGrowth = @mem_growth where gymName = (Select gymName from Gym where gymOwner = @owner);";
                 cmd.Parameters.Add("@mem_growth", SqlDbType.Decimal).Value = ans;
@@ -400,10 +399,7 @@ namespace Database_Project_GymTrainer
             {
                 SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
                 conn.Open();
-                string query = "Select TOP 5 trainerEmail from GymTrainers join TrainerRating " +
-                               "on GymTrainers.trainerEmail = TrainerRating.trainerEmail " +
-                               "where GymTrainers.gymName = (Select gymName from Gym where gymOwner = @owner) " +
-                               "ORDER BY TrainerRating.rating DESC;";
+                string query = "Select * FROM FeedBack where trainerEmail in (SELECT trainerEmail FROM GYMTRAINERS where gymName=(SELECT gymNAme FROM gym where gymOwner=@owner))";
                 using (SqlCommand command = new SqlCommand(query, conn))
                 {
                     command.Parameters.Add("@owner", SqlDbType.VarChar).Value = s1;

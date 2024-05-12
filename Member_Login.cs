@@ -51,7 +51,7 @@ namespace Database_Project_GymTrainer
             SqlConnection conn = new SqlConnection(ConnectionString.ServerName);
             conn.Open();
             SqlCommand cmd;
-            string query = "select count(*) from member where memberEmail=@email"; // ADD ISAPRROVED = 1
+            string query = "select count(*) from member where memberEmail=@email";
             cmd = new SqlCommand(query, conn);
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
                 MessageBox.Show("Please enter email and passowrd!");
@@ -67,7 +67,7 @@ namespace Database_Project_GymTrainer
                 }
                 else
                 {
-                    query = "select count(*) from Member where memberEmail=@email AND isApproved IS NULL AND addedBy is NULL ;";
+                    query = "select count(*) from Member where memberEmail=@email AND isApproved = 0 AND addedBy is NULL ;";
                     cmd.CommandText = query;
                     count = (int)cmd.ExecuteScalar();
                     if (count == 1)
